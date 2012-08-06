@@ -8,6 +8,7 @@ package questions
 	import flash.display.MovieClip;
 	import flash.display.Bitmap;
 	import flash.geom.Rectangle;
+	import flash.geom.Point;
 	
 	public class Questions extends Sprite
 	{
@@ -247,7 +248,12 @@ package questions
 				motion = _detectorCallback(_currentQuestion.incorrectResponses[i].detectionArea);
 				if(motion.width * motion.height > 50 && _currentQuestion.incorrectResponses[i].detectionArea.intersects(motion))
 				{
-					_scoreCallback(false);
+					_scoreCallback(false,
+					               new Point(_currentQuestion.correctResponse.detectionArea.x + _currentQuestion.correctResponse.detectionArea.width/2, 
+					                         _currentQuestion.correctResponse.detectionArea.y + _currentQuestion.correctResponse.detectionArea.height/2),
+					               new Point(_currentQuestion.incorrectResponses[i].detectionArea.x + _currentQuestion.incorrectResponses[i].detectionArea.width/2,
+					                         _currentQuestion.incorrectResponses[i].detectionArea.y + _currentQuestion.incorrectResponses[i].detectionArea.height/2)
+					              );
 					return;
 				}
 			}
@@ -255,7 +261,10 @@ package questions
 			// Detect correct answer
 			motion = _detectorCallback(_currentQuestion.correctResponse.detectionArea);
 			if(motion.width * motion.height > 50 && _currentQuestion.correctResponse.detectionArea.intersects(motion))
-				_scoreCallback(true);
+				_scoreCallback(true,
+					           new Point(_currentQuestion.correctResponse.detectionArea.x + _currentQuestion.correctResponse.detectionArea.width/2, 
+					                     _currentQuestion.correctResponse.detectionArea.y + _currentQuestion.correctResponse.detectionArea.height/2)
+					           );
 			
 		}
 		

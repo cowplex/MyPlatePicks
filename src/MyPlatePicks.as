@@ -30,6 +30,7 @@ package
 	import flash.filters.ColorMatrixFilter;
 	import flash.geom.Rectangle;
 	import flash.geom.Matrix;
+	import flash.geom.Point;
 	import flash.utils.Timer;
 	import flash.events.TimerEvent;
 	
@@ -194,6 +195,8 @@ package
 		private function setupQuestionValidator() : void
 		{
 			_questionValidator = new Validator( validateCallback );
+			_questionValidator.x = _source.x;
+			_questionValidator.y = _source.y;
 			addChild(_questionValidator);
 		}
 		
@@ -206,7 +209,7 @@ package
 		}
 		
 		// Detect Scoring
-		private function stateCallback( hit : Boolean = false) : void
+		private function stateCallback( hit : Boolean = false, correct : Point = null, miss : Point = null) : void
 		{
 			switch(_gamestate)
 			{
@@ -236,7 +239,7 @@ package
 			}
 			
 			if(_gamestate != 0)
-				_questionValidator.validate();
+				_questionValidator.validate(correct, miss);
 		}
 		
 		private function validateCallback() : void
