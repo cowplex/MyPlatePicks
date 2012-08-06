@@ -6,9 +6,11 @@ package
 	
 	// Debug! Yay!
 	//import VideoDebug;
+	//import flash.display.MovieClip;
 	
 	// Data Imports
 	import Screens.*;
+	import questions.Questions;
 	
 	// Shared Imports
 	import flash.display.Bitmap;
@@ -28,12 +30,23 @@ package
 	import flash.filters.ColorMatrixFilter;
 	import flash.geom.Rectangle;
 	import flash.geom.Matrix;
+	import flash.utils.Timer;
+	import flash.events.TimerEvent;
 	
-	[SWF(width="640", height="480", frameRate="30", backgroundColor="#FFFFFF")]
+	[SWF(width="640", height="480", frameRate="30", backgroundColor="#333333")]
 	public class MyPlatePicks extends Sprite
 	{
 		//DEBUG
 		//private var debugVid : Bitmap;
+		
+		private static const QUESTIONS_PER_LEVEL : Number = 4;
+		
+		// Game Variables
+		private var _gamestate : Number = 0;
+		private var _detecting : Boolean = true;
+		private var _answeredQuestions : Number = 0;
+		private var _questions : Questions;
+		private var _questionValidator : Validator;
 		
 		// Video Parameters
 		private const _vidWidth : int = 420;
@@ -46,12 +59,41 @@ package
 		// Menus
 		private var _mainMenu : MainMenu;
 		private var _warmup   : Warmup;
+		private var _pause    : Pause;
+		private var _scoreboard    : Scoreboard;
+		private var _mainScreen    : Main;
+		private var _level : Level;
 		
 		// FLARToolkit variables	
 		//private var raster:FLARRgbRaster_BitmapData;
 		
 		// Motion Tracker variables
 		private var _motionTracker : MotionTracker;
+		
+		private function setupSequence( step : Number) : void
+		{
+			// Set up different parts of the game progressively
+			switch(step)
+			{
+				case 1:
+					setupMainMenu();
+					break;
+				case 2:
+					setupVideo();
+					setupWarmup();
+					setupPause();
+					setupScoreboard();
+					setupMainScreen();
+					setupLevel();
+					setupQuestions();
+					setupQuestionValidator();
+					
+					addEventListener(Event.ENTER_FRAME, loop);
+					
+					break;
+				default: break;
+			}
+		}
 		
 		private function setupMainMenu() : void
 		{
@@ -60,7 +102,7 @@ package
 			                                                            function(e:MouseEvent):void
 			                                                            {
 			                                                            	removeChild(_mainMenu);
-			                                                            	setupVideo();
+			                                                            	setupSequence(2);
 			                                                            }
 			                                     );
 			addChild(_mainMenu);
@@ -80,6 +122,7 @@ package
 			// Create the Motion Tracker
 			_motionTracker = new MotionTracker(_vidWidth, _vidHeight);
 			
+			// Create transform matrix to flip video
 			_mtx = new Matrix();
 			_mtx.translate(-_vidWidth, 0); 
 			_mtx.scale(-1, 1); 
@@ -87,21 +130,17 @@ package
 			// Display the camera input with the same filters (minus the blur) as the MotionTracker is using
 			_bitmap = new BitmapData(_vidWidth, _vidHeight, false, 0);
 			_source = new Bitmap(_bitmap);
-			//_source.scaleX = -1;
-			_source.x = 10;// + _vidWidth;
-			_source.y = 10;
+			_source.x = 164;
+			_source.y = 64;
 			addChild(_source);
 			
 			// DEBUG
 			var debugVid : Bitmap = new Bitmap(_motionTracker.trackingImage);
-			debugVid.x = 20 + _vidWidth;
-			debugVid.y = 10;
+			debugVid.x = _source.x + 10 + _vidWidth;
+			debugVid.y = _source.y;
 			debugVid.scaleX = debugVid.scaleY = .25;
-			addChild(debugVid);
+//			addChild(debugVid);
 			// DEBUG
-			
-			setupWarmup();
-			addEventListener(Event.ENTER_FRAME, loop);
 			
 		}
 		
@@ -110,24 +149,157 @@ package
 			_warmup = new Warmup();
 			_warmup.x = _source.x;
 			_warmup.y = _source.y;
+			_warmup.setupCallback(stateCallback);
 			addChild(_warmup);
 		}
 		
-		public function MyPlatePicks()
+		private function setupPause() : void
 		{
-			setupMainMenu();
-			//setupVideo();
-			//addEventListener(Event.ENTER_FRAME, loop);
+			_pause = new Pause();
+			_pause.x = _source.x;
+			_pause.y = _source.y;
+			addChild(_pause);
 		}
 		
+		private function setupScoreboard() : void
+		{
+			_scoreboard = new Scoreboard();
+			_scoreboard.x = 305;
+			_scoreboard.y = 15;
+			addChild(_scoreboard);
+		}
+		
+		private function setupMainScreen() : void
+		{
+			_mainScreen = new Main();
+			addChild(_mainScreen);
+		}
+		
+		private function setupLevel() : void
+		{
+			_level = new Level();
+			_level.x = 67.5;
+			_level.y = 25;
+			addChild(_level);
+		}
+		
+		private function setupQuestions() : void
+		{
+			_questions = new Questions();
+			_questions.setScoreCallback(stateCallback);
+			_questions.setDetectorCallback(_motionTracker.detectMotion);
+			addChild(_questions);
+		}
+		
+		private function setupQuestionValidator() : void
+		{
+			_questionValidator = new Validator( validateCallback );
+			addChild(_questionValidator);
+		}
+		
+		/*
+		 * Constructor
+		 */
+		public function MyPlatePicks()
+		{
+			setupSequence(1);
+		}
+		
+		// Detect Scoring
+		private function stateCallback( hit : Boolean = false) : void
+		{
+			switch(_gamestate)
+			{
+				case 0:
+					_answeredQuestions++;
+					if(_answeredQuestions >= QUESTIONS_PER_LEVEL)
+					{
+						removeChild(_warmup);
+						_level.level++;
+						//stateSetup();
+						_questionValidator.validate();
+					}
+					break;
+				case 1:
+					_detecting = false;
+					
+					_answeredQuestions++;
+					_scoreboard.scoreEvent(hit);
+					break;
+				case 2:
+					// Remove AR detector
+					break;
+				case 3:
+					// Remove Interstitial
+					break;
+				default: break;
+			}
+			
+			if(_gamestate != 0)
+				_questionValidator.validate();
+		}
+		
+		private function validateCallback() : void
+		{
+			switch(_gamestate)
+			{
+				case 1:
+					_questions.hideQuestion();
+					break;
+				case 3:
+					break;
+			}
+			stateSetup();
+		}
+		
+		private function stateSetup() : void
+		{
+			switch(_gamestate)
+			{
+				case 0:
+				case 1:
+					if(_answeredQuestions < QUESTIONS_PER_LEVEL)
+						break;
+					_answeredQuestions = 0;
+				default:
+					_gamestate++;
+			}
+			
+			if(_gamestate > 3)
+				_gamestate = 1;
+			
+			switch(_gamestate)
+			{
+				case 1:
+					// Add Question
+					_questions.drawQuestion(_level.level);
+					_detecting = true;
+					break;
+			}
+		}
+		
+		// Main Loop
 		private function loop(e:Event):void
 		{
+			// Update video frame
 			_bitmap.draw(_video, _mtx);
 			_motionTracker.track(_bitmap);
-			_warmup.detectHit(_motionTracker.detectMotion(_warmup.detectionArea));
-			/*var rect : Rectangle = new Rectangle(0,0,_vidWidth,_vidHeight);
-			var test : Rectangle = _motionTracker.detectMotion(rect);
-			trace(test);*/
+			_pause.detectHit(_motionTracker.detectMotion(_pause.detectionArea));
+			
+			// Stop tracking if the game is paused or we're validating user input
+			if(_pause.paused || !_detecting)
+				return;
+			
+			// Track things
+			switch(_gamestate)
+			{
+				case 0:
+					_warmup.detectHit(_motionTracker.detectMotion(_warmup.detectionArea));
+					break;
+				case 1:
+					_questions.detectHit();
+					break;
+			}
 		}
 		
 	}

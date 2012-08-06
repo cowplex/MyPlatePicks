@@ -21,6 +21,8 @@ package Screens
 		
 		private var detecting : Boolean = true;
 		
+		private var _hitCallback : Function;
+		
 		private var t : Timer;
 		
 		public function Warmup()
@@ -32,21 +34,29 @@ package Screens
 			attach();
 		}
 		
+		public function setupCallback( callback : Function ) : void
+		{
+			_hitCallback = callback;
+		}
+		
 		public function get detectionArea() : Rectangle
 		{
 			return(new Rectangle(hitTarget.x - hitTarget.width/2, hitTarget.y - hitTarget.height/2, hitTarget.width, hitTarget.height));
 		}
 		
-		public function detectHit( motion : Rectangle ) : void
+		public function detectHit( motion : Rectangle ) : Boolean
 		{
-			trace(motion);
-			if(detecting && motion.width * motion.height > 50
+			/*if(detecting && motion.width * motion.height > 50
 			                                     && motion.x >= (hitTarget.x - hitTarget.width/2) && motion.x <= (hitTarget.x + hitTarget.width/2)
 			                                     && motion.y >= (hitTarget.y - hitTarget.height/2) && motion.y <= (hitTarget.y + hitTarget.height/2)
-			  )
+			  )*/
+			if(detecting && motion.width * motion.height > 50 && detectionArea.intersects(motion))
 			{
 				reset();
+				_hitCallback();
+				return true;
 			}
+			return false;
 		}
 		
 		private function createTarget(target : Sprite, hit : Boolean) : void
@@ -83,7 +93,6 @@ package Screens
 		}
 		private function attachTimer(e:TimerEvent) : void
 		{
-			trace("attaching timer");
 			detecting = true;
 			attach();
 		}

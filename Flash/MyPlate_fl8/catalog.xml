@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding ="utf-8"?>
+<swc xmlns="http://www.adobe.com/flash/swccatalog/9">
+  <versions>
+    <swc version="1.2" />
+    <flash version="11.5" build="d349" platform="MAC" />
+  </versions>
+  <features>
+    <feature-script-deps />
+    <feature-files />
+  </features>
+  <libraries>
+    <library path="library.swf">
+      <script name="AR_detection" mod="1343698111224" >
+        <def id="AR_detection" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="Silhouette" mod="1343698111225" >
+        <def id="Silhouette" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="checkmark" mod="1343698111225" >
+        <def id="checkmark" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="high_score" mod="1343698111225" >
+        <def id="high_score" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="level_1" mod="1343698111225" >
+        <def id="level_1" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="level_2" mod="1343698111225" >
+        <def id="level_2" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="level_3" mod="1343698111225" >
+        <def id="level_3" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="marker_worm" mod="1343698111225" >
+        <def id="marker_worm" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="no" mod="1343698111225" >
+        <def id="no" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="overlay_bar_large" mod="1343698111225" >
+        <def id="overlay_bar_large" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="overlay_bar_small" mod="1343698111225" >
+        <def id="overlay_bar_small" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="score" mod="1343698111225" >
+        <def id="score" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="timer" mod="1343698111225" >
+        <def id="timer" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="timer_apple" mod="1343698111225" >
+        <def id="timer_apple" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="x" mod="1343698111225" >
+        <def id="x" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="yes" mod="1343698111225" >
+        <def id="yes" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+    </library>
+  </libraries>
+  <files>
+  </files>
+</swc>

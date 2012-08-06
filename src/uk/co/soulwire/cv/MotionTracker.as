@@ -40,6 +40,9 @@ package uk.co.soulwire.cv
 		private static const DEFAULT_CONTRAST : int = 150;
 		
 		private static const _transform:ColorTransform = new ColorTransform(1,0,0,1,0,0,0,0);
+		
+		// DEBUG
+		private static const _trackingAreasTransform:ColorTransform = new ColorTransform(1,0,1,1,0,0,255,0);
 
 		//	----------------------------------------------------------------
 		//	PRIVATE MEMBERS
@@ -137,6 +140,9 @@ package uk.co.soulwire.cv
 			
 			frame.copyPixels(_now, _now.rect, new Point());
 			frame.colorTransform(position, _transform);
+			
+			// DEBUG
+			_now.colorTransform(position, _trackingAreasTransform);
 			
 			area =frame.getColorBoundsRect(0xFFFFFFFF, 0xFFFF0000, true);
 			
