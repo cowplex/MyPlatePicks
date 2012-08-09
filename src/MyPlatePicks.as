@@ -369,7 +369,11 @@ package
 					break;
 				case 2:
 					// Detecting AR Marker
-					trace(_arDetector.track(_bitmap));
+					if(_arScreen.detectAR(_arDetector.track(_bitmap)))
+					{
+						_mainScreen.timerStop();
+						_arScreen.renderMarker(_arDetector.getTransformMatrix());
+					}
 					return;
 			}
 		}

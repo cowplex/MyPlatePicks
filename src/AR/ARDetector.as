@@ -58,6 +58,10 @@ package AR
 			_raster = new FLARRgbRaster_BitmapData(bitmap);
 			return (_detector.detectMarkerLite(_raster, 80) && _detector.getConfidence() > 0.5)
 		}
+		public function getTransformMatrix() : FLARTransMatResult
+		{
+			return _detector.getTransformMatrix();
+		}
 	}
 
 }

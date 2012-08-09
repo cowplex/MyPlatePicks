@@ -128,7 +128,7 @@ package org.libspark.flartoolkit.detector
 		 * @param o_result
 		 * @throws NyARException
 		 */
-		public function getTransformMatrix(o_result:FLARTransMatResult):void
+		/*public function getTransformMatrix(o_result:FLARTransMatResult):void
 		{
 			if (this._is_continue) {
 				this._transmat.transMatContinue(this._detect_cb.square,this._offset, o_result);
@@ -136,6 +136,16 @@ package org.libspark.flartoolkit.detector
 				this._transmat.transMat(this._detect_cb.square,this._offset, o_result);
 			}
 			return;
+		}*/
+		public function getTransformMatrix():FLARTransMatResult
+		{
+			var o_result:FLARTransMatResult = new FLARTransMatResult()
+			if (this._is_continue) {
+				this._transmat.transMatContinue(this._detect_cb.square,this._offset, o_result);
+			} else {
+				this._transmat.transMat(this._detect_cb.square,this._offset, o_result);
+			}
+			return o_result;
 		}
 		/**
 		 * 
