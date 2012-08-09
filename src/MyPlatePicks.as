@@ -11,6 +11,7 @@ package
 	// Data Imports
 	import Screens.*;
 	import questions.Questions;
+	import AR.*;
 	
 	// Shared Imports
 	import flash.display.Bitmap;
@@ -46,8 +47,10 @@ package
 		private var _gamestate : Number = 0;
 		private var _detecting : Boolean = true;
 		private var _answeredQuestions : Number = 0;
+		
 		private var _questions : Questions;
 		private var _questionValidator : Validator;
+		private var _arDetector : ARDetector;
 		
 		// Video Parameters
 		private const _vidWidth : int = 420;
@@ -153,10 +156,13 @@ package
 		
 		private function setupAR() : void
 		{
-			// Setup detectin screen
+			// Setup detection screen
 			_arScreen = new ARScreen();
 			_arScreen.x = _source.x;
 			_arScreen.y = _source.y;
+			
+			// Setup AR Engine
+			_arDetector = new ARDetector();
 		}
 		
 		private function setupWarmup() : void
@@ -354,11 +360,17 @@ package
 			switch(_gamestate)
 			{
 				case 0:
+					// Warmup time
 					_warmup.detectHit(_motionTracker.detectMotion(_warmup.detectionArea));
 					break;
 				case 1:
+					// Asking a question
 					_questions.detectHit();
 					break;
+				case 2:
+					// Detecting AR Marker
+					trace(_arDetector.track(_bitmap));
+					return;
 			}
 		}
 		
