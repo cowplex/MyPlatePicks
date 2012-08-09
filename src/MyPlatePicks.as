@@ -64,12 +64,16 @@ package
 		private var _scoreboard    : Scoreboard;
 		private var _mainScreen    : Main;
 		private var _level : Level;
+		private var _arScreen : ARScreen;
 		
 		// FLARToolkit variables	
 		//private var raster:FLARRgbRaster_BitmapData;
 		
 		// Motion Tracker variables
 		private var _motionTracker : MotionTracker;
+		
+		// Setups
+		{
 		
 		private function setupSequence( step : Number) : void
 		{
@@ -81,6 +85,8 @@ package
 					break;
 				case 2:
 					setupVideo();
+					setupAR();
+					
 					setupWarmup();
 					setupPause();
 					setupScoreboard();
@@ -145,6 +151,14 @@ package
 			
 		}
 		
+		private function setupAR() : void
+		{
+			// Setup detectin screen
+			_arScreen = new ARScreen();
+			_arScreen.x = _source.x;
+			_arScreen.y = _source.y;
+		}
+		
 		private function setupWarmup() : void
 		{
 			_warmup = new Warmup();
@@ -190,6 +204,10 @@ package
 			_questions.setScoreCallback(stateCallback);
 			_questions.setDetectorCallback(_motionTracker.detectMotion);
 			addChild(_questions);
+			
+			// Setup callback for timer to show correct/incorrect answers
+			//_mainScreen.setupTimerCallback(_questions.questionTimeout);
+			_mainScreen.setupTimerCallback(timerCallback);
 		}
 		
 		private function setupQuestionValidator() : void
@@ -200,12 +218,30 @@ package
 			addChild(_questionValidator);
 		}
 		
+		}
+		
 		/*
 		 * Constructor
 		 */
 		public function MyPlatePicks()
 		{
 			setupSequence(1);
+		}
+
+		// Callbacks
+		{
+			
+		private function timerCallback() : void
+		{
+			switch(_gamestate)
+			{
+				case 1:
+					_questions.questionTimeout();
+					break;
+				case 2:
+					stateCallback();
+					break;
+			}
 		}
 		
 		// Detect Scoring
@@ -218,6 +254,7 @@ package
 					if(_answeredQuestions >= QUESTIONS_PER_LEVEL)
 					{
 						removeChild(_warmup);
+						_detecting = false;
 						_level.level++;
 						//stateSetup();
 						_questionValidator.validate();
@@ -226,11 +263,16 @@ package
 				case 1:
 					_detecting = false;
 					
+					_mainScreen.timerStop();
+					
 					_answeredQuestions++;
 					_scoreboard.scoreEvent(hit);
 					break;
 				case 2:
 					// Remove AR detector
+					_detecting = false;
+					
+					removeChild(_arScreen);
 					break;
 				case 3:
 					// Remove Interstitial
@@ -238,8 +280,11 @@ package
 				default: break;
 			}
 			
-			if(_gamestate != 0)
+// FIXME: potentially move into switch statement
+			if(_gamestate == 1)
 				_questionValidator.validate(correct, miss);
+			else if(_gamestate != 0)
+				stateSetup();
 		}
 		
 		private function validateCallback() : void
@@ -269,16 +314,28 @@ package
 			}
 			
 			if(_gamestate > 3)
+			{
 				_gamestate = 1;
+				_level.level++;
+			}
 			
 			switch(_gamestate)
 			{
 				case 1:
 					// Add Question
 					_questions.drawQuestion(_level.level);
+					_mainScreen.timerStart(10);
+					_detecting = true;
+					break;
+				case 2:
+					// Begin AR Detection
+					addChild(_arScreen);
+					_mainScreen.timerStart(20);
 					_detecting = true;
 					break;
 			}
+		}
+		
 		}
 		
 		// Main Loop

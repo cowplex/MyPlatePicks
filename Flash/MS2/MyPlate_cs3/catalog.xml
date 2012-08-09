@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding ="utf-8"?>
+<swc xmlns="http://www.adobe.com/flash/swccatalog/9">
+  <versions>
+    <swc version="1.0" />
+    <flash version="9.0" build="r494" platform="WIN" />
+  </versions>
+  <features>
+    <feature-script-deps />
+    <feature-files />
+  </features>
+  <libraries>
+    <library path="library.swf">
+      <script name="BTN_resume" mod="1344445022532" >
+        <def id="BTN_resume" /> 
+        <dep id="flash.display:SimpleButton" type="i" /> 
+        <dep id="AS3" type="n" /> 
+      </script>
+      <script name="btn_audio_off" mod="1344445022532" >
+        <def id="btn_audio_off" /> 
+        <dep id="flash.display:SimpleButton" type="i" /> 
+        <dep id="AS3" type="n" /> 
+      </script>
+      <script name="btn_audio_on" mod="1344445022532" >
+        <def id="btn_audio_on" /> 
+        <dep id="flash.display:SimpleButton" type="i" /> 
+        <dep id="AS3" type="n" /> 
+      </script>
+      <script name="btn_info" mod="1344445022532" >
+        <def id="btn_info" /> 
+        <dep id="flash.display:SimpleButton" type="i" /> 
+        <dep id="AS3" type="n" /> 
+      </script>
+      <script name="btn_options" mod="1344445022532" >
+        <def id="btn_options" /> 
+        <dep id="flash.display:SimpleButton" type="i" /> 
+        <dep id="AS3" type="n" /> 
+      </script>
+      <script name="btn_pause" mod="1344445022532" >
+        <def id="btn_pause" /> 
+        <dep id="flash.display:SimpleButton" type="i" /> 
+        <dep id="AS3" type="n" /> 
+      </script>
+      <script name="btn_play" mod="1344445022532" >
+        <def id="btn_play" /> 
+        <dep id="flash.display:SimpleButton" type="i" /> 
+        <dep id="AS3" type="n" /> 
+      </script>
+      <script name="btn_play_mainmenu" mod="1344445022532" >
+        <def id="btn_play_mainmenu" /> 
+        <dep id="flash.display:SimpleButton" type="i" /> 
+        <dep id="AS3" type="n" /> 
+      </script>
+      <script name="btn_quit" mod="1344445022532" >
+        <def id="btn_quit" /> 
+        <dep id="flash.display:SimpleButton" type="i" /> 
+        <dep id="AS3" type="n" /> 
+      </script>
+      <script name="btn_replay" mod="1344445022532" >
+        <def id="btn_replay" /> 
+        <dep id="flash.display:SimpleButton" type="i" /> 
+        <dep id="AS3" type="n" /> 
+      </script>
+      <script name="btn_replay_gameover" mod="1344445022532" >
+        <def id="btn_replay_gameover" /> 
+        <dep id="flash.display:SimpleButton" type="i" /> 
+        <dep id="AS3" type="n" /> 
+      </script>
+      <script name="AR_detection" mod="1344445022532" >
+        <def id="AR_detection" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+        <dep id="AS3" type="n" /> 
+      </script>
+      <script name="BG_credits" mod="1344445022532" >
+        <def id="BG_credits" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+        <dep id="AS3" type="n" /> 
+      </script>
+      <script name="BG_game_over" mod="1344445022532" >
+        <def id="BG_game_over" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+        <dep id="AS3" type="n" /> 
+      </script>
+      <script name="BG_gameplay" mod="1344445022532" >
+        <def id="BG_gameplay" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+        <dep id="AS3" type="n" /> 
+      </script>
+      <script name="Silhouette" mod="1344445022532" >
+        <def id="Silhouette" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+        <dep id="AS3" type="n" /> 
+      </script>
+      <script name="checkmark" mod="1344445022532" >
+        <def id="checkmark" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+        <dep id="AS3" type="n" /> 
+      </script>
+      <script name="high_score" mod="1344445022532" >
+        <def id="high_score" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+        <dep id="AS3" type="n" /> 
+      </script>
+      <script name="level_1" mod="1344445022532" >
+        <def id="level_1" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+        <dep id="AS3" type="n" /> 
+      </script>
+      <script name="level_2" mod="1344445022532" >
+        <def id="level_2" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+        <dep id="AS3" type="n" /> 
+      </script>
+      <script name="level_3" mod="1344445022532" >
+        <def id="level_3" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+        <dep id="AS3" type="n" /> 
+      </script>
+      <script name="marker_worm" mod="1344445022532" >
+        <def id="marker_worm" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+        <dep id="AS3" type="n" /> 
+      </script>
+      <script name="no" mod="1344445022532" >
+        <def id="no" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+        <dep id="AS3" type="n" /> 
+      </script>
+      <script name="overlay_bar_large" mod="1344445022532" >
+        <def id="overlay_bar_large" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+        <dep id="AS3" type="n" /> 
+      </script>
+      <script name="overlay_bar_small" mod="1344445022532" >
+        <def id="overlay_bar_small" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+        <dep id="AS3" type="n" /> 
+      </script>
+      <script name="score" mod="1344445022532" >
+        <def id="score" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+        <dep id="AS3" type="n" /> 
+      </script>
+      <script name="timer" mod="1344445022532" >
+        <def id="timer" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+        <dep id="AS3" type="n" /> 
+      </script>
+      <script name="timer_apple" mod="1344445022532" >
+        <def id="timer_apple" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+        <dep id="AS3" type="n" /> 
+      </script>
+      <script name="xmark" mod="1344445022532" >
+        <def id="xmark" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+        <dep id="AS3" type="n" /> 
+      </script>
+      <script name="yes" mod="1344445022532" >
+        <def id="yes" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+        <dep id="AS3" type="n" /> 
+      </script>
+    </library>
+  </libraries>
+  <files>
+  </files>
+</swc>

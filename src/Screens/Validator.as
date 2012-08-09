@@ -8,8 +8,6 @@ package Screens
 	import flash.geom.Point;
 	import flash.utils.Timer;
 	import flash.events.TimerEvent;
-	// !!! HACK !!!
-	import flash.display.Sprite;
 	
 	public class Validator extends MovieClip
 	{
@@ -18,12 +16,7 @@ package Screens
 		private var _validationTimeout : Timer = new Timer(1000, 1);
 		
 		private var _check : MovieClip = new checkmark();
-		
-		// !!! HACK !!! because it's called "x" in the .swc, so I can't load it with "new x()"
-		[Embed(source="../../Flash/MyPlate_fl8.swf", symbol="x")]
-		private var xmark:Class;
-		private var _x     : Sprite = new xmark();
-		// !!! HACK !!!
+		private var _x     : MovieClip = new xmark();
 		
 		private var _checkAdded : Boolean = false;
 		private var _xAdded     : Boolean = false;

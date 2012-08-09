@@ -5,6 +5,7 @@ package Screens
 {
 	
 	import flash.display.Sprite;
+	import flash.display.SimpleButton;
 	import flash.geom.Rectangle;
 	import flash.geom.Point;
 	import flash.display.Graphics;
@@ -17,7 +18,7 @@ package Screens
 		private static const TARGET_RADIUS : int   = 20;
 		private static const SLIDER_TRACK_LENGTH : int   = 100;
 		
-		private var _pauseIcon : Sprite;
+		private var _pauseIcon : SimpleButton;//Sprite;
 		private var _pauseIconTarget : Rectangle;
 		private var _pauseIconStart : Point;
 		
@@ -25,7 +26,10 @@ package Screens
 		
 		public function Pause()
 		{
+			_pauseIcon = new btn_pause();
+			/*
 			_pauseIcon = new Sprite();
+			
 			// define the line style
 			_pauseIcon.graphics.lineStyle(2,0x000000);
 			// define the fill
@@ -37,13 +41,13 @@ package Screens
 			_pauseIcon.graphics.lineTo(TARGET_RADIUS,TARGET_RADIUS);
 			_pauseIcon.graphics.lineTo(TARGET_RADIUS,-TARGET_RADIUS);
 			
-			_pauseIcon.graphics.endFill();
+			_pauseIcon.graphics.endFill();*/
 			
 			_pauseIcon.x = 15 + TARGET_RADIUS;
 			_pauseIcon.y = 265 + TARGET_RADIUS;
 			
-			_pauseIconTarget = new Rectangle(_pauseIcon.x + _pauseIcon.width / 2 * (1 - TARGET_SCALE), // x
-			                                 _pauseIcon.y + _pauseIcon.height / 2 * (1 - TARGET_SCALE), // y 
+			_pauseIconTarget = new Rectangle(_pauseIcon.x - _pauseIcon.width / 2 * (1 - TARGET_SCALE), // x
+			                                 _pauseIcon.y - _pauseIcon.height / 2 * (1 - TARGET_SCALE), // y 
 			                                 _pauseIcon.width * TARGET_SCALE, // width
 			                                 _pauseIcon.height * TARGET_SCALE); // height
 			
