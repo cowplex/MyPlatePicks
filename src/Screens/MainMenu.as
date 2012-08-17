@@ -3,17 +3,17 @@
  */
 package Screens
 {
-	import flash.display.Sprite;
+	import flash.display.MovieClip;
 	import flash.display.Graphics;
 	
-	public class MainMenu extends Sprite
+	public class MainMenu extends MovieClip
 	{
-		public var playButton : Sprite;
+		public var playButton : MovieClip;
 		public function MainMenu()
 		{
 			/* Create Play Button */
 			{
-				playButton = new Sprite();
+				/*playButton = new MovieClip();
 				// define the line style
 				playButton.graphics.lineStyle(2,0x000000);
 				// define the fill
@@ -29,7 +29,10 @@ package Screens
 				playButton.graphics.lineTo(-50,50);
 				playButton.graphics.lineTo(50,0);
 				
-				playButton.graphics.endFill();
+				playButton.graphics.endFill();*/
+				
+				playButton = new MovieClip();
+				playButton.addChild(new btn_play_mainmenu());
 				
 				playButton.x = 320;
 				playButton.y = 240;

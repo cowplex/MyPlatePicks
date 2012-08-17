@@ -7,7 +7,7 @@ package
 	// Debug! Yay!
 	//import VideoDebug;
 	//import flash.display.MovieClip;
-	
+		
 	// Data Imports
 	import Screens.*;
 	import questions.Questions;
@@ -61,6 +61,7 @@ package
 		private var _mtx      : Matrix
 		
 		// Menus
+		private var _logoScreen : LogoScreen;
 		private var _mainMenu : MainMenu;
 		private var _warmup   : Warmup;
 		private var _pause    : Pause;
@@ -84,25 +85,37 @@ package
 			switch(step)
 			{
 				case 1:
-					setupMainMenu();
+					setupLogoScreen();
 					break;
 				case 2:
+					setupMainMenu();
+					break;
+				case 3:
+					setupMainScreen();
+					
 					setupVideo();
 					setupAR();
 					
 					setupWarmup();
-					setupPause();
 					setupScoreboard();
-					setupMainScreen();
 					setupLevel();
 					setupQuestions();
 					setupQuestionValidator();
+					
+					setupPause();
 					
 					addEventListener(Event.ENTER_FRAME, loop);
 					
 					break;
 				default: break;
 			}
+		}
+		
+		private function setupLogoScreen() : void
+		{
+			_logoScreen = new LogoScreen();
+			addChild(_logoScreen);
+			_logoScreen.callback = logoScreenCallback;
 		}
 		
 		private function setupMainMenu() : void
@@ -112,7 +125,7 @@ package
 			                                                            function(e:MouseEvent):void
 			                                                            {
 			                                                            	removeChild(_mainMenu);
-			                                                            	setupSequence(2);
+			                                                            	setupSequence(3);
 			                                                            }
 			                                     );
 			addChild(_mainMenu);
@@ -132,7 +145,7 @@ package
 			// Create the Motion Tracker
 			_motionTracker = new MotionTracker(_vidWidth, _vidHeight);
 			
-			// Create transform matrix to flip video
+			// Create transform matrix to flip video horizontally
 			_mtx = new Matrix();
 			_mtx.translate(-_vidWidth, 0); 
 			_mtx.scale(-1, 1); 
@@ -179,6 +192,9 @@ package
 			_pause = new Pause();
 			_pause.x = _source.x;
 			_pause.y = _source.y;
+			
+			_pause.pauseCallback = pauseCallback;
+			
 			addChild(_pause);
 		}
 		
@@ -236,6 +252,12 @@ package
 
 		// Callbacks
 		{
+		
+		private function logoScreenCallback() : void
+		{
+			removeChild(_logoScreen);
+			setupSequence(2);
+		}
 			
 		private function timerCallback() : void
 		{
@@ -248,6 +270,11 @@ package
 					stateCallback();
 					break;
 			}
+		}
+		
+		private function pauseCallback( paused : Boolean ) : void
+		{
+			_mainScreen.timerPaused = paused;
 		}
 		
 		// Detect Scoring

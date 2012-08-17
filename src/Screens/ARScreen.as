@@ -91,7 +91,7 @@ package Screens
 				removeChild(_detectorTarget);
 				
 				this.addChild(vp);
-				vp.x = 210;
+				//vp.x = 210;
 				//vp.y = 160;
 			}
 			

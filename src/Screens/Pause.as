@@ -4,6 +4,7 @@
 package Screens
 {
 	
+	import flash.events.MouseEvent;
 	import flash.display.Sprite;
 	import flash.display.SimpleButton;
 	import flash.geom.Rectangle;
@@ -22,11 +23,12 @@ package Screens
 		private var _pauseIconTarget : Rectangle;
 		private var _pauseIconStart : Point;
 		
+		private var _pauseCallback : Function;
+		
 		private var _paused : Boolean = false;
 		
 		public function Pause()
 		{
-			_pauseIcon = new btn_pause();
 			/*
 			_pauseIcon = new Sprite();
 			
@@ -43,8 +45,12 @@ package Screens
 			
 			_pauseIcon.graphics.endFill();*/
 			
+			_pauseIcon = new btn_pause();
+			
 			_pauseIcon.x = 15 + TARGET_RADIUS;
 			_pauseIcon.y = 265 + TARGET_RADIUS;
+			
+			_pauseIcon.addEventListener(MouseEvent.MOUSE_DOWN, function(e:MouseEvent):void { _paused = !_paused; _pauseCallback(_paused); } );
 			
 			_pauseIconTarget = new Rectangle(_pauseIcon.x - _pauseIcon.width / 2 * (1 - TARGET_SCALE), // x
 			                                 _pauseIcon.y - _pauseIcon.height / 2 * (1 - TARGET_SCALE), // y 
@@ -56,6 +62,11 @@ package Screens
 			addChild(_pauseIcon);
 		}
 		
+		public function set pauseCallback( f : Function ) : void
+		{
+			_pauseCallback = f;
+		}
+			
 		public function get paused() : Boolean
 		{
 			return _paused;

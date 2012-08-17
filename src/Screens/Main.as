@@ -17,6 +17,7 @@ package Screens
 	public class Main extends Sprite
 	{
 		
+		private var _background : MovieClip;
 		private var _timer : MovieClip;
 		private var _timerApple : MovieClip;
 		private var _questionArea : MovieClip;
@@ -26,6 +27,12 @@ package Screens
 		
 		public function Main()
 		{
+			//Create game background
+			_background = new BG_credits();
+			_background.x = _background.width /2;
+			_background.y = _background.height /2;
+			addChild(_background);
+			
 			// White Question Area Background
 			_questionArea = new overlay_bar_small();
 			_questionArea.x = 471/2 + 78;
@@ -74,6 +81,11 @@ package Screens
 			//_questionTimer.stop();
 			_questionTimer.paused = true;
 			_timerApple.y = -195.95;
+		}
+		
+		public function set timerPaused( pause : Boolean) : void
+		{
+			_questionTimer.paused = pause;
 		}
 		
 		private function timerCallback(tween:GTween/*e:TimerEvent*/) : void
