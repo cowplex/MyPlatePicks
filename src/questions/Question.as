@@ -9,6 +9,8 @@ package questions
 	import flash.display.Sprite;
 	import flash.display.Bitmap;
 	import flash.text.TextField;
+	import flash.media.Sound;
+    import flash.media.SoundChannel;
 	
 	public class Question extends Sprite
 	{
@@ -19,10 +21,13 @@ package questions
 		private var _responses    : Array = new Array();
 		private var _randomResponses : Array;
 		
+		private var _sound : Sound = null;
+		
 		private var _questionDisplay : TextField;
 		
-		public function Question(question : String, category : Number, correct : Response/*Bitmap*/, choices : Array)
+		public function Question(question : String, category : Number, correct : Response/*Bitmap*/, choices : Array, audio : Sound = null)
 		{
+			_sound = audio;
 			_category = category;
 			_response = correct;//new Response(category, correct);
 			for(var i:int = 0; i < choices.length; i++)
@@ -77,6 +82,12 @@ package questions
 		public function get correctResponse() : Response
 		{
 			return _response;
+		}
+		
+		public function readQuestion() : void
+		{
+			if(_sound != null)
+				_sound.play();
 		}
 		
 	}	

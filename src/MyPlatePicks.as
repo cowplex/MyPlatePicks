@@ -41,7 +41,7 @@ package
 		//DEBUG
 		//private var debugVid : Bitmap;
 		
-		private static const QUESTIONS_PER_LEVEL : Number = 4;
+		private static const QUESTIONS_PER_LEVEL : Number = 3;
 		
 		// Game Variables
 		private var _gamestate : Number = 0;
@@ -69,6 +69,7 @@ package
 		private var _mainScreen    : Main;
 		private var _level : Level;
 		private var _arScreen : ARScreen;
+		private var _interstitial : InterstitialScreen;
 		
 		// FLARToolkit variables	
 		//private var raster:FLARRgbRaster_BitmapData;
@@ -103,6 +104,8 @@ package
 					setupQuestionValidator();
 					
 					setupPause();
+					
+					setupInterstitial();
 					
 					addEventListener(Event.ENTER_FRAME, loop);
 					
@@ -240,6 +243,13 @@ package
 			addChild(_questionValidator);
 		}
 		
+		private function setupInterstitial() : void
+		{
+			_interstitial = new InterstitialScreen();
+			_interstitial.callback = stateCallback;
+			//addChild(_interstitial);
+		}
+		
 		}
 		
 		/*
@@ -309,6 +319,7 @@ package
 					break;
 				case 3:
 					// Remove Interstitial
+					removeChild(_interstitial);
 					break;
 				default: break;
 			}
@@ -349,14 +360,15 @@ package
 			if(_gamestate > 3)
 			{
 				_gamestate = 1;
-				_level.level++;
+				_level.knowledgeCategory++;
+				//_level.level++;
 			}
 			
 			switch(_gamestate)
 			{
 				case 1:
 					// Add Question
-					_questions.drawQuestion(_level.level);
+					_questions.drawQuestion(_level.knowledgeCategory);
 					_mainScreen.timerStart(10);
 					_detecting = true;
 					break;
@@ -365,6 +377,11 @@ package
 					addChild(_arScreen);
 					_mainScreen.timerStart(20);
 					_detecting = true;
+					break;
+				case 3:
+					// Interstitial 
+					addChild(_interstitial);
+					_interstitial.show(_level.level, _level.knowledgeCategory);
 					break;
 			}
 		}

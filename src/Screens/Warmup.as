@@ -3,21 +3,22 @@
  */
 package Screens
 {
-	import flash.display.Sprite;
+	//import flash.display.Sprite;
+	import flash.display.MovieClip;
 	import flash.display.Graphics;
 	import flash.geom.Rectangle;
 	import flash.utils.Timer;
 	import flash.events.TimerEvent;
 	
-	public class Warmup extends Sprite
+	public class Warmup extends MovieClip //Sprite
 	{
 		
 		private static const _vidWidth : int = 420;
 		
-		public var hitTarget   : Sprite = new Sprite();
-		public var missTarget1 : Sprite = new Sprite();
-		public var missTarget2 : Sprite = new Sprite();
-		public var missTarget3 : Sprite = new Sprite();
+		public var hitTarget   : MovieClip = new marker_worm();
+		public var missTarget1 : MovieClip = new marker_worm();
+		public var missTarget2 : MovieClip = new marker_worm();
+		public var missTarget3 : MovieClip = new marker_worm();
 		
 		private var detecting : Boolean = true;
 		
@@ -27,10 +28,18 @@ package Screens
 		
 		public function Warmup()
 		{
-			createTarget(hitTarget, true);
+			/*createTarget(hitTarget, true);
 			createTarget(missTarget1, false);
 			createTarget(missTarget2, false);
-			createTarget(missTarget3, false);
+			createTarget(missTarget3, false);*/
+			
+			missTarget1.gotoAndStop(1);
+			missTarget2.gotoAndStop(1);
+			missTarget3.gotoAndStop(1);
+			
+			hitTarget.scaleX = missTarget1.scaleX = missTarget2.scaleX = missTarget3.scaleX = .5;
+			hitTarget.scaleY = missTarget1.scaleY = missTarget2.scaleY = missTarget3.scaleY = .5;
+			
 			attach();
 		}
 		
@@ -59,7 +68,7 @@ package Screens
 			return false;
 		}
 		
-		private function createTarget(target : Sprite, hit : Boolean) : void
+		private function createTarget(target : MovieClip/*Sprite*/, hit : Boolean) : void
 		{
 			//target = new Sprite();
 			// define the line style
@@ -97,7 +106,7 @@ package Screens
 			attach();
 		}
 		
-		private function place(target : Sprite, position : Number) : void
+		private function place(target : MovieClip/*Sprite*/, position : Number) : void
 		{
 			target.x = 45 + (((_vidWidth - 45*2) / 3) * position);
 			target.y = 45;

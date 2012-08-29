@@ -8,6 +8,7 @@ package Screens
 	
 	public class Level extends MovieClip
 	{
+		private var _numKnowledgeCategories : Number = 4;
 		
 		private var _levels : Array;
 		private var _textLevel1 : level_1;
@@ -15,7 +16,7 @@ package Screens
 		private var _textLevel3 : level_3;
 		
 		private var _level : int;
-		private var _knowledgeCategory : int;
+		private var _knowledgeCategory : int = 0;
 		
 		public function Level()
 		{
@@ -47,6 +48,21 @@ package Screens
 			}
 			if(level > 0 && level <= _levels.length)
 				_levels[level - 1].visible = true;
+		}
+		
+		public function get knowledgeCategory() : Number
+		{
+			return _knowledgeCategory;
+		}
+		public function set knowledgeCategory(kc : Number) : void
+		{
+			_knowledgeCategory = kc;
+			
+			if(_knowledgeCategory >= _numKnowledgeCategories)
+			{
+				_knowledgeCategory = 0;
+				level++;
+			}
 		}
 	}
 

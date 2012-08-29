@@ -9,7 +9,9 @@ package questions
 	import flash.display.Bitmap;
 	import flash.geom.Rectangle;
 	import flash.geom.Point;
-	
+	import flash.media.Sound;
+    import flash.media.SoundChannel;
+    	
 	public class Questions extends Sprite
 	{
 				
@@ -24,6 +26,7 @@ package questions
 		
 		// Embedded images
 		// Load Classes
+		/*
 		{
 		[Embed(source="question_responses/apple.png")]
 		private var apple:Class;
@@ -132,46 +135,63 @@ package questions
 		
 		[Embed(source="question_responses/yoga.png")]
 		private var yoga:Class;
+		
+		// Sounds
+		[Embed(source="question_audio/Which not related to broccoli.mp3")]
+        public var _notRelatedToBroccoli:Class;
+        [Embed(source="question_audio/Which is a Vegetable.mp3")]
+        public var _whichIsaVegetable:Class;
+        [Embed(source="question_audio/Which is a fruit.mp3")]
+        public var _whichIsaFruit:Class;
 		}
 		// Create Image Vairables
 		{
-			private var _apple:Response = new Response( new apple() );
-			private var _applejuice:Response = new Response( new applejuice() );
-			private var _banana:Response = new Response( new banana() );
-			private var _biking:Response = new Response( new biking() );
-			private var _broccoli:Response = new Response( new broccoli() );
-			private var _brusselssprouts:Response = new Response( new brusselssprouts() );
-			private var _cabbage:Response = new Response( new cabbage() );
-			private var _candybar:Response = new Response( new candybar() );
-			private var _carrot:Response = new Response( new carrot() );
-			private var _cauliflower:Response = new Response( new cauliflower() );
-			private var _chocolateshake:Response = new Response( new chocolateshake() );
-			private var _cucumber:Response = new Response( new cucumber() );
-			private var _dairy:Response = new Response( new dairy() );
-			private var _egg:Response = new Response( new egg() );
-			private var _fruitpunch:Response = new Response( new fruitpunch() );
-			private var _fruits:Response = new Response( new fruits() );
-			private var _grains:Response = new Response( new grains() );
-			private var _grapes:Response = new Response( new grapes() );
-			private var _hulahoop:Response = new Response( new hulahoop() );
-			private var _jumprope:Response = new Response( new jumprope() );
-			private var _lemonade:Response = new Response( new lemonade() );
-			private var _meat:Response = new Response( new meat() );
-			private var _milk:Response = new Response( new milk() );
-			private var _orange:Response = new Response( new orange() );
-			private var _raisins:Response = new Response( new raisins() );
-			private var _rice:Response = new Response( new rice() );
-			private var _running:Response = new Response( new running() );
-			private var _sliceofbread:Response = new Response( new sliceofbread() );
-			private var _soccer:Response = new Response( new soccer() );
-			private var _spinach:Response = new Response( new spinach() );
-			private var _stretching:Response = new Response( new stretching() );
-			private var _swimming:Response = new Response( new swimming() );
-			private var _veggiejuice:Response = new Response( new veggiejuice() );
-			private var _water:Response = new Response( new water() );
-			private var _weightbearing:Response = new Response( new weightbearing() );
-			private var _yoga:Response = new Response( new yoga() );
+			private var _apple:Response = new Response( "Apple", new apple() );
+			private var _applejuice:Response = new Response( "Apple Juice", new applejuice() );
+			private var _banana:Response = new Response( "Bananna", new banana() );
+			private var _biking:Response = new Response( "Biking", new biking() );
+			private var _broccoli:Response = new Response( "Broccoli", new broccoli() );
+			private var _brusselssprouts:Response = new Response( "Brussels Sprouts", new brusselssprouts() );
+			private var _cabbage:Response = new Response( "Cabbage", new cabbage() );
+			private var _candybar:Response = new Response( "Candy Bar", new candybar() );
+			private var _carrot:Response = new Response( "Carrot", new carrot() );
+			private var _cauliflower:Response = new Response( "Cauliflower", new cauliflower() );
+			private var _chocolateshake:Response = new Response( "Chocolate Shake", new chocolateshake() );
+			private var _cucumber:Response = new Response( "Cucumber", new cucumber() );
+			private var _dairy:Response = new Response( "Dairy", new dairy() );
+			private var _egg:Response = new Response( "Egg", new egg() );
+			private var _fruitpunch:Response = new Response( "Fruit Punch", new fruitpunch() );
+			private var _fruits:Response = new Response( "Fruits", new fruits() );
+			private var _grains:Response = new Response( "Grains", new grains() );
+			private var _grapes:Response = new Response( "Grapes", new grapes() );
+			private var _hulahoop:Response = new Response( "Hula Hoop", new hulahoop() );
+			private var _jumprope:Response = new Response( "Jumprope", new jumprope() );
+			private var _lemonade:Response = new Response( "Lemonade", new lemonade() );
+			private var _meat:Response = new Response( "Meat", new meat() );
+			private var _milk:Response = new Response( "Milk", new milk() );
+			private var _orange:Response = new Response( "Orange", new orange() );
+			private var _raisins:Response = new Response( "Raisins", new raisins() );
+			private var _rice:Response = new Response( "Rice", new rice() );
+			private var _running:Response = new Response( "Running", new running() );
+			private var _sliceofbread:Response = new Response( "Slice of Bread", new sliceofbread() );
+			private var _soccer:Response = new Response( "Soccer", new soccer() );
+			private var _spinach:Response = new Response( "Spinach", new spinach() );
+			private var _stretching:Response = new Response( "Stretching", new stretching() );
+			private var _swimming:Response = new Response( "Swimming", new swimming() );
+			private var _veggiejuice:Response = new Response( "Veggie Juice", new veggiejuice() );
+			private var _water:Response = new Response( "Water", new water() );
+			private var _weightbearing:Response = new Response( "Weight Bearing", new weightbearing() );
+			private var _yoga:Response = new Response( "Yoga", new yoga() );
+			
+			private var _8ozornagedrink:Response = new Response( "8 oz. Orange Drink" );
+			private var _4ozornagejuice:Response = new Response( "4 oz. Orange Juice" );
+			private var _4ozfruitpunch:Response = new Response( "4 oz. Fruit Punch" );
+			private var _8ozgrapesoda:Response = new Response( "8 oz Grape Soda/Pop" );
 		}
+		
+		*/
+		
+		private var _QR : QuestionResponses = new QuestionResponses();
 		
 		public function Questions()
 		{
@@ -184,17 +204,24 @@ package questions
 			
 			// Load data
 			
-			// Cat 1 - Make Half Your Plate Fruits and Vegetables
+			// Cat 0 - Make Half Your Plate Fruits and Vegetables
 			_categories.push( new Array() );
-			_categories[0].push( new Question("Which of the following is a fruit?", 0, _orange, [_broccoli, _carrot, _spinach]) );
-			_categories[0].push( new Question("Which of the following is a vegetable?", 0, _cucumber, [_banana, _apple, _grapes]) );
-			_categories[0].push( new Question("Which vegetable is not in the same family as broccoli?", 0, _cabbage, [_carrot, _brusselssprouts, _cauliflower]) );
-
+			_categories[0].push( new Question("Fiber helps you get rid of waste from your body. What kind of food has fiber?", 0, _QR._fruits_and_vegetables, [_QR._2_slices_of_cheese, _QR._meat, _QR._milk]) );
+			_categories[0].push( new Question("Which of the these is the healthiest choice?", 0, _QR._apple, [_QR._pop, _QR._caramel_apple, _QR._crackers]) );
+			_categories[0].push( new Question("Christy is hungry. Choose the healthiest snack for her.", 0, _QR._carrot, [_QR._french_fries, _QR._candybar, _QR._potato_chips]) );
+			//_categories[0].push( new Question("Which of the following is a fruit?", 0, _orange, [_broccoli, _carrot, _spinach], new _whichIsaFruit()) );
+			//_categories[0].push( new Question("Which of the following is a vegetable?", 0, _cucumber, [_banana, _apple, _grapes], new _whichIsaVegetable()) );
+			//_categories[0].push( new Question("Which vegetable is not in the same family as broccoli?", 0, _cabbage, [_carrot, _brusselssprouts, _cauliflower], new _notRelatedToBroccoli()) );
+			//_categories[0].push( new Question("What kind of juice counts toward a serving of fruit?", 0, _4ozornagejuice, [_8ozornagedrink, _4ozfruitpunch, _8ozgrapesoda]) );
+			
+			// Cat 0 - Avoid Oversized Portions
+			_categories.push( new Array() );
+			//_categories[1].push( new Question("Which of these food groups has a 3 oz. serving size that looks about the same size of a deck of cards?", 1, _meat, [_fruits, _grains, _dairy]) );
 		}
 		
 		public function drawQuestion( category : int ) : void
 		{
-			category--;
+			//category--;
 			if(category < 0 || category > _categories.length)
 				return;
 			
@@ -211,6 +238,7 @@ package questions
 				_currentQuestion.randomizeResponses();
 				drawResponses(_currentQuestion);
 				addChild(_currentQuestion);
+				_currentQuestion.readQuestion();
 			}
 		}
 		

@@ -8,7 +8,10 @@ package Screens
 	
 	public class MainMenu extends MovieClip
 	{
+		
+		public var _background : MovieClip;
 		public var playButton : MovieClip;
+		
 		public function MainMenu()
 		{
 			/* Create Play Button */
@@ -30,6 +33,11 @@ package Screens
 				playButton.graphics.lineTo(50,0);
 				
 				playButton.graphics.endFill();*/
+				
+				_background = new BG_mainmenu();
+				_background.x = 320;
+				_background.y = 240;
+				addChild(_background);
 				
 				playButton = new MovieClip();
 				playButton.addChild(new btn_play_mainmenu());
