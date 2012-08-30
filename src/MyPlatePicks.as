@@ -163,8 +163,8 @@ package
 			
 			// DEBUG
 			var debugVid : Bitmap = new Bitmap(_motionTracker.trackingImage);
-			debugVid.x = _source.x + 10 + _vidWidth;
-			debugVid.y = _source.y;
+			//debugVid.x = _source.x + 10 + _vidWidth;
+			//debugVid.y = _source.y;
 			debugVid.scaleX = debugVid.scaleY = .25;
 //			addChild(debugVid);
 			// DEBUG
@@ -261,7 +261,7 @@ package
 		 */
 		public function MyPlatePicks()
 		{
-			setupSequence(1);
+			setupSequence(2);
 		}
 
 		// Callbacks

@@ -17,10 +17,15 @@ package Screens
 		[Embed(systemFont="HouseSampler-HouseSlant", fontName="HouseSlant", fontWeight="normal", mimeType = "application/x-font")] 
 		private var font:Class;
 		[Embed(source="assets/Jeopardy-daily2x.mp3")]
-        private var _double:Class;
+		private var double:Class;
+		[Embed(source="assets/correct.mp3")] private var correct:Class;
+		[Embed(source="assets/incorrect.mp3")] private var incorrect:Class;
 		
 		private var _textFormat : TextFormat = new TextFormat();
-		private var _doubleSound : Sound = new _double();
+		private var _doubleSound : Sound = new double();
+		
+		private var _correctSound : Sound = new correct();
+		private var _incorrectSound : Sound = new incorrect();
 		
 		private var _scoreIcon : MovieClip;
 		private var _highScoreIcon : MovieClip;
@@ -57,6 +62,7 @@ package Screens
 			_scoreText.width = 60;
 			_scoreText.height = 40;
 			_scoreText.autoSize = "left";
+			_scoreText.textColor = 0xFFFFFF;
 			addChild(_scoreText);
 			
 			// Highscore icon
@@ -106,6 +112,8 @@ package Screens
 			if(correct)
 				_score += (_doubleQuestionLocatins.indexOf(_questionsThisLevel - 1) < 0) ? 25 : 50;
 			_scoreText.text = String(_score);
+			
+			correct ? _correctSound.play() : _incorrectSound.play();
 			
 			if(_questionsThisLevel >= _levelQuestions)
 				resetLevel();
