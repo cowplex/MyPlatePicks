@@ -50,6 +50,10 @@ package Screens
 				_levels[level - 1].visible = true;
 		}
 		
+		public function get numKnowledgeCategories() : Number
+		{
+			return _numKnowledgeCategories;
+		}
 		public function get knowledgeCategory() : Number
 		{
 			return _knowledgeCategory;

@@ -42,6 +42,7 @@ package
 		//private var debugVid : Bitmap;
 		
 		private static const QUESTIONS_PER_LEVEL : Number = 3;
+		private static const NUM_WARMUP_QUESTIONS : Number = 6;
 		
 		// Game Variables
 		private var _gamestate : Number = 0;
@@ -221,6 +222,9 @@ package
 			_level.x = 67.5;
 			_level.y = 25;
 			addChild(_level);
+			
+			_scoreboard.questionsPerLevel = _level.numKnowledgeCategories * QUESTIONS_PER_LEVEL;
+			_scoreboard.resetLevel();
 		}
 		
 		private function setupQuestions() : void
@@ -294,7 +298,7 @@ package
 			{
 				case 0:
 					_answeredQuestions++;
-					if(_answeredQuestions >= QUESTIONS_PER_LEVEL)
+					if(_answeredQuestions >= NUM_WARMUP_QUESTIONS)
 					{
 						removeChild(_warmup);
 						_detecting = false;
@@ -369,6 +373,7 @@ package
 				case 1:
 					// Add Question
 					_questions.drawQuestion(_level.knowledgeCategory);
+					_scoreboard.showQuestion();
 					_mainScreen.timerStart(10);
 					_detecting = true;
 					break;

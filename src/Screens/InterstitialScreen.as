@@ -13,6 +13,8 @@ package Screens
 	
 	public class InterstitialScreen extends MovieClip
 	{
+		[Embed(systemFont="Baskerville", fontName="Baskerville", fontWeight="normal", mimeType = "application/x-font")] 
+		private var font:Class;
 		
 		private var _callback : Function;
 		private var _timer : Timer;
@@ -66,17 +68,18 @@ package Screens
 			
 			
 			_format = new TextFormat();
-			_format.size = 15;
+			_format.size = 25;
 			_format.align = TextFormatAlign.CENTER;
+			_format.font = "Baskerville";
 			
 			_textField = new TextField();
 			_textField.defaultTextFormat = _format;
 			
 			_textField.wordWrap = true;
-			_textField.autoSize = "center";
-			_textField.width = 300;
-			_textField.y     = 120;
-			_textField.x     = 120;
+			_textField.autoSize = "left";
+			_textField.width = 500;
+			_textField.y     = 160; //120;
+			_textField.x     = 70; //120;
 			
 			addChild(_textField);
 			

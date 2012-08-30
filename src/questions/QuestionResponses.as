@@ -221,7 +221,7 @@ package questions
 		public var _A_way_to_measure_food:Response = 	new Response( "A way to measure food" );
 		public var _Found_on_all_food_labels:Response = 	new Response( "Found on all food labels" );
 		public var _Important_to_know_for_choosing_healthier_portions:Response = 	new Response( "Important to know for choosing healthier portions" );
-		public var _All_of_these_choices_:Response = 	new Response( "All of these choices!" );
+		public var _All_of_these_choices:Response = 	new Response( "All of these choices!" );
 		public var _Vitamins:Response = 	new Response( "Vitamins" );
 		public var _Antioxidants:Response = 	new Response( "Antioxidants" );
 		public var _Minerals:Response = 	new Response( "Minerals" );
@@ -309,6 +309,16 @@ package questions
 		public var _1_hour:Response = 	new Response( "1 hour" );
 		
 		public var _french_fries:Response = new Response( "French Fries" );
+		public var _be_more_popular:Response = new Response( "Be More Popular" );
+		public var _read_better:Response = new Response( "Reat Better" );
+		public var _sportsdrink:Response = new Response( "Sports Drink" );
+		public var _slushie:Response = new Response( "Slushie" );
+		public var _Swimming:Response = new Response( "Swimming" );
+		public var _Bike_Riding:Response = new Response( "Bike Riding" );
+		public var _Jump_Roping:Response = new Response( "Jump Roping" );
+		public var _Stretching:Response = new Response( "Stretching" );
+		public var _muscles:Response = new Response( "Muscles" );
+		public var _bones:Response = new Response( "Bones" );
 		}
 		
 		public function QuestionResponses()
@@ -317,7 +327,7 @@ _categories[0].push( new Question("Fiber helps you get rid of waste from your bo
 _categories[0].push( new Question("Which of the these is the healthiest choice?", 0, _apple, [_pop, _caramel_apple, _crackers]) );
 _categories[0].push( new Question("Christy is hungry. Choose the healthiest snack for her.", 0, _carrot, [_french_fries, _candybar, _potato_chips]) );
 
-_categories[0].push( new Question("Which of the following is a vegetable?", 0, , [, , ]) );
+_categories[0].push( new Question("Which of the following is a vegetable?", 0, , [, , ], new _whichIsaVegetable()) );
 _categories[0].push( new Question("Fruits and vegetables are foods you can _________ to get energy and help you grow.", 0, , [, , ]) );
 _categories[0].push( new Question("Make ___________ your dinner plate fruits and vegetables", 0, , [, , ]) );
 
