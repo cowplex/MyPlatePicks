@@ -9,11 +9,15 @@ package questions
 	import flash.display.Sprite;
 	import flash.display.Bitmap;
 	import flash.text.TextField;
+	import flash.text.TextFormat;
+	import flash.text.TextFormatAlign;
 	import flash.media.Sound;
     import flash.media.SoundChannel;
 	
 	public class Question extends Sprite
 	{
+		[Embed(systemFont="Baskerville", fontName="qFont", fontWeight="normal", mimeType = "application/x-font")] 
+		private var font:Class;
 		
 		private var _question     : String;
 		private var _category     : Number;
@@ -24,6 +28,7 @@ package questions
 		private var _sound : Sound = null;
 		
 		private var _questionDisplay : TextField;
+		private var _textFormat : TextFormat = new TextFormat();
 		
 		public function Question(question : String, category : Number, correct : Response/*Bitmap*/, choices : Array, audio : Sound = null)
 		{
@@ -35,7 +40,12 @@ package questions
 				_responses[i] = choices[i];//new Response(category, choices[i]);
 			}
 			// 330, 440, 455, 70
+			
+			_textFormat.size = 25;
+			_textFormat.font = "qFont";
+			
 			_questionDisplay = new TextField();
+			_questionDisplay.defaultTextFormat = _textFormat;
 			_questionDisplay.text = question;
 			_questionDisplay.x = 150;//330;
 			_questionDisplay.y = 410;

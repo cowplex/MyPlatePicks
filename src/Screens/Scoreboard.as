@@ -62,7 +62,7 @@ package Screens
 			_scoreText.width = 60;
 			_scoreText.height = 40;
 			_scoreText.autoSize = "left";
-			_scoreText.textColor = 0xFFFFFF;
+			_scoreText.textColor = 0xE85E2F;
 			addChild(_scoreText);
 			
 			// Highscore icon
@@ -113,7 +113,7 @@ package Screens
 				_score += (_doubleQuestionLocatins.indexOf(_questionsThisLevel - 1) < 0) ? 25 : 50;
 			_scoreText.text = String(_score);
 			
-			correct ? _correctSound.play() : _incorrectSound.play();
+			(correct) ? _correctSound.play() : _incorrectSound.play();
 			
 			if(_questionsThisLevel >= _levelQuestions)
 				resetLevel();

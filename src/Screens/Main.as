@@ -35,7 +35,7 @@ package Screens
 		public function Main()
 		{
 			//Create game background
-			_background = new BG_gameplay();
+			_background = new BG_LOGOS();//new BG_game_play();
 			_background.x = _background.width /2;
 			_background.y = _background.height /2;
 			addChild(_background);

@@ -39,7 +39,7 @@ package Screens
 				new Array
 				(
 					"Check the nutrition facts label to see how many servings there are and if it says 2, share with a friend or save half for later.",
-					"Water helps cool your body on a hot day; helps blood move throughout your body; helps your joints move; and breaks down food.",
+					"Water helps cool your body on a hot day, helps blood move throughout your body, helps your joints move, and breaks down food.",
 					"Overeating can make us feel too tired to do anything including exercise. To eat the right amount, take your time while you eat!"
 				),
 				new Array

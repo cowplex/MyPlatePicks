@@ -49,6 +49,9 @@ package questions
 		[Embed(source="question_responses/cauliflower.png")]
 		public var cauliflower:Class;
 		
+		[Embed(source="question_responses/cheese.png")]
+		public var cheese:Class;
+		
 		[Embed(source="question_responses/chocolateshake.png")]
 		public var chocolateshake:Class;
 		
@@ -75,6 +78,9 @@ package questions
 		
 		[Embed(source="question_responses/energy_drinks.png")]
 		public var energy_drinks:Class;
+		
+		[Embed(source="question_responses/french_fries.png")]
+		public var french_fries:Class;
 		
 		[Embed(source="question_responses/fruitpunch.png")]
 		public var fruitpunch:Class;
@@ -156,6 +162,15 @@ package questions
 		
 		[Embed(source="question_responses/raisins.png")]
 		public var raisins:Class;
+		
+		[Embed(source="question_responses/slushie.png")]
+		public var slushie:Class;
+		
+		[Embed(source="question_responses/sports_drink.png")]
+		public var sports_drink:Class;
+		
+		[Embed(source="question_responses/water.png")]
+		public var water:Class;
 		}
 		
 		// Setup Image Responses
@@ -174,7 +189,8 @@ package questions
 		public var _caramel_apple:Response = new Response( "Caramel Apple", new caramel_apple() );
 		public var _carrot:Response = new Response( "Carrot", new carrot() );
 		public var _cauliflower:Response = new Response( "Cauliflower", new cauliflower() );
-		public var _chocolateshake:Response = new Response( "Chocolateshake", new chocolateshake() );
+		public var _cheese:Response = new Response( "Cheese", new cheese() );
+		public var _chocolateshake:Response = new Response( "Chocolate Shake", new chocolateshake() );
 		public var _cinnamon_raisin_bread:Response = new Response( "Cinnamon Raisin Bread", new cinnamon_raisin_bread() );
 		public var _coloring:Response = new Response( "Coloring", new coloring() );
 		public var _crackers:Response = new Response( "Crackers", new crackers() );
@@ -183,6 +199,7 @@ package questions
 		public var _dancing:Response = new Response( "Dancing", new dancing() );
 		public var _egg:Response = new Response( "Egg", new egg() );
 		public var _energy_drinks:Response = new Response( "Energy Drinks", new energy_drinks() );
+		public var _french_fries:Response = new Response( "French Fries", new french_fries() );
 		public var _fruitpunch:Response = new Response( "Fruit Punch", new fruitpunch() );
 		public var _fruits:Response = new Response( "Fruits", new fruits() );
 		public var _fruits_and_vegetables:Response = new Response( "Fruits and Vegetables", new fruits_and_vegetables() );
@@ -210,6 +227,9 @@ package questions
 		public var _potato_chips:Response = new Response( "Potato Chips", new potato_chips() );
 		public var _pushups:Response = new Response( "Pushups", new pushups() );
 		public var _raisins:Response = new Response( "Raisins", new raisins() );
+		public var _slushie:Response = new Response( "Slushie", new slushie() );
+		public var _sportsdrink:Response = new Response( "Sports Drink", new sports_drink() );
+		public var _water:Response = new Response( "Water", new water() );
 		}
 		
 		// Text Responses
@@ -308,17 +328,18 @@ package questions
 		public var _20_minutes:Response = 	new Response( "20 minutes" );
 		public var _1_hour:Response = 	new Response( "1 hour" );
 		
-		public var _french_fries:Response = new Response( "French Fries" );
+		//public var _french_fries:Response = new Response( "French Fries" );
 		public var _be_more_popular:Response = new Response( "Be More Popular" );
 		public var _read_better:Response = new Response( "Reat Better" );
-		public var _sportsdrink:Response = new Response( "Sports Drink" );
-		public var _slushie:Response = new Response( "Slushie" );
+		//public var _sportsdrink:Response = new Response( "Sports Drink" );
+		//public var _slushie:Response = new Response( "Slushie" );
 		public var _Swimming:Response = new Response( "Swimming" );
 		public var _Bike_Riding:Response = new Response( "Bike Riding" );
 		public var _Jump_Roping:Response = new Response( "Jump Roping" );
 		public var _Stretching:Response = new Response( "Stretching" );
 		public var _muscles:Response = new Response( "Muscles" );
 		public var _bones:Response = new Response( "Bones" );
+		public var _grains_copy:Response = new Response( "Grains" );
 		}
 		
 		public function QuestionResponses()

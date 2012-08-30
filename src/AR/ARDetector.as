@@ -21,7 +21,7 @@ package AR
 		
 		// Data imports
 		{
-		[Embed(source="patterns/pattern16.pat", mimeType="application/octet-stream")]
+		[Embed(source="patterns/weightbearing16.pat", mimeType="application/octet-stream")]
 		private var pattern : Class;
 		[Embed(source="data/camera_para.dat", mimeType="application/octet-stream")]
 		private var cameraParams : Class;

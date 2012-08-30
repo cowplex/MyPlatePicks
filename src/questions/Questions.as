@@ -49,7 +49,7 @@ package questions
 			
 			// Cat 0 - Make Half Your Plate Fruits and Vegetables
 			_categories.push( new Array() );
-			_categories[0].push( new Question("Fiber helps you get rid of waste from your body. What kind of food has fiber?", 0, _QR._fruits_and_vegetables, [_QR._2_slices_of_cheese, _QR._meat, _QR._milk]) );
+			_categories[0].push( new Question("Fiber helps you get rid of waste from your body. What kind of food has fiber?", 0, _QR._fruits_and_vegetables, [_QR._cheese, _QR._meat, _QR._milk]) );
 			_categories[0].push( new Question("Which of the these is the healthiest choice?", 0, _QR._apple, [_QR._pop, _QR._caramel_apple, _QR._crackers]) );
 			_categories[0].push( new Question("Christy is hungry. Choose the healthiest snack for her.", 0, _QR._carrot, [_QR._french_fries, _QR._candybar, _QR._potato_chips]) );
 			
@@ -60,14 +60,14 @@ package questions
 			// Cat 1 - Avoid Oversized Portions
 			_categories.push( new Array() );
 			_categories[1].push( new Question("Eating smaller portions can help you:", 0, _QR._Be_strong_and_healthy, [_QR._Wake_up, _QR._be_more_popular, _QR._read_better]) );
-			_categories[1].push( new Question("From which food group should you eat the fewest servings each day?", 0, _QR._Protein, [_QR._grains, _QR._Vegetables, _QR._fruits]) );
+			_categories[1].push( new Question("From which food group should you eat the fewest servings each day?", 0, _QR._Protein, [_QR._grains_copy, _QR._Vegetables, _QR._Fruits]) );
 			_categories[1].push( new Question("Eating oversized portions of unhealthy foods gives you:", 0, _QR._All_of_these_choices, [_QR._Extra_Fat, _QR._Extra_Calories, _QR._Extra_Sugar]) );
 			
 			// Cat 2
 			_categories.push( new Array() );
-			_categories[2].push( new Question("Which drink should you choose most often when you feel thirsty?", 0, _QR._Water, [_QR._juice, _QR._milk, _QR._sportsdrink]) );
+			_categories[2].push( new Question("Which drink should you choose most often when you feel thirsty?", 0, _QR._water, [_QR._juice, _QR._milk, _QR._sportsdrink]) );
 			_categories[2].push( new Question("What does regular soda/pop contain?", 0, _QR._Sugar, [_QR._Vitamins, _QR._Minerals, _QR._Fat]) );
-			_categories[2].push( new Question("Which one of these can you drink a lot of and still be healthy?", 0, _QR._Water, [_QR._chocolateshake, _QR._lemonade, _QR._slushie]) );
+			_categories[2].push( new Question("Which one of these can you drink a lot of and still be healthy?", 0, _QR._water, [_QR._chocolateshake, _QR._lemonade, _QR._slushie]) );
 			
 			// Cat 3
 			_categories.push( new Array() );
