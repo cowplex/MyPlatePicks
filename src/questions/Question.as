@@ -48,7 +48,7 @@ package questions
 			_questionDisplay.defaultTextFormat = _textFormat;
 			_questionDisplay.text = question;
 			_questionDisplay.x = 150;//330;
-			_questionDisplay.y = 410;
+			_questionDisplay.y = 21;//410;
 			_questionDisplay.width = 455;
 			_questionDisplay.height = 70;
 			_questionDisplay.wordWrap = true;

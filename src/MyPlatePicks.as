@@ -158,7 +158,7 @@ package
 			_bitmap = new BitmapData(_vidWidth, _vidHeight, false, 0);
 			_source = new Bitmap(_bitmap);
 			_source.x = 164;
-			_source.y = 64;
+			_source.y = 90; //64;
 			addChild(_source);
 			
 			// DEBUG
@@ -166,7 +166,7 @@ package
 			//debugVid.x = _source.x + 10 + _vidWidth;
 			//debugVid.y = _source.y;
 			debugVid.scaleX = debugVid.scaleY = .25;
-//			addChild(debugVid);
+			addChild(debugVid);
 			// DEBUG
 			
 		}
@@ -206,7 +206,7 @@ package
 		{
 			_scoreboard = new Scoreboard();
 			_scoreboard.x = 305;
-			_scoreboard.y = 15;
+			_scoreboard.y = 420; //15;
 			addChild(_scoreboard);
 		}
 		
@@ -261,7 +261,7 @@ package
 		 */
 		public function MyPlatePicks()
 		{
-			setupSequence(2);
+			setupSequence(1);
 		}
 
 		// Callbacks

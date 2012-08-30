@@ -13,7 +13,7 @@ package Screens
 	
 	public class InterstitialScreen extends MovieClip
 	{
-		[Embed(systemFont="Baskerville", fontName="Baskerville", fontWeight="normal", mimeType = "application/x-font")] 
+		[Embed(systemFont="Baskerville", fontName="Baskerville", fontWeight="bold", mimeType = "application/x-font")] 
 		private var font:Class;
 		
 		private var _callback : Function;
@@ -74,6 +74,7 @@ package Screens
 			
 			_textField = new TextField();
 			_textField.defaultTextFormat = _format;
+			_textField.textColor = 0xFFFFFF;
 			
 			_textField.wordWrap = true;
 			_textField.autoSize = "left";

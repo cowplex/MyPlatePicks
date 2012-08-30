@@ -15,10 +15,10 @@ package Screens
 		
 		private static const _vidWidth : int = 420;
 		
-		public var hitTarget   : MovieClip = new marker_worm();
-		public var missTarget1 : MovieClip = new marker_worm();
-		public var missTarget2 : MovieClip = new marker_worm();
-		public var missTarget3 : MovieClip = new marker_worm();
+		public var hitTarget   : MovieClip = new warmup_marker();
+		public var missTarget1 : MovieClip = new warmup_marker();
+		public var missTarget2 : MovieClip = new warmup_marker();
+		public var missTarget3 : MovieClip = new warmup_marker();
 		
 		private var detecting : Boolean = true;
 		

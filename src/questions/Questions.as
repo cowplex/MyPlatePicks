@@ -39,7 +39,7 @@ package questions
 		public function Questions()
 		{
 			_responseHolder.x = 164;
-			_responseHolder.y = 64;
+			_responseHolder.y = 90;//64;
 			addChild(_responseHolder);
 			
 			for(var i:int = 0; i < _usedQuestions.length; i++)
