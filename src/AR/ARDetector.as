@@ -21,7 +21,7 @@ package AR
 		
 		// Data imports
 		{
-		[Embed(source="patterns/weightbearing16.pat", mimeType="application/octet-stream")]
+		[Embed(source="patterns/weightbearing32.pat", mimeType="application/octet-stream")]
 		private var pattern : Class;
 		[Embed(source="data/camera_para.dat", mimeType="application/octet-stream")]
 		private var cameraParams : Class;
@@ -42,7 +42,7 @@ package AR
 			_FLARparams = new FLARParam();
 			_FLARparams.loadARParam(new cameraParams() as ByteArray);
 			
-			_arPattern = new FLARCode(16, 16);
+			_arPattern = new FLARCode(32, 32);//(16, 16);
 			_arPattern.loadARPatt(new pattern());
 			
 			_detector = new FLARSingleMarkerDetector(_FLARparams, _arPattern, 80);

@@ -71,6 +71,7 @@ package
 		private var _level : Level;
 		private var _arScreen : ARScreen;
 		private var _interstitial : InterstitialScreen;
+		private var _gameOver : GameOverScreen;
 		
 		// FLARToolkit variables	
 		//private var raster:FLARRgbRaster_BitmapData;
@@ -93,6 +94,8 @@ package
 					setupMainMenu();
 					break;
 				case 3:
+					removeChild(_mainMenu);
+					
 					setupMainScreen();
 					
 					setupVideo();
@@ -111,6 +114,9 @@ package
 					addEventListener(Event.ENTER_FRAME, loop);
 					
 					break;
+				case 4:
+					setupGameOver();
+					break;
 				default: break;
 			}
 		}
@@ -125,13 +131,14 @@ package
 		private function setupMainMenu() : void
 		{
 			_mainMenu = new MainMenu();
-			_mainMenu.playButton.addEventListener(MouseEvent.MOUSE_DOWN, 
+			/*_mainMenu._playButton.addEventListener(MouseEvent.MOUSE_DOWN, 
 			                                                            function(e:MouseEvent):void
 			                                                            {
 			                                                            	removeChild(_mainMenu);
 			                                                            	setupSequence(3);
 			                                                            }
-			                                     );
+			                                     );*/
+			_mainMenu.playCallback = function(e:MouseEvent):void { setupSequence(3); };
 			addChild(_mainMenu);
 		}
 		
@@ -194,8 +201,10 @@ package
 		private function setupPause() : void
 		{
 			_pause = new Pause();
-			_pause.x = _source.x;
-			_pause.y = _source.y;
+			//_pause.x = _source.x;
+			//_pause.y = _source.y;
+			_pause.x = 60;
+			_pause.y = 420;
 			
 			_pause.pauseCallback = pauseCallback;
 			
@@ -252,6 +261,12 @@ package
 			_interstitial = new InterstitialScreen();
 			_interstitial.callback = stateCallback;
 			//addChild(_interstitial);
+		}
+		
+		private function setupGameOver() : void
+		{
+			_gameOver = new GameOverScreen();
+			addChild(_gameOver);
 		}
 		
 		}
@@ -368,11 +383,17 @@ package
 				//_level.level++;
 			}
 			
+			if(_level.level == 4)
+			{
+				_gamestate = -1;
+				setupSequence(4);
+			}
+			
 			switch(_gamestate)
 			{
 				case 1:
 					// Add Question
-					_questions.drawQuestion(_level.knowledgeCategory);
+					_questions.drawQuestion(_level.level, _level.knowledgeCategory);
 					_scoreboard.showQuestion();
 					_mainScreen.timerStart(10);
 					_detecting = true;
@@ -399,7 +420,7 @@ package
 			// Update video frame
 			_bitmap.draw(_video, _mtx);
 			_motionTracker.track(_bitmap);
-			_pause.detectHit(_motionTracker.detectMotion(_pause.detectionArea));
+			//_pause.detectHit(_motionTracker.detectMotion(_pause.detectionArea));
 			
 			// Stop tracking if the game is paused or we're validating user input
 			if(_pause.paused || !_detecting)

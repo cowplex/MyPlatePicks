@@ -42,7 +42,7 @@ package Screens
 			
 			// White Question Area Background
 			_questionArea = new overlay_bar_small();
-			_questionArea.x = 471/2 + 78;
+			_questionArea.x = 471/2 + 78 /*added*/ + 110;
 			_questionArea.y = 15 + 71/2; //71/2 + 64 + 320 + 20;
 			addChild(_questionArea);
 			_questionArea.gotoAndStop(13);

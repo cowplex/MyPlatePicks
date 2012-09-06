@@ -40,8 +40,8 @@ package Screens
 		{
 			_pauseIcon = new btn_pause();
 			
-			_pauseIcon.x = 17 + TARGET_RADIUS;
-			_pauseIcon.y = TARGET_DEFAULT;
+			//_pauseIcon.x = 17 + TARGET_RADIUS;
+			//_pauseIcon.y = TARGET_DEFAULT;
 			
 			_pauseIcon.addEventListener(MouseEvent.MOUSE_DOWN, function(e:MouseEvent):void { togglePause(); } );
 			

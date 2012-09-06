@@ -41,15 +41,15 @@ package questions
 			}
 			// 330, 440, 455, 70
 			
-			_textFormat.size = 25;
+			_textFormat.size = 20;
 			_textFormat.font = "qFont";
 			
 			_questionDisplay = new TextField();
 			_questionDisplay.defaultTextFormat = _textFormat;
 			_questionDisplay.text = question;
-			_questionDisplay.x = 150;//330;
-			_questionDisplay.y = 21;//410;
-			_questionDisplay.width = 455;
+			_questionDisplay.x = 265;//150;//330;
+			_questionDisplay.y = 25;//21;//410;
+			_questionDisplay.width = 375;//455;
 			_questionDisplay.height = 70;
 			_questionDisplay.wordWrap = true;
 			addChild(_questionDisplay);

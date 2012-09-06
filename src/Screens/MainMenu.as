@@ -5,12 +5,14 @@ package Screens
 {
 	import flash.display.MovieClip;
 	import flash.display.Graphics;
+	import flash.events.MouseEvent;
 	
 	public class MainMenu extends MovieClip
 	{
 		
-		public var _background : MovieClip;
-		public var playButton : MovieClip;
+		private var _background : MovieClip;
+		private var _playButton : MovieClip;
+		private var _logo       : MovieClip;
 		
 		public function MainMenu()
 		{
@@ -39,14 +41,22 @@ package Screens
 				_background.y = 240;
 				addChild(_background);
 				
-				playButton = new MovieClip();
-				playButton.addChild(new btn_play_mainmenu());
+				_playButton = new MovieClip();
+				_playButton.addChild(new btn_play_mainmenu());
+				_playButton.x = 320;
+				_playButton.y = 320;
+				addChild(_playButton);
 				
-				playButton.x = 320;
-				playButton.y = 240;
-				
-				addChild(playButton);
+				_logo = new LOGO_myplate();
+				_logo.x = 320;
+				_logo.y = 128;
+				addChild(_logo);
 			}
+		}
+		
+		public function set playCallback( f : Function ) : void
+		{
+			_playButton.addEventListener(MouseEvent.MOUSE_DOWN, f);
 		}
 	}
 }

@@ -7,170 +7,85 @@ package questions
 	{
 		// Load Images
 		{
-		[Embed(source="question_responses/apple.png")]
-		public var apple:Class;
-		
-		[Embed(source="question_responses/applejuice.png")]
-		public var applejuice:Class;
-		
-		[Embed(source="question_responses/asparagus.png")]
-		public var asparagus:Class;
-		
-		[Embed(source="question_responses/baking.png")]
-		public var baking:Class;
-		
-		[Embed(source="question_responses/banana.png")]
-		public var banana:Class;
-		
-		[Embed(source="question_responses/basketball.png")]
-		public var basketball:Class;
-		
-		[Embed(source="question_responses/biking.png")]
-		public var biking:Class;
-		
-		[Embed(source="question_responses/broccoli.png")]
-		public var broccoli:Class;
-		
-		[Embed(source="question_responses/brusselssprouts.png")]
-		public var brusselssprouts:Class;
-		
-		[Embed(source="question_responses/cabbage.png")]
-		public var cabbage:Class;
-		
-		[Embed(source="question_responses/candybar.png")]
-		public var candybar:Class;
-		
-		[Embed(source="question_responses/caramel_apple.png")]
-		public var caramel_apple:Class;
-		
-		[Embed(source="question_responses/carrot.png")]
-		public var carrot:Class;
-		
-		[Embed(source="question_responses/cauliflower.png")]
-		public var cauliflower:Class;
-		
-		[Embed(source="question_responses/cheese.png")]
-		public var cheese:Class;
-		
-		[Embed(source="question_responses/chocolateshake.png")]
-		public var chocolateshake:Class;
-		
-		[Embed(source="question_responses/cinnamon_raisin_bread.png")]
-		public var cinnamon_raisin_bread:Class;
-		
-		[Embed(source="question_responses/coloring.png")]
-		public var coloring:Class;
-		
-		[Embed(source="question_responses/crackers.png")]
-		public var crackers:Class;
-		
-		[Embed(source="question_responses/cucumber.png")]
-		public var cucumber:Class;
-		
-		[Embed(source="question_responses/dairy.png")]
-		public var dairy:Class;
-		
-		[Embed(source="question_responses/dancing.png")]
-		public var dancing:Class;
-		
-		[Embed(source="question_responses/egg.png")]
-		public var egg:Class;
-		
-		[Embed(source="question_responses/energy_drinks.png")]
-		public var energy_drinks:Class;
-		
-		[Embed(source="question_responses/french_fries.png")]
-		public var french_fries:Class;
-		
-		[Embed(source="question_responses/fruitpunch.png")]
-		public var fruitpunch:Class;
-		
-		[Embed(source="question_responses/fruits.png")]
-		public var fruits:Class;
-		
-		[Embed(source="question_responses/fruits_and_vegetables.png")]
-		public var fruits_and_vegetables:Class;
-		
-		[Embed(source="question_responses/grains.png")]
-		public var grains:Class;
-		
-		[Embed(source="question_responses/granola_bar.png")]
-		public var granola_bar:Class;
-		
-		[Embed(source="question_responses/grape_drink.png")]
-		public var grape_drink:Class;
-		
-		[Embed(source="question_responses/grapes.png")]
-		public var grapes:Class;
-		
-		[Embed(source="question_responses/hockey.png")]
-		public var hockey:Class;
-		
-		[Embed(source="question_responses/hop.png")]
-		public var hop:Class;
-		
-		[Embed(source="question_responses/hulahoop.png")]
-		public var hulahoop:Class;
-		
-		[Embed(source="question_responses/imagination.png")]
-		public var imagination:Class;
-		
-		[Embed(source="question_responses/juice.png")]
-		public var juice:Class;
-		
-		[Embed(source="question_responses/jump.png")]
-		public var jump:Class;
-		
-		[Embed(source="question_responses/jumping_jacks.png")]
-		public var jumping_jacks:Class;
-		
-		[Embed(source="question_responses/jumprope.png")]
-		public var jumprope:Class;
-		
-		[Embed(source="question_responses/lemonade.png")]
-		public var lemonade:Class;
-		
-		[Embed(source="question_responses/meat.png")]
-		public var meat:Class;
-		
-		[Embed(source="question_responses/milk.png")]
-		public var milk:Class;
-		
-		[Embed(source="question_responses/mushrooms.png")]
-		public var mushrooms:Class;
-		
-		[Embed(source="question_responses/orange.png")]
-		public var orange:Class;
-		
-		[Embed(source="question_responses/pear.png")]
-		public var pear:Class;
-		
-		[Embed(source="question_responses/playing_video_games.png")]
-		public var playing_video_games:Class;
-		
-		[Embed(source="question_responses/plum.jpg")]
-		public var plum:Class;
-		
-		[Embed(source="question_responses/pop.png")]
-		public var pop:Class;
-		
-		[Embed(source="question_responses/potato_chips.png")]
-		public var potato_chips:Class;
-		
-		[Embed(source="question_responses/pushups.png")]
-		public var pushups:Class;
-		
-		[Embed(source="question_responses/raisins.png")]
-		public var raisins:Class;
-		
-		[Embed(source="question_responses/slushie.png")]
-		public var slushie:Class;
-		
-		[Embed(source="question_responses/sports_drink.png")]
-		public var sports_drink:Class;
-		
-		[Embed(source="question_responses/water.png")]
-		public var water:Class;
+		[Embed(source="question_responses/apple.png")] public var apple:Class;
+		[Embed(source="question_responses/applejuice.png")] public var applejuice:Class;
+		[Embed(source="question_responses/asparagus.png")] public var asparagus:Class;
+		[Embed(source="question_responses/baking.png")] public var baking:Class;
+		[Embed(source="question_responses/banana.png")] public var banana:Class;
+		[Embed(source="question_responses/basketball.png")] public var basketball:Class;
+		[Embed(source="question_responses/biking.png")] public var biking:Class;
+		[Embed(source="question_responses/broccoli.png")] public var broccoli:Class;
+		[Embed(source="question_responses/brusselssprouts.png")] public var brusselssprouts:Class;
+		[Embed(source="question_responses/cabbage.png")] public var cabbage:Class;
+		[Embed(source="question_responses/candybar.png")] public var candybar:Class;
+		[Embed(source="question_responses/caramel_apple.png")] public var caramel_apple:Class;
+		[Embed(source="question_responses/carrot.png")] public var carrot:Class;
+		[Embed(source="question_responses/cauliflower.png")] public var cauliflower:Class;
+		[Embed(source="question_responses/cheese.png")] public var cheese:Class;
+		[Embed(source="question_responses/chocolateshake.png")] public var chocolateshake:Class;
+		[Embed(source="question_responses/cinnamon_raisin_bread.png")] public var cinnamon_raisin_bread:Class;
+		[Embed(source="question_responses/coloring.png")] public var coloring:Class;
+		[Embed(source="question_responses/crackers.png")] public var crackers:Class;
+		[Embed(source="question_responses/cucumber.png")] public var cucumber:Class;
+		[Embed(source="question_responses/dairy.png")] public var dairy:Class;
+		[Embed(source="question_responses/dancing.png")] public var dancing:Class;
+		[Embed(source="question_responses/egg.png")] public var egg:Class;
+		[Embed(source="question_responses/energy_drinks.png")] public var energy_drinks:Class;
+		[Embed(source="question_responses/french_fries.png")] public var french_fries:Class;
+		[Embed(source="question_responses/fruitpunch.png")] public var fruitpunch:Class;
+		[Embed(source="question_responses/fruits.png")] public var fruits:Class;
+		[Embed(source="question_responses/fruits_and_vegetables.png")] public var fruits_and_vegetables:Class;
+		[Embed(source="question_responses/grains.png")] public var grains:Class;
+		[Embed(source="question_responses/granola_bar.png")] public var granola_bar:Class;
+		[Embed(source="question_responses/grape_drink.png")] public var grape_drink:Class;
+		[Embed(source="question_responses/grapes.png")] public var grapes:Class;
+		[Embed(source="question_responses/hockey.png")] public var hockey:Class;
+		[Embed(source="question_responses/hop.png")] public var hop:Class;
+		[Embed(source="question_responses/hulahoop.png")] public var hulahoop:Class;
+		[Embed(source="question_responses/imagination.png")] public var imagination:Class;
+		[Embed(source="question_responses/juice.png")] public var juice:Class;
+		[Embed(source="question_responses/jump.png")] public var jump:Class;
+		[Embed(source="question_responses/jumping_jacks.png")] public var jumping_jacks:Class;
+		[Embed(source="question_responses/jumprope.png")] public var jumprope:Class;
+		[Embed(source="question_responses/lemonade.png")] public var lemonade:Class;
+		[Embed(source="question_responses/meat.png")] public var meat:Class;
+		[Embed(source="question_responses/milk.png")] public var milk:Class;
+		[Embed(source="question_responses/mushrooms.png")] public var mushrooms:Class;
+		[Embed(source="question_responses/orange.png")] public var orange:Class;
+		[Embed(source="question_responses/pear.png")] public var pear:Class;
+		[Embed(source="question_responses/playing_video_games.png")] public var playing_video_games:Class;
+		[Embed(source="question_responses/plum.jpg")] public var plum:Class;
+		[Embed(source="question_responses/pop.png")] public var pop:Class;
+		[Embed(source="question_responses/potato_chips.png")] public var potato_chips:Class;
+		[Embed(source="question_responses/pushups.png")] public var pushups:Class;
+		[Embed(source="question_responses/raisins.png")] public var raisins:Class;
+		[Embed(source="question_responses/slushie.png")] public var slushie:Class;
+		[Embed(source="question_responses/sports_drink.png")] public var sports_drink:Class;
+		[Embed(source="question_responses/water.png")] public var water:Class;
+		[Embed(source="question_responses/raspberries.png")] public var raspberries:Class;
+		[Embed(source="question_responses/reading.png")] public var reading:Class;
+		[Embed(source="question_responses/rice.png")] public var rice:Class;
+		[Embed(source="question_responses/running.png")] public var running:Class;
+		[Embed(source="question_responses/sit.png")] public var sit:Class;
+		[Embed(source="question_responses/situps.jpg")] public var situps:Class;
+		[Embed(source="question_responses/sliceofbread.png")] public var sliceofbread:Class;
+		[Embed(source="question_responses/soccer.png")] public var soccer:Class;
+		[Embed(source="question_responses/softball.png")] public var softball:Class;
+		[Embed(source="question_responses/spinach.png")] public var spinach:Class;
+		[Embed(source="question_responses/squash.png")] public var squash:Class;
+		[Embed(source="question_responses/strawberries.png")] public var strawberries:Class;
+		[Embed(source="question_responses/stretching.png")] public var stretching:Class;
+		[Embed(source="question_responses/sweet_rolls.png")] public var sweet_rolls:Class;
+		[Embed(source="question_responses/sweet_tea.png")] public var sweet_tea:Class;
+		[Embed(source="question_responses/swimming.png")] public var swimming:Class;
+		[Embed(source="question_responses/tag.png")] public var tag:Class;
+		[Embed(source="question_responses/tomato.png")] public var tomato:Class;
+		[Embed(source="question_responses/veggiejuice.png")] public var veggiejuice:Class;
+		[Embed(source="question_responses/walk.png")] public var walk:Class;
+		[Embed(source="question_responses/watching_tv.png")] public var watching_tv:Class;
+		[Embed(source="question_responses/weightbearing.png")] public var weightbearing:Class;
+		[Embed(source="question_responses/wheat_toast.png")] public var wheat_toast:Class;
+		[Embed(source="question_responses/yoga.png")] public var yoga:Class;
 		}
 		
 		// Setup Image Responses
@@ -227,9 +142,33 @@ package questions
 		public var _potato_chips:Response = new Response( "Potato Chips", new potato_chips() );
 		public var _pushups:Response = new Response( "Pushups", new pushups() );
 		public var _raisins:Response = new Response( "Raisins", new raisins() );
+		public var _raspberries:Response = new Response( "Raspberries", new raspberries() );
+		public var _reading:Response = new Response( "Reading", new reading() );
+		public var _rice:Response = new Response( "Rice", new rice() );
+		public var _running:Response = new Response( "Running", new running() );
+		public var _sit:Response = new Response( "Sit", new sit() );
+		public var _situps:Response = new Response( "Situps", new situps() );
+		public var _sliceofbread:Response = new Response( "Slice of Bread", new sliceofbread() );
 		public var _slushie:Response = new Response( "Slushie", new slushie() );
+		public var _soccer:Response = new Response( "Soccer", new soccer() );
+		public var _softball:Response = new Response( "Softball", new softball() );
+		public var _spinach:Response = new Response( "Spinach", new spinach() );
 		public var _sportsdrink:Response = new Response( "Sports Drink", new sports_drink() );
+		public var _squash:Response = new Response( "Squash", new squash() );
+		public var _strawberries:Response = new Response( "Strawberries", new strawberries() );
+		public var _stretching:Response = new Response( "Stretching", new stretching() );
+		public var _sweet_rolls:Response = new Response( "Sweet Rolls", new sweet_rolls() );
+		public var _sweet_tea:Response = new Response( "Sweet Tea", new sweet_tea() );
+		public var _swimming:Response = new Response( "Swimming", new swimming() );
+		public var _tag:Response = new Response( "Tag", new tag() );
+		public var _tomato:Response = new Response( "Tomato", new tomato() );
+		public var _veggiejuice:Response = new Response( "Veggie Juice", new veggiejuice() );
+		public var _walk:Response = new Response( "Walk", new walk() );
+		public var _watching_tv:Response = new Response( "Watching TV", new watching_tv() );
 		public var _water:Response = new Response( "Water", new water() );
+		public var _weightbearing:Response = new Response( "Weight Bearing", new weightbearing() );
+		public var _wheat_toast:Response = new Response( "Wheat Toast", new wheat_toast() );
+		public var _yoga:Response = new Response( "Yoga", new yoga() );
 		}
 		
 		// Text Responses
@@ -340,61 +279,16 @@ package questions
 		public var _muscles:Response = new Response( "Muscles" );
 		public var _bones:Response = new Response( "Bones" );
 		public var _grains_copy:Response = new Response( "Grains" );
+		public var _in_grocery_stores:Response = new Response(  "in grocery stores" );
+		public var _in_the_ground:Response = new Response(  "in the ground" );
+		public var _on_trees:Response = new Response(  "on trees" );
+		public var _and_come_down_from_the_sky:Response = new Response(  "and come down from the sky" );
+		
 		}
 		
 		public function QuestionResponses()
-		{/*
-_categories[0].push( new Question("Fiber helps you get rid of waste from your body. What kind of food has fiber?", 0, _fruits_and_vegetables, [_2_slices_of_cheese, _meat, _milk]) );
-_categories[0].push( new Question("Which of the these is the healthiest choice?", 0, _apple, [_pop, _caramel_apple, _crackers]) );
-_categories[0].push( new Question("Christy is hungry. Choose the healthiest snack for her.", 0, _carrot, [_french_fries, _candybar, _potato_chips]) );
-
-_categories[0].push( new Question("Which of the following is a vegetable?", 0, , [, , ], new _whichIsaVegetable()) );
-_categories[0].push( new Question("Fruits and vegetables are foods you can _________ to get energy and help you grow.", 0, , [, , ]) );
-_categories[0].push( new Question("Make ___________ your dinner plate fruits and vegetables", 0, , [, , ]) );
-
-_categories[0].push( new Question("Do you know what healthy nutrients fruits/vegetables contain?", 0, , [, , ]) );
-_categories[0].push( new Question("What vegetable should you eat most often so you can stay healthy?", 0, , [, , ]) );
-_categories[0].push( new Question("Vegetables grow....", 0, , [, , ]) );
-
-
-_categories[1].push( new Question("Eating smaller portions can help you:", 0, , [, , ]) );
-_categories[1].push( new Question("From which food group should you eat the fewest servings each day?", 0, , [, , ]) );
-_categories[1].push( new Question("Eating oversized portions of unhealthy foods gives you:", 0, , [, , ]) );
-
-_categories[1].push( new Question("1 serving of dairy equals:", 0, , [, , ]) );
-_categories[1].push( new Question("How big is a serving of fruit?", 0, , [, , ]) );
-_categories[1].push( new Question("A 1 ounce serving of grains is equal to:", 0, , [, , ]) );
-
-_categories[1].push( new Question("From which food group should you eat the most servings each day?", 0, , [, , ]) );
-_categories[1].push( new Question("The serving size of a food is:", 0, , [, , ]) );
-_categories[1].push( new Question("How many servings of fruits and vegetables do you need every day?", 0, , [, , ]) );
-
-
-_categories[2].push( new Question("Which drink should you choose most often when you feel thirsty?", 0, , [, , ]) );
-_categories[2].push( new Question("What does regular soda/pop contain?", 0, , [, , ]) );
-_categories[2].push( new Question("Which one of these can you drink a lot of and still be healthy?", 0, , [, , ]) );
-
-_categories[2].push( new Question("Our bones grow stronger when we drink:", 0, , [, , ]) );
-_categories[2].push( new Question("Which of the following is NOT a sugary drink?", 0, , [, , ]) );
-_categories[2].push( new Question("Our bodies are composed of mostly:", 0, , [, , ]) );
-
-_categories[2].push( new Question("You just ran a mile in gym class, what is the best thing to drink?", 0, , [, , ]) );
-_categories[2].push( new Question("How many ounces are in 1 cup of water?", 0, , [, , ]) );
-_categories[2].push( new Question("Your teeth grow stronger when you drink which beverage?", 0, , [, , ]) );
-
-
-_categories[3].push( new Question("Which sport is a weight bearing activity that will help build strong bones?", 0, , [, , ]) );
-_categories[3].push( new Question("When we are physically active, we benefit our:", 0, , [, , ]) );
-_categories[3].push( new Question("In a typical day, we should try to be active or exercise for:", 0, , [, , ]) );
-
-_categories[3].push( new Question("Kids need to exercise:", 0, , [, , ]) );
-_categories[3].push( new Question("What are signs that we are exercising and working hard?", 0, , [, , ]) );
-_categories[3].push( new Question("If we get more than 1 hour of exercise each day we:", 0, , [, , ]) );
-
-_categories[3].push( new Question("During commercial breaks, when you are watching TV, what can you do to be physically active?", 0, , [, , ]) );
-_categories[3].push( new Question("Which type of exercise will build strong muscles?", 0, , [, , ]) );
-_categories[3].push( new Question("It recently snowed outside, so you have to play inside. Which activity involves the most physical activity?", 0, , [, , ]) );
-		*/}
+		{
+		}
 	}
 
 }
