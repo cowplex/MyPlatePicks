@@ -27,6 +27,8 @@ package Screens
 		private var _correctSound : Sound = new correct();
 		private var _incorrectSound : Sound = new incorrect();
 		
+		private var _doubleStars : MovieClip = new STARS();
+		
 		private var _scoreIcon : MovieClip;
 		private var _highScoreIcon : MovieClip;
 		
@@ -70,6 +72,9 @@ package Screens
 			_highScoreIcon.x = 186.9/2 - 160;
 			_highScoreIcon.y = 38.8 /2;
 			addChild(_highScoreIcon);
+			
+			_doubleStars.x = _doubleStars.width / 2 - 60;
+			_doubleStars.y = -1 * _doubleStars.height / 2;
 		}
 		
 		public function set questionsPerLevel( q : Number ) : void
@@ -94,7 +99,10 @@ package Screens
 		{
 			_questionsThisLevel++;
 			if(!(_doubleQuestionLocatins.indexOf(_questionsThisLevel - 1) < 0))
+			{
 				_doubleSound.play();
+				addChild(_doubleStars);
+			}
 		}
 		
 		public function get levelScore() : Number
@@ -107,13 +115,19 @@ package Screens
 			_score = s;
 		}
 		
-		public function scoreEvent( correct : Boolean ) : void
+		public function scoreEvent( correct : Boolean , warmup : Boolean = false ) : void
 		{
+			(correct) ? _correctSound.play() : _incorrectSound.play();
+			
+			if(warmup)
+				return;
+			
 			if(correct)
 				_score += (_doubleQuestionLocatins.indexOf(_questionsThisLevel - 1) < 0) ? 25 : 50;
 			_scoreText.text = String(_score);
 			
-			(correct) ? _correctSound.play() : _incorrectSound.play();
+			if(!(_doubleQuestionLocatins.indexOf(_questionsThisLevel - 1) < 0))
+				removeChild(_doubleStars);
 			
 			if(_questionsThisLevel >= _levelQuestions)
 				resetLevel();

@@ -269,7 +269,7 @@ package questions
 		
 		//public var _french_fries:Response = new Response( "French Fries" );
 		public var _be_more_popular:Response = new Response( "Be More Popular" );
-		public var _read_better:Response = new Response( "Reat Better" );
+		public var _read_better:Response = new Response( "Read Better" );
 		//public var _sportsdrink:Response = new Response( "Sports Drink" );
 		//public var _slushie:Response = new Response( "Slushie" );
 		public var _Swimming:Response = new Response( "Swimming" );

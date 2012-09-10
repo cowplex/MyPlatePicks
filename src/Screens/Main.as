@@ -15,7 +15,7 @@ package Screens
  	//import mx.transitions.easing.*;
  	//import mx.transitions.TweenEvent;
 	
-	public class Main extends Sprite
+	public class Main extends MovieClip
 	{
 		[Embed(source="assets/countdown.mp3")] private var countdown:Class;
 		[Embed(source="assets/timeup.mp3")] private var timeup:Class;
@@ -29,12 +29,22 @@ package Screens
 		private var _timerApple : MovieClip;
 		private var _questionArea : MovieClip;
 		
+		private var _screenMask : MovieClip;
+		
 		private var _questionTimer : GTween;//Timer;
 		private var _timerCallback : Function;
 		
 		public function Main()
 		{
-			//Create game background
+			// Create mask
+			_screenMask = new MovieClip();
+			_screenMask.graphics.lineStyle(1,0x000000);
+			_screenMask.graphics.beginFill(0x000000);
+			_screenMask.graphics.drawRect(0,0,640,480);
+			_screenMask.graphics.endFill();
+			addChild(_screenMask);
+			
+			// Create game background
 			_background = new BG_LOGOS();//new BG_game_play();
 			_background.x = _background.width /2;
 			_background.y = _background.height /2;
@@ -60,6 +70,9 @@ package Screens
 			_timer.addChildAt(_timerApple, 0);
 			_timerApple.gotoAndStop(1);
 			
+			// Add Masks
+			_timer.mask = _screenMask;
+			_questionArea.mask = _screenMask;
 		}
 		
 		public function setupTimerCallback( callback : Function) : void

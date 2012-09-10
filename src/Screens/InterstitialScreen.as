@@ -96,6 +96,8 @@ package Screens
 		
 		public function show( level : Number, KC : Number ) : void
 		{
+			level--;
+			
 			_textField.text = _facts[KC][level];//[int(Math.random() * _facts[KC].length)];
 			
 			_timer.reset();

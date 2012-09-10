@@ -43,7 +43,7 @@ package Screens
 			attach();
 		}
 		
-		public function setupCallback( callback : Function ) : void
+		public function set hitCallback( callback : Function ) : void
 		{
 			_hitCallback = callback;
 		}

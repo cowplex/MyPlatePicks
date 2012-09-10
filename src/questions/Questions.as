@@ -101,7 +101,7 @@ package questions
 			// Cat 3
 			_categories.push( new Array() );
 			_categories[3].push( new Array() );
-			_categories[3][0].push( new Question("Which sport is a weight bearing activity that will help build strong bones?", 0, _QR._Jump_Roping, [_QR._Swimming, _QR._Bike_Riding, _QR._Stretching]) );
+/*		*/	_categories[3][0].push( new Question("Which sport is a weight bearing activity that will help build strong bones?", 0, _QR._jumprope, [_QR._swimming, _QR._biking, _QR._stretching]) );
 			_categories[3][0].push( new Question("When we are physically active, we benefit our:", 0, _QR._All_of_these_choices, [_QR._muscles, _QR._Blood, _QR._bones]) );
 			_categories[3][0].push( new Question("In a typical day, we should try to be active or exercise for:", 0, _QR._At_least_1_hour, [_QR._At_least_30_minutes, _QR._At_least_1_minute, _QR._At_least_2_hours]) );
 			
@@ -151,12 +151,12 @@ package questions
 			}
 		}
 		
-		public function setScoreCallback(scoreCallback : Function) : void
+		public function set scoreCallback(scoreCallback : Function) : void
 		{
 			_scoreCallback = scoreCallback;
 		}
 		
-		public function setDetectorCallback(detectorCallback : Function) : void
+		public function set detectorCallback(detectorCallback : Function) : void
 		{
 			_detectorCallback = detectorCallback;
 		}

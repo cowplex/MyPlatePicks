@@ -173,7 +173,7 @@ package
 			//debugVid.x = _source.x + 10 + _vidWidth;
 			//debugVid.y = _source.y;
 			debugVid.scaleX = debugVid.scaleY = .25;
-			addChild(debugVid);
+//			addChild(debugVid);
 			// DEBUG
 			
 		}
@@ -194,7 +194,7 @@ package
 			_warmup = new Warmup();
 			_warmup.x = _source.x;
 			_warmup.y = _source.y;
-			_warmup.setupCallback(stateCallback);
+			_warmup.hitCallback = stateCallback;
 			addChild(_warmup);
 		}
 		
@@ -239,8 +239,8 @@ package
 		private function setupQuestions() : void
 		{
 			_questions = new Questions();
-			_questions.setScoreCallback(stateCallback);
-			_questions.setDetectorCallback(_motionTracker.detectMotion);
+			_questions.scoreCallback = stateCallback;
+			_questions.detectorCallback = _motionTracker.detectMotion;
 			addChild(_questions);
 			
 			// Setup callback for timer to show correct/incorrect answers
@@ -312,6 +312,7 @@ package
 			switch(_gamestate)
 			{
 				case 0:
+					_scoreboard.scoreEvent(true, true);
 					_answeredQuestions++;
 					if(_answeredQuestions >= NUM_WARMUP_QUESTIONS)
 					{
@@ -401,6 +402,7 @@ package
 				case 2:
 					// Begin AR Detection
 					addChild(_arScreen);
+					_arScreen.question(_level.level, _level.knowledgeCategory);
 					_mainScreen.timerStart(20);
 					_detecting = true;
 					break;
