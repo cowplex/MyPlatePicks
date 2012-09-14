@@ -1,0 +1,7 @@
+End Screen
+	VP
+	level
+	maxscore
+
+Timer: x=90.25; y=247.55;
+

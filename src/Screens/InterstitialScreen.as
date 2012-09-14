@@ -20,6 +20,13 @@ package Screens
 		private var _timer : Timer;
 		
 		private var _background : MovieClip;
+		private var _backgroundList : Array = new Array(
+			new BG_plate(),
+			new BG_proportions(),
+			new BG_water(),
+			new BG_activity()
+		)
+		private var _activeBG : Number;
 		
 		private var _facts : Array;
 		
@@ -61,9 +68,9 @@ package Screens
 		{
 			setupFacts();
 			
-			_background = new BG_interstitialscreens();
-			_background.x = _background.width/2;
-			_background.y = _background.height/2;
+			_background = new MovieClip();//new BG_interstitialscreens();
+			_background.x = 640/2;//_background.width/2;
+			_background.y = 480/2;//_background.height/2;
 			addChild(_background);
 			
 			
@@ -74,7 +81,7 @@ package Screens
 			
 			_textField = new TextField();
 			_textField.defaultTextFormat = _format;
-			_textField.textColor = 0xFFFFFF;
+			//_textField.textColor = 0xFFFFFF;
 			
 			_textField.wordWrap = true;
 			_textField.autoSize = "left";
@@ -98,6 +105,9 @@ package Screens
 		{
 			level--;
 			
+			_activeBG = KC;
+			_background.addChild(_backgroundList[_activeBG]);
+			
 			_textField.text = _facts[KC][level];//[int(Math.random() * _facts[KC].length)];
 			
 			_timer.reset();
@@ -106,6 +116,7 @@ package Screens
 		
 		private function timerCallback(e:TimerEvent) : void
 		{
+			_background.removeChild(_backgroundList[_activeBG]);
 			_callback();
 		}
 	}

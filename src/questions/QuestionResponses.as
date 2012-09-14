@@ -67,7 +67,7 @@ package questions
 		[Embed(source="question_responses/rice.png")] public var rice:Class;
 		[Embed(source="question_responses/running.png")] public var running:Class;
 		[Embed(source="question_responses/sit.png")] public var sit:Class;
-		[Embed(source="question_responses/situps.jpg")] public var situps:Class;
+		[Embed(source="question_responses/situps.png")] public var situps:Class;
 		[Embed(source="question_responses/sliceofbread.png")] public var sliceofbread:Class;
 		[Embed(source="question_responses/soccer.png")] public var soccer:Class;
 		[Embed(source="question_responses/softball.png")] public var softball:Class;

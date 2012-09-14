@@ -72,6 +72,7 @@ package
 		private var _arScreen : ARScreen;
 		private var _interstitial : InterstitialScreen;
 		private var _gameOver : GameOverScreen;
+		private var _congratsScreen : CongratsScreen;
 		
 		// FLARToolkit variables	
 		//private var raster:FLARRgbRaster_BitmapData;
@@ -110,6 +111,7 @@ package
 					setupPause();
 					
 					setupInterstitial();
+					setupCongrats();
 					
 					addEventListener(Event.ENTER_FRAME, loop);
 					
@@ -262,6 +264,11 @@ package
 			_interstitial.callback = stateCallback;
 			//addChild(_interstitial);
 		}
+		private function setupCongrats() : void
+		{
+			_congratsScreen = new CongratsScreen();
+			_congratsScreen.callback = stateCallback;
+		}
 		
 		private function setupGameOver() : void
 		{
@@ -292,10 +299,10 @@ package
 		{
 			switch(_gamestate)
 			{
-				case 1:
+				case 2:
 					_questions.questionTimeout();
 					break;
-				case 2:
+				case 3:
 					stateCallback();
 					break;
 			}
@@ -324,6 +331,10 @@ package
 					}
 					break;
 				case 1:
+					// Remove Interstitial
+					removeChild(_interstitial);
+					break;
+				case 2:
 					_detecting = false;
 					
 					_mainScreen.timerStop();
@@ -331,21 +342,19 @@ package
 					_answeredQuestions++;
 					_scoreboard.scoreEvent(hit);
 					break;
-				case 2:
+				case 3:
 					// Remove AR detector
 					_detecting = false;
 					
 					removeChild(_arScreen);
 					break;
-				case 3:
-					// Remove Interstitial
-					removeChild(_interstitial);
-					break;
+				case 4:
+					removeChild(_congratsScreen);
 				default: break;
 			}
 			
 // FIXME: potentially move into switch statement
-			if(_gamestate == 1)
+			if(_gamestate == 2)
 				_questionValidator.validate(correct, miss);
 			else if(_gamestate != 0)
 				stateSetup();
@@ -355,7 +364,7 @@ package
 		{
 			switch(_gamestate)
 			{
-				case 1:
+				case 2:
 					_questions.hideQuestion();
 					break;
 				case 3:
@@ -369,7 +378,7 @@ package
 			switch(_gamestate)
 			{
 				case 0:
-				case 1:
+				case 2:
 					if(_answeredQuestions < QUESTIONS_PER_LEVEL)
 						break;
 					_answeredQuestions = 0;
@@ -377,7 +386,7 @@ package
 					_gamestate++;
 			}
 			
-			if(_gamestate > 3)
+			if(_gamestate > 4)
 			{
 				_gamestate = 1;
 				_level.knowledgeCategory++;
@@ -393,23 +402,29 @@ package
 			switch(_gamestate)
 			{
 				case 1:
+					// Interstitial 
+					addChild(_interstitial);
+					_interstitial.show(_level.level, _level.knowledgeCategory);
+					_detecting = false;
+					break;
+				case 2:
 					// Add Question
 					_questions.drawQuestion(_level.level, _level.knowledgeCategory);
 					_scoreboard.showQuestion();
 					_mainScreen.timerStart(10);
 					_detecting = true;
 					break;
-				case 2:
+				case 3:
 					// Begin AR Detection
 					addChild(_arScreen);
 					_arScreen.question(_level.level, _level.knowledgeCategory);
 					_mainScreen.timerStart(20);
 					_detecting = true;
 					break;
-				case 3:
-					// Interstitial 
-					addChild(_interstitial);
-					_interstitial.show(_level.level, _level.knowledgeCategory);
+				case 4:
+					addChild(_congratsScreen);
+					_congratsScreen.congratulate();
+					_detecting = false;
 					break;
 			}
 		}
@@ -435,11 +450,11 @@ package
 					// Warmup time
 					_warmup.detectHit(_motionTracker.detectMotion(_warmup.detectionArea));
 					break;
-				case 1:
+				case 2:
 					// Asking a question
 					_questions.detectHit();
 					break;
-				case 2:
+				case 3:
 					// Detecting AR Marker
 					if(_arScreen.detectAR(_arDetector.track(_bitmap)))
 					{

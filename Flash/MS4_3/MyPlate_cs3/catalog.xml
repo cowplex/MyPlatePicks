@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding ="utf-8"?>
+<swc xmlns="http://www.adobe.com/flash/swccatalog/9">
+  <versions>
+    <swc version="1.2" />
+    <flash version="11.5" build="d349" platform="WIN" />
+  </versions>
+  <features>
+    <feature-script-deps />
+    <feature-files />
+  </features>
+  <libraries>
+    <library path="library.swf">
+      <script name="BTN_1_PLAYER" mod="1347559403791" >
+        <def id="BTN_1_PLAYER" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:SimpleButton" type="i" /> 
+      </script>
+      <script name="BTN_2_PLAYERS" mod="1347559403791" >
+        <def id="BTN_2_PLAYERS" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:SimpleButton" type="i" /> 
+      </script>
+      <script name="BTN_INDYPICKER" mod="1347559403791" >
+        <def id="BTN_INDYPICKER" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:SimpleButton" type="i" /> 
+      </script>
+      <script name="BTN_KCPICKER" mod="1347559403791" >
+        <def id="BTN_KCPICKER" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:SimpleButton" type="i" /> 
+      </script>
+      <script name="BTN_resume" mod="1347559403791" >
+        <def id="BTN_resume" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:SimpleButton" type="i" /> 
+      </script>
+      <script name="btn_audio_off" mod="1347559403791" >
+        <def id="btn_audio_off" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:SimpleButton" type="i" /> 
+      </script>
+      <script name="btn_audio_on" mod="1347559403791" >
+        <def id="btn_audio_on" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:SimpleButton" type="i" /> 
+      </script>
+      <script name="btn_back" mod="1347559403791" >
+        <def id="btn_back" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:SimpleButton" type="i" /> 
+      </script>
+      <script name="btn_facebook" mod="1347559403791" >
+        <def id="btn_facebook" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:SimpleButton" type="i" /> 
+      </script>
+      <script name="btn_home" mod="1347559403791" >
+        <def id="btn_home" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:SimpleButton" type="i" /> 
+      </script>
+      <script name="btn_info" mod="1347559403791" >
+        <def id="btn_info" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:SimpleButton" type="i" /> 
+      </script>
+      <script name="btn_options" mod="1347559403791" >
+        <def id="btn_options" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:SimpleButton" type="i" /> 
+      </script>
+      <script name="btn_pause" mod="1347559403791" >
+        <def id="btn_pause" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:SimpleButton" type="i" /> 
+      </script>
+      <script name="btn_play" mod="1347559403791" >
+        <def id="btn_play" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:SimpleButton" type="i" /> 
+      </script>
+      <script name="btn_play_mainmenu" mod="1347559403791" >
+        <def id="btn_play_mainmenu" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:SimpleButton" type="i" /> 
+      </script>
+      <script name="btn_quit" mod="1347559403791" >
+        <def id="btn_quit" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:SimpleButton" type="i" /> 
+      </script>
+      <script name="btn_replay" mod="1347559403791" >
+        <def id="btn_replay" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:SimpleButton" type="i" /> 
+      </script>
+      <script name="btn_replay_gameover" mod="1347559403791" >
+        <def id="btn_replay_gameover" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:SimpleButton" type="i" /> 
+      </script>
+      <script name="btn_socialmedia_down" mod="1347559403791" >
+        <def id="btn_socialmedia_down" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:SimpleButton" type="i" /> 
+      </script>
+      <script name="btn_socialmedia_up" mod="1347559403791" >
+        <def id="btn_socialmedia_up" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:SimpleButton" type="i" /> 
+      </script>
+      <script name="btn_twitter" mod="1347559403791" >
+        <def id="btn_twitter" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:SimpleButton" type="i" /> 
+      </script>
+      <script name="btn_upload" mod="1347559403791" >
+        <def id="btn_upload" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:SimpleButton" type="i" /> 
+      </script>
+      <script name="btn_vp" mod="1347559403791" >
+        <def id="btn_vp" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:SimpleButton" type="i" /> 
+      </script>
+      <script name="btn_youtube" mod="1347559403791" >
+        <def id="btn_youtube" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:SimpleButton" type="i" /> 
+      </script>
+      <script name="AR_20MIN" mod="1347559403791" >
+        <def id="AR_20MIN" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="AR_20MIN_ANIMATED" mod="1347559403791" >
+        <def id="AR_20MIN_ANIMATED" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="AR_BANANA" mod="1347559403791" >
+        <def id="AR_BANANA" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="AR_BANANA_ANIMATED" mod="1347559403791" >
+        <def id="AR_BANANA_ANIMATED" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="AR_CANDYBAR" mod="1347559403791" >
+        <def id="AR_CANDYBAR" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="AR_CANDYBAR_ANIMATED" mod="1347559403791" >
+        <def id="AR_CANDYBAR_ANIMATED" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="AR_OATMEAL" mod="1347559403791" >
+        <def id="AR_OATMEAL" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="AR_OATMEAL_ANIMATED" mod="1347559403791" >
+        <def id="AR_OATMEAL_ANIMATED" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="AR_ORANGE" mod="1347559403791" >
+        <def id="AR_ORANGE" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="AR_ORANGE_ANIMATED" mod="1347559403791" >
+        <def id="AR_ORANGE_ANIMATED" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="AR_RICE" mod="1347559403791" >
+        <def id="AR_RICE" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="AR_RICE_ANIMATED" mod="1347559403791" >
+        <def id="AR_RICE_ANIMATED" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="AR_STRAWBERRY" mod="1347559403791" >
+        <def id="AR_STRAWBERRY" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="AR_STRAWBERRY_ANIMATED" mod="1347559403791" >
+        <def id="AR_STRAWBERRY_ANIMATED" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="AR_WALKING" mod="1347559403791" >
+        <def id="AR_WALKING" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="AR_WALKING_ANIMATION" mod="1347559403791" >
+        <def id="AR_WALKING_ANIMATION" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="AR_WATER" mod="1347559403791" >
+        <def id="AR_WATER" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="AR_WATER_ANIMATED" mod="1347559403791" >
+        <def id="AR_WATER_ANIMATED" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="AR_WEIGHT" mod="1347559403791" >
+        <def id="AR_WEIGHT" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="AR_WEIGHT_ANIMATED" mod="1347559403791" >
+        <def id="AR_WEIGHT_ANIMATED" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="AR_YOGA" mod="1347559403791" >
+        <def id="AR_YOGA" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="AR_YOGA_ANIMATED" mod="1347559403791" >
+        <def id="AR_YOGA_ANIMATED" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="AR_detection" mod="1347559403791" >
+        <def id="AR_detection" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="BG_LOGOS" mod="1347559403791" >
+        <def id="BG_LOGOS" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="BG_activity" mod="1347559403791" >
+        <def id="BG_activity" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="BG_congrats" mod="1347559403791" >
+        <def id="BG_congrats" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="BG_credits" mod="1347559403791" >
+        <def id="BG_credits" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="BG_game_over" mod="1347559403791" >
+        <def id="BG_game_over" /> 
+        <dep id="flash.text:TextField" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="BG_game_play" mod="1347559403791" >
+        <def id="BG_game_play" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="BG_interstitialscreens" mod="1347559403791" >
+        <def id="BG_interstitialscreens" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="BG_mainmenu" mod="1347559403791" >
+        <def id="BG_mainmenu" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="BG_plate" mod="1347559403791" >
+        <def id="BG_plate" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="BG_proportions" mod="1347559403791" >
+        <def id="BG_proportions" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="BG_victory" mod="1347559403791" >
+        <def id="BG_victory" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="BG_water" mod="1347559403791" >
+        <def id="BG_water" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="BTN_POP_1PLAYER" mod="1347559403791" >
+        <def id="BTN_POP_1PLAYER" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="BTN_POP_2PLAYERS" mod="1347559403791" >
+        <def id="BTN_POP_2PLAYERS" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="CHARACATER_1" mod="1347559403791" >
+        <def id="CHARACATER_1" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="CHARACTER_2" mod="1347559403791" >
+        <def id="CHARACTER_2" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="LOGO_myplate" mod="1347559403791" >
+        <def id="LOGO_myplate" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="LOGO_myplate_animated" mod="1347559403791" >
+        <def id="LOGO_myplate_animated" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="SCROLL_BAR" mod="1347559403791" >
+        <def id="SCROLL_BAR" /> 
+        <dep id="SCROLL_PART" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="SCROLL_PART" mod="1347559403791" >
+        <def id="SCROLL_PART" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="STARS" mod="1347559403791" >
+        <def id="STARS" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="STARS_SMALL" mod="1347559403791" >
+        <def id="STARS_SMALL" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="STAR_2" mod="1347559403791" >
+        <def id="STAR_2" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="STAR_3" mod="1347559403791" >
+        <def id="STAR_3" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="STAR_4" mod="1347559403791" >
+        <def id="STAR_4" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="Silhouette" mod="1347559403791" >
+        <def id="Silhouette" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="checkmark" mod="1347559403791" >
+        <def id="checkmark" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="countdown_animation" mod="1347559403791" >
+        <def id="countdown_animation" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="high_score" mod="1347559403791" >
+        <def id="high_score" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="level_1" mod="1347559403791" >
+        <def id="level_1" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="level_2" mod="1347559403791" >
+        <def id="level_2" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="level_3" mod="1347559403791" >
+        <def id="level_3" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="marker_worm" mod="1347559403791" >
+        <def id="marker_worm" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="no" mod="1347559403791" >
+        <def id="no" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="overlay_bar_large" mod="1347559403791" >
+        <def id="overlay_bar_large" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="overlay_bar_small" mod="1347559403791" >
+        <def id="overlay_bar_small" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="score" mod="1347559403791" >
+        <def id="score" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="timer" mod="1347559403791" >
+        <def id="timer" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="timer_apple" mod="1347559403791" >
+        <def id="timer_apple" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="xmark" mod="1347559403791" >
+        <def id="xmark" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+      <script name="yes" mod="1347559403791" >
+        <def id="yes" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+      </script>
+    </library>
+  </libraries>
+  <files>
+  </files>
+</swc>

@@ -14,8 +14,8 @@ package Screens
 	
 	public class Scoreboard extends MovieClip
 	{
-		[Embed(systemFont="HouseSampler-HouseSlant", fontName="HouseSlant", fontWeight="normal", mimeType = "application/x-font")] 
-		private var font:Class;
+		[Embed(systemFont="Barmeno", fontName="scoreFont", fontWeight="normal", mimeType = "application/x-font")] private var font:Class;
+		//HouseSampler-HouseSlant
 		[Embed(source="assets/Jeopardy-daily2x.mp3")]
 		private var double:Class;
 		[Embed(source="assets/correct.mp3")] private var correct:Class;
@@ -51,7 +51,7 @@ package Screens
 			addChild(_scoreIcon);
 			
 			// Score text
-			_textFormat.font = "HouseSlant";
+			_textFormat.font = "scoreFont";
 			_textFormat.size = 52;
 			_textFormat.align = TextFormatAlign.LEFT;
 			
