@@ -59,8 +59,8 @@ package Screens
 			
 			// Create timer
 			_timer = new timer();
-			_timer.x = 90.25;//143.45 / 2;
-			_timer.y = 247.55;//240;
+			_timer.x = 143.45 / 2;//90.25;
+			_timer.y = 240;//247.55;
 			addChild(_timer);
 			
 			// Create timer apple

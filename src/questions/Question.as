@@ -26,6 +26,7 @@ package questions
 		private var _randomResponses : Array;
 		
 		private var _sound : Sound = null;
+		private var _soundChannel : SoundChannel;
 		
 		private var _questionDisplay : TextField;
 		private var _textFormat : TextFormat = new TextFormat();
@@ -48,7 +49,7 @@ package questions
 			_questionDisplay.defaultTextFormat = _textFormat;
 			_questionDisplay.text = question;
 			_questionDisplay.x = 265;//150;//330;
-			_questionDisplay.y = 25;//21;//410;
+			_questionDisplay.y = 25 - 12;//21;//410;
 			_questionDisplay.width = 375;//455;
 			_questionDisplay.height = 70;
 			_questionDisplay.wordWrap = true;
@@ -97,8 +98,12 @@ package questions
 		public function readQuestion() : void
 		{
 			if(_sound != null)
-				_sound.play();
+				_soundChannel = _sound.play();
 		}
-		
+		public function stopQuestion() : void
+		{
+			if(_sound != null)
+				_soundChannel.stop();
+		}
 	}	
 }

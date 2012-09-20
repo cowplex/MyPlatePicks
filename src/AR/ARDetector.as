@@ -21,12 +21,37 @@ package AR
 		
 		// Data imports
 		{
-		[Embed(source="patterns/weightbearing32.pat", mimeType="application/octet-stream")]
-		private var pattern : Class;
 		[Embed(source="data/camera_para.dat", mimeType="application/octet-stream")]
 		private var cameraParams : Class;
+		[Embed(source="patterns/weightbearing32.pat", mimeType="application/octet-stream")] private var weightbearing32 : Class;
+		[Embed(source="patterns/banana32.pat", mimeType="application/octet-stream")] private var banana32 : Class;
+		[Embed(source="patterns/water32.pat", mimeType="application/octet-stream")] private var water32 : Class;
+		[Embed(source="patterns/yoga32.pat", mimeType="application/octet-stream")] private var yoga32 : Class;
 		}
-
+		
+		private var _patterns : Array = new Array(
+			new Array(
+				new banana32(),
+				new weightbearing32(),
+				new weightbearing32()
+			),
+			new Array(
+				new weightbearing32(),
+				new weightbearing32(),
+				new weightbearing32()
+			),
+			new Array(
+				new water32(),
+				new weightbearing32(),
+				new weightbearing32()
+			),
+			new Array(
+				new yoga32(),
+				new weightbearing32(),
+				new weightbearing32()
+			)
+		);
+		
 		private var _FLARparams  : FLARParam;
 		private var _arPattern   : FLARCode;
 		
@@ -42,15 +67,20 @@ package AR
 			_FLARparams = new FLARParam();
 			_FLARparams.loadARParam(new cameraParams() as ByteArray);
 			
-			_arPattern = new FLARCode(32, 32);//(16, 16);
+			/*_arPattern = new FLARCode(32, 32);//(16, 16);
 			_arPattern.loadARPatt(new pattern());
 			
-			_detector = new FLARSingleMarkerDetector(_FLARparams, _arPattern, 80);
+			_detector = new FLARSingleMarkerDetector(_FLARparams, _arPattern, 80);*/
 		}
 		
-		public function setupMarker() : void
+		public function setupMarker(level : Number, KC : Number) : void
 		{
+			level--;
 			
+			_arPattern = new FLARCode(32, 32);//(16, 16);
+			_arPattern.loadARPatt(_patterns[KC][level]);
+			
+			_detector = new FLARSingleMarkerDetector(_FLARparams, _arPattern, 80);
 		}
 		
 		public function track( bitmap : BitmapData ) : Boolean

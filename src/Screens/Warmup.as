@@ -87,18 +87,21 @@ package Screens
 		{
 			var order : Array = new Array(0,1,2,3);
 			var shuffle : Array = new Array(order.length);
+			
+			var i:int;
  
 			var randomPos:Number = 0;
-			for (var i:int = 0; i < shuffle.length; i++)
+			for (i = 0; i < shuffle.length; i++)
 			{
 				randomPos = int(Math.random() * order.length);
 				shuffle[i] = order.splice(randomPos, 1)[0];   //since splice() returns an Array, we have to specify that we want the first (only) element
 			}
-						
-			place(hitTarget,   shuffle[0]);
-			place(missTarget1, shuffle[1]);
-			place(missTarget2, shuffle[2]);
-			place(missTarget3, shuffle[3]);
+			
+			i = shuffle.length - 1;
+			place(hitTarget,   shuffle[0], i);
+			place(missTarget1, shuffle[1], i);
+			place(missTarget2, shuffle[2], i);
+			place(missTarget3, shuffle[3], i);
 		}
 		private function attachTimer(e:TimerEvent) : void
 		{
@@ -106,10 +109,12 @@ package Screens
 			attach();
 		}
 		
-		private function place(target : MovieClip/*Sprite*/, position : Number) : void
+		private function place(target : MovieClip, position : Number, max : Number) : void
 		{
-			target.x = 45 + (((_vidWidth - 45*2) / 3) * position);
-			target.y = 45;
+			//target.x = 45 + (((_vidWidth - 45*2) / 3) * position);
+			target.x = 15 + (((_vidWidth - 15*2) / 3) * position);
+			target.y = (position == 0 || position == max) ? 90 : 25 /*45*/;
+			target.rotation = (position == 0) ? 90 : ((position == max) ? -90 : 180 );
 			addChild(target);
 		}
 		

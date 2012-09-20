@@ -14,7 +14,8 @@ package Screens
 	
 	public class Scoreboard extends MovieClip
 	{
-		[Embed(systemFont="Barmeno", fontName="scoreFont", fontWeight="normal", mimeType = "application/x-font")] private var font:Class;
+		//[Embed(systemFont="HouseSampler-HouseSlant", fontName="scoreFont", fontWeight="normal", mimeType = "application/x-font")] private var font:Class;
+		[Embed(source="../HouseSampler-HouseSlant.ttf", fontName="scoreFont", fontWeight="normal", mimeType = "application/x-font")] private var font:Class;
 		//HouseSampler-HouseSlant
 		[Embed(source="assets/Jeopardy-daily2x.mp3")]
 		private var double:Class;
@@ -60,7 +61,7 @@ package Screens
 			_scoreText.defaultTextFormat = _textFormat;
 			_scoreText.text = String(_score);
 			_scoreText.x = 220; //230;
-			_scoreText.y = -3; //10;
+			_scoreText.y = -9; //10;
 			_scoreText.width = 60;
 			_scoreText.height = 40;
 			_scoreText.autoSize = "left";

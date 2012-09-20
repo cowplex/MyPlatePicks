@@ -17,6 +17,7 @@ package Screens
 		
 		private var _level : int;
 		private var _knowledgeCategory : int = 0;
+		private var _leveled_up : Boolean  = false;
 		
 		public function Level()
 		{
@@ -66,7 +67,15 @@ package Screens
 			{
 				_knowledgeCategory = 0;
 				level++;
+				_leveled_up = true;
 			}
+		}
+		
+		public function get leveled_up() : Boolean
+		{
+			var return_val : Boolean = _leveled_up;
+			_leveled_up = false;
+			return return_val;
 		}
 	}
 

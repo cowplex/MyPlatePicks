@@ -79,9 +79,10 @@ package Screens
 			//_questionDisplay.text = question;
 			_questionDisplay.x = 265 - 164;
 			_questionDisplay.y = 25 - 90;
-			_questionDisplay.width = 375;
+			_questionDisplay.width = 260;
 			_questionDisplay.height = 70;
 			_questionDisplay.wordWrap = true;
+			_questionDisplay.text = "Find the corresponding AR marker in the pile:";
 			addChild(_questionDisplay);
 			
 			_detectorTarget = new AR_detection();
@@ -156,7 +157,7 @@ package Screens
 		public function question(level : Number, KC : Number) : void
 		{
 			level--;
-			_questionDisplay.text = _questions[level][KC];
+			//_questionDisplay.text = _questions[level][KC];
 		}
 	}
 

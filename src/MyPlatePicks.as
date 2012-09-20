@@ -41,7 +41,7 @@ package
 		//DEBUG
 		//private var debugVid : Bitmap;
 		
-		private static const QUESTIONS_PER_LEVEL : Number = 3;
+		private static const QUESTIONS_PER_LEVEL : Number = 4;
 		private static const NUM_WARMUP_QUESTIONS : Number = 6;
 		
 		// Game Variables
@@ -386,12 +386,17 @@ package
 					_gamestate++;
 			}
 			
-			if(_gamestate > 4)
+			if(_gamestate > 3)
 			{
+				_questions.hideARTargetQuestion(_level.level, _level.knowledgeCategory);
 				_gamestate = 1;
 				_level.knowledgeCategory++;
 				//_level.level++;
 			}
+			
+			// Show a screen on level-up
+			if(_level.leveled_up)
+				_gamestate = 4;
 			
 			if(_level.level == 4)
 			{
@@ -406,6 +411,7 @@ package
 					addChild(_interstitial);
 					_interstitial.show(_level.level, _level.knowledgeCategory);
 					_detecting = false;
+					_questions.resetQuestionCount();
 					break;
 				case 2:
 					// Add Question
@@ -416,9 +422,11 @@ package
 					break;
 				case 3:
 					// Begin AR Detection
+					_questions.showARTargetQuestion(_level.level, _level.knowledgeCategory);
 					addChild(_arScreen);
 					_arScreen.question(_level.level, _level.knowledgeCategory);
 					_mainScreen.timerStart(20);
+					_arDetector.setupMarker(_level.level, _level.knowledgeCategory);
 					_detecting = true;
 					break;
 				case 4:
@@ -458,7 +466,7 @@ package
 					// Detecting AR Marker
 					if(_arScreen.detectAR(_arDetector.track(_bitmap)))
 					{
-						_mainScreen.timerStop();
+						//_mainScreen.timerStop();
 						_arScreen.renderMarker(_arDetector.getTransformMatrix());
 					}
 					return;
