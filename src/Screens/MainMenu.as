@@ -9,6 +9,7 @@ package Screens
 	import flash.events.MouseEvent;
 	import com.gskinner.motion.GTween;
 	import flash.net.URLRequest;
+	import flash.net.navigateToURL;
 	
 	public class MainMenu extends MovieClip
 	{
@@ -58,9 +59,9 @@ package Screens
 			_socialMedia.y = ANIMATION_START;
 			_socialMedia.addEventListener(MouseEvent.MOUSE_DOWN,  function(e:MouseEvent):void { animate(_socialMediaButtons); });
 			
-			_socialMediaButtons[0].addEventListener(MouseEvent.MOUSE_DOWN, function(e:MouseEvent):void {new URLRequest("http://twitter.com/");} );
-			_socialMediaButtons[1].addEventListener(MouseEvent.MOUSE_DOWN, function(e:MouseEvent):void {new URLRequest("http://facebook.com/");});
-			_socialMediaButtons[2].addEventListener(MouseEvent.MOUSE_DOWN, function(e:MouseEvent):void {new URLRequest("http://youtube.com/");});
+			_socialMediaButtons[0].addEventListener(MouseEvent.MOUSE_DOWN, function(e:MouseEvent):void {navigateToURL(new URLRequest("https://twitter.com/IdeaSeekers/"));} );
+			_socialMediaButtons[1].addEventListener(MouseEvent.MOUSE_DOWN, function(e:MouseEvent):void {navigateToURL(new URLRequest("https://www.facebook.com/KidsCom?ref=ts"));});
+			_socialMediaButtons[2].addEventListener(MouseEvent.MOUSE_DOWN, function(e:MouseEvent):void {navigateToURL(new URLRequest("http://www.youtube.com/user/OfficialKidsCom?feature=watch"));});
 			for(var i:int = _socialMediaButtons.length - 1; i >= 0; i--)
 			{
 				_socialMediaButtons[i].x = 580;

@@ -48,7 +48,7 @@ package questions
 			_questionDisplay = new TextField();
 			_questionDisplay.defaultTextFormat = _textFormat;
 			_questionDisplay.text = question;
-			_questionDisplay.x = 265;//150;//330;
+			_questionDisplay.x = 265 - 59;//150;//330;
 			_questionDisplay.y = 25 - 12;//21;//410;
 			_questionDisplay.width = 375;//455;
 			_questionDisplay.height = 70;

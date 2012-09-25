@@ -77,7 +77,7 @@ package Screens
 			_questionDisplay = new TextField();
 			_questionDisplay.defaultTextFormat = _textFormat;
 			//_questionDisplay.text = question;
-			_questionDisplay.x = 265 - 164;
+			_questionDisplay.x = 265 - 164 - 59;
 			_questionDisplay.y = 25 - 90;
 			_questionDisplay.width = 260;
 			_questionDisplay.height = 70;

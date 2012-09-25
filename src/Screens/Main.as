@@ -30,6 +30,7 @@ package Screens
 		private var _questionArea : MovieClip;
 		
 		private var _screenMask : MovieClip;
+		private var _overlayMask : MovieClip;
 		
 		private var _questionTimer : GTween;//Timer;
 		private var _timerCallback : Function;
@@ -50,13 +51,6 @@ package Screens
 			_background.y = _background.height /2;
 			addChild(_background);
 			
-			// White Question Area Background
-			_questionArea = new overlay_bar_small();
-			_questionArea.x = 471/2 + 78 /*added*/ + 110;
-			_questionArea.y = 15 + 71/2; //71/2 + 64 + 320 + 20;
-			addChild(_questionArea);
-			_questionArea.gotoAndStop(13);
-			
 			// Create timer
 			_timer = new timer();
 			_timer.x = 143.45 / 2;//90.25;
@@ -70,9 +64,27 @@ package Screens
 			_timer.addChildAt(_timerApple, 0);
 			_timerApple.gotoAndStop(1);
 			
+			// White Question Area Background
+			_questionArea = new overlay_bar_small();
+			_questionArea.x = _questionArea.width/2 + 129; //471/2 + 78 + 110;
+			trace(_questionArea.x);
+			_questionArea.y = 15 + 71/2;
+			addChild(_questionArea);
+			_questionArea.gotoAndStop(13);
+			
 			// Add Masks
 			_timer.mask = _screenMask;
 			_questionArea.mask = _screenMask;
+			
+			// Create overlay mask
+			_overlayMask = new MovieClip();
+			_overlayMask.graphics.lineStyle(1,0x333333);
+			_overlayMask.graphics.beginFill(0x333333);
+			_overlayMask.graphics.drawRect(-200,-200,1040,880);
+			_overlayMask.graphics.lineStyle(1,0x000000);
+			_overlayMask.graphics.drawRect(0,0,640,480);
+			_overlayMask.graphics.endFill();
+			addChild(_overlayMask);
 		}
 		
 		public function setupTimerCallback( callback : Function) : void

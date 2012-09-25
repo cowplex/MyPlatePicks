@@ -12,20 +12,18 @@ package Screens
 	public class LogoScreen extends MovieClip
 	{
 		
-		[Embed(source="Logos/C1N_Logo_wide.png")]
-		private var L1:Class;
-		[Embed(source="Logos/kc_dot_com-copy.png")]
-		private var L2:Class;
-		[Embed(source="Logos/Online_Game_CPHP_Logo_w_snap-ed.jpg")]
-		private var L3:Class;
+		//[Embed(source="Logos/C1N_Logo_wide.png")] private var L1:Class;
+		[Embed(source="Logos/combined.png")] private var L1:Class;
+		//[Embed(source="Logos/kc_dot_com-copy.png")] private var L2:Class;
+		[Embed(source="Logos/Online_Game_CPHP_Logo_w_snap-ed.jpg")] private var L2:Class;
 		
-		private var _logo1 : Bitmap = new L1();
-		private var _logo2 : Bitmap = new L2();
-		private var _logo3 : Bitmap = new L3();
+		//private var _logo1 : Bitmap = new L1();
+		//private var _logo2 : Bitmap = new L2();
+		//private var _logo3 : Bitmap = new L3();
 		
 		private var _callback : Function;
 		
-		private var _logoOrder : Array = new Array(_logo1, _logo2, _logo3);
+		private var _logoOrder : Array = new Array(new L1(), new L2());//, _logo3);
 		private var _logoNum : int = 0;
 		
 		private var _fadeTween : GTween;
@@ -38,29 +36,18 @@ package Screens
 			mc.graphics.drawRect(0, 0, 640, 480);
 			mc.graphics.endFill();
 			addChild(mc);
-
-			// Scale logos to fit on screen
-			_logo1.scaleX = _logo1.scaleY = (_logo1.width > 600) ? (600 / _logo1.width) : 1;
-			_logo2.scaleX = _logo2.scaleY = (_logo2.width > 600) ? (600 / _logo2.width) : 1;
-			_logo3.scaleX = _logo3.scaleY = (_logo3.width > 600) ? (600 / _logo3.width) : 1;
-			
-			//Position logos in center of screen
-			_logo1.y = 240 - _logo1.height / 2;
-			_logo1.x = 320 - _logo1.width / 2;
-			
-			_logo2.y = 240 - _logo2.height / 2;
-			_logo2.x = 320 - _logo2.width / 2;
-			
-			_logo3.y = 240 - _logo3.height / 2;
-			_logo3.x = 320 - _logo3.width / 2;
-			
-			// Fade logos out, so they can be faded in
-			_logo1.alpha = 
-			_logo2.alpha =
-			_logo3.alpha = 0;
 			
 			for(var i:int = 0; i < _logoOrder.length; i++)
+			{
+				// Scale logos to fit on screen
+				_logoOrder[i].scaleX = _logoOrder[i].scaleY = (_logoOrder[i].width > 600) ? (600 / _logoOrder[i].width) : 1;
+				//Position logos in center of screen
+				_logoOrder[i].y = 240 - _logoOrder[i].height / 2;
+				_logoOrder[i].x = 320 - _logoOrder[i].width / 2;
+				// Fade logos out, so they can be faded in
+				_logoOrder[i].alpha = 0;
 				addChild(_logoOrder[i]);
+			}
 		}
 		
 		public function set callback( f : Function ) :  void

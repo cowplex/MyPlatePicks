@@ -37,6 +37,7 @@ package Screens
 		private var _highScoreText : TextField;
 		
 		private var _score : Number = 0;
+		private var _highscore : Number = 0;
 		private var _levelQuestions : Number;
 		
 		private var _questionsThisLevel : Number = 0;
@@ -67,6 +68,18 @@ package Screens
 			_scoreText.autoSize = "left";
 			_scoreText.textColor = 0xE85E2F;
 			addChild(_scoreText);
+			
+			_highScoreText = new TextField();
+			_highScoreText.embedFonts = true;
+			_highScoreText.defaultTextFormat = _textFormat;
+			_highScoreText.text = String(_highscore);
+			_highScoreText.x = 30; //230;
+			_highScoreText.y = -9; //10;
+			_highScoreText.width = 60;
+			_highScoreText.height = 40;
+			_highScoreText.autoSize = "left";
+			_highScoreText.textColor = 0xE85E2F;
+			addChild(_highScoreText);
 			
 			// Highscore icon
 			_highScoreIcon = new high_score();
@@ -126,6 +139,10 @@ package Screens
 			if(correct)
 				_score += (_doubleQuestionLocatins.indexOf(_questionsThisLevel - 1) < 0) ? 25 : 50;
 			_scoreText.text = String(_score);
+			
+			if(_score > _highscore)
+				_highscore = _score;
+			_highScoreText.text = String(_highscore);
 			
 			if(!(_doubleQuestionLocatins.indexOf(_questionsThisLevel - 1) < 0))
 				removeChild(_doubleStars);

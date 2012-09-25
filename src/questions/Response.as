@@ -53,7 +53,7 @@ package questions
 			
 			addChild(_textField);
 			
-			_background.graphics.beginFill(0xFFFFFF, 0.6);
+			_background.graphics.beginFill(0xFFFFFF);//, 0.6);
 			_background.graphics.drawRoundRect(0,0,this.width, this.height, 15);
 			_background.graphics.endFill();
 			

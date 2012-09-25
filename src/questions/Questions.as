@@ -22,6 +22,7 @@ package questions
 		private var _categories : Array = new Array();
 		private var _usedQuestions : Array = new Array( 4 );
 		private var _currentQuestion : Question;
+		private var _arTarget : Response = null;
 		
 		private var _detectorCallback : Function;
 		private var _scoreCallback : Function;
@@ -208,16 +209,20 @@ package questions
 		{
 			level--;
 			var targetQuestion : Number = _questionsAsked - NUM_RANDOM_QUESTIONS - 1;
-
-			_responseHolder.addChild(_categories[category][level][targetQuestion].correctResponse);
-			new GTween(_categories[category][level][targetQuestion].correctResponse, 0.5, {x:375, y:-80});
+			
+			// Make sure there's only one AR target
+			hideARTargetQuestion();
+			
+			_arTarget = _categories[category][level][targetQuestion].correctResponse;
+			_responseHolder.addChild(_arTarget);
+			new GTween(_arTarget, 0.5, {x:316, y:-80}); //375
 		}
 		
-		public function hideARTargetQuestion( level : int, category : int ) : void
+		public function hideARTargetQuestion() : void
 		{
-			level--;
-			var targetQuestion : Number = _questionsAsked - NUM_RANDOM_QUESTIONS - 1;
-			_responseHolder.removeChild(_categories[category][level][targetQuestion].correctResponse);
+			if(_arTarget != null)
+				_responseHolder.removeChild(_arTarget);
+			_arTarget = null;
 		}
 		
 		public function resetQuestionCount() : void
@@ -292,7 +297,7 @@ package questions
 				responses[i].y = 7;//15;
 				_responseHolder.addChild(responses[i]);
 			}
-			responses[0].y = responses[--i].y = 40; // Set the side 2 questions lower
+			responses[0].y = responses[--i].y = 70; //40 Set the side 2 questions lower
 		}
 		
 		private function dimImcorrectResponses() : void

@@ -53,6 +53,8 @@ package
 		private var _questionValidator : Validator;
 		private var _arDetector : ARDetector;
 		
+		private var _jukebox : Jukebox;
+		
 		// Video Parameters
 		private const _vidWidth : int = 420;
 		private const _vidHeight : int = 320;
@@ -92,7 +94,9 @@ package
 					setupLogoScreen();
 					break;
 				case 2:
+					setupJukebox();
 					setupMainMenu();
+					_jukebox.play(0);
 					break;
 				case 3:
 					removeChild(_mainMenu);
@@ -107,9 +111,9 @@ package
 					setupLevel();
 					setupQuestions();
 					setupQuestionValidator();
-					
+									
 					setupPause();
-					
+									
 					setupInterstitial();
 					setupCongrats();
 					
@@ -128,6 +132,11 @@ package
 			_logoScreen = new LogoScreen();
 			addChild(_logoScreen);
 			_logoScreen.callback = logoScreenCallback;
+		}
+		
+		private function setupJukebox() : void
+		{
+			_jukebox = new Jukebox();
 		}
 		
 		private function setupMainMenu() : void
@@ -210,7 +219,7 @@ package
 			
 			_pause.pauseCallback = pauseCallback;
 			
-			addChild(_pause);
+			//addChild(_pause);
 		}
 		
 		private function setupScoreboard() : void
@@ -328,6 +337,7 @@ package
 						_level.level++;
 						//stateSetup();
 						_questionValidator.validate();
+						addChild(_pause);
 					}
 					break;
 				case 1:
@@ -388,7 +398,7 @@ package
 			
 			if(_gamestate > 3)
 			{
-				_questions.hideARTargetQuestion(_level.level, _level.knowledgeCategory);
+				_questions.hideARTargetQuestion();
 				_gamestate = 1;
 				_level.knowledgeCategory++;
 				//_level.level++;
@@ -412,12 +422,16 @@ package
 					_interstitial.show(_level.level, _level.knowledgeCategory);
 					_detecting = false;
 					_questions.resetQuestionCount();
+					
+					// Add level music
+					_jukebox.play(_level.level);
+					
 					break;
 				case 2:
 					// Add Question
 					_questions.drawQuestion(_level.level, _level.knowledgeCategory);
 					_scoreboard.showQuestion();
-					_mainScreen.timerStart(10);
+					_mainScreen.timerStart(15);
 					_detecting = true;
 					break;
 				case 3:
@@ -425,7 +439,7 @@ package
 					_questions.showARTargetQuestion(_level.level, _level.knowledgeCategory);
 					addChild(_arScreen);
 					_arScreen.question(_level.level, _level.knowledgeCategory);
-					_mainScreen.timerStart(20);
+					_mainScreen.timerStart(40);
 					_arDetector.setupMarker(_level.level, _level.knowledgeCategory);
 					_detecting = true;
 					break;

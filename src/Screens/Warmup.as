@@ -113,7 +113,7 @@ package Screens
 		{
 			//target.x = 45 + (((_vidWidth - 45*2) / 3) * position);
 			target.x = 15 + (((_vidWidth - 15*2) / 3) * position);
-			target.y = (position == 0 || position == max) ? 90 : 25 /*45*/;
+			target.y = (position == 0 || position == max) ? /*90*/ 130 : 25 /*45*/;
 			target.rotation = (position == 0) ? 90 : ((position == max) ? -90 : 180 );
 			addChild(target);
 		}
