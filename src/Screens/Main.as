@@ -35,6 +35,8 @@ package Screens
 		private var _questionTimer : GTween;//Timer;
 		private var _timerCallback : Function;
 		
+		private var _timing : Boolean = false;
+		
 		public function Main()
 		{
 			// Create mask
@@ -46,10 +48,11 @@ package Screens
 			addChild(_screenMask);
 			
 			// Create game background
-			_background = new BG_LOGOS();//new BG_game_play();
+			_background = new MovieClip();//new BG_LOGOS();//new BG_game_play();
 			_background.x = _background.width /2;
 			_background.y = _background.height /2;
 			addChild(_background);
+			changeBG(1);
 			
 			// Create timer
 			_timer = new timer();
@@ -66,11 +69,11 @@ package Screens
 			
 			// White Question Area Background
 			_questionArea = new overlay_bar_small();
-			_questionArea.x = _questionArea.width/2 + 129; //471/2 + 78 + 110;
-			trace(_questionArea.x);
-			_questionArea.y = 15 + 71/2;
+			//_questionArea.x = _questionArea.width/2 + 129; //471/2 + 78 + 110;
+			_questionArea.x = 164;
+			_questionArea.y = 15 - 3;// + 71/2;
 			addChild(_questionArea);
-			_questionArea.gotoAndStop(13);
+			//_questionArea.gotoAndStop(13);
 			
 			// Add Masks
 			_timer.mask = _screenMask;
@@ -110,6 +113,8 @@ package Screens
 			if(_channel != null)
 				_channel.stop();
 			_channel = _countdownSound.play();
+			
+			_timing = true;
 		}
 		
 		public function timerStop() : void
@@ -122,12 +127,33 @@ package Screens
 		
 		public function set timerPaused( pause : Boolean) : void
 		{
+			if(!_timing)
+				return;
+			
 			_questionTimer.paused = pause;
 			pause ? _channel.stop() : _channel = _countdownSound.play();
 		}
 		
+		public function changeBG(level : Number) : void 
+		{
+			_background.graphics.lineStyle(1,0x000000);
+			
+			if(level == 1)
+				_background.graphics.beginFill(0xFF0000);
+			else if(level == 1)
+				_background.graphics.beginFill(0x00FF00);
+			else if(level == 1)
+				_background.graphics.beginFill(0x0000FF);
+			else
+				_background.graphics.beginFill(0xFFFFFF);
+			
+			_background.graphics.drawRect(-640,-480,640*2,480*2);
+			_background.graphics.endFill();
+		}
+		
 		private function timerCallback(tween:GTween/*e:TimerEvent*/) : void
 		{
+			_timing = false;
 			_channel.stop();
 			_timeupSound.play();
 			_timerCallback();

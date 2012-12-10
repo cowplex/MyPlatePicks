@@ -14,6 +14,7 @@ package
 	import AR.*;
 	
 	// Shared Imports
+	import flash.display.MovieClip;
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 	import flash.display.Sprite;
@@ -44,8 +45,11 @@ package
 		private static const QUESTIONS_PER_LEVEL : Number = 4;
 		private static const NUM_WARMUP_QUESTIONS : Number = 6;
 		
+		private var _game : MovieClip;
+		
 		// Game Variables
 		private var _gamestate : Number = 0;
+		private var _reset : Boolean = false;
 		private var _detecting : Boolean = true;
 		private var _answeredQuestions : Number = 0;
 		
@@ -66,6 +70,8 @@ package
 		// Menus
 		private var _logoScreen : LogoScreen;
 		private var _mainMenu : MainMenu;
+		private var _login : LoginScreen;
+		private var _instructions : InstructionScreen;
 		private var _warmup   : Warmup;
 		private var _pause    : Pause;
 		private var _scoreboard    : Scoreboard;
@@ -75,6 +81,7 @@ package
 		private var _interstitial : InterstitialScreen;
 		private var _gameOver : GameOverScreen;
 		private var _congratsScreen : CongratsScreen;
+		private var _mask : OverflowScreen;
 		
 		// FLARToolkit variables	
 		//private var raster:FLARRgbRaster_BitmapData;
@@ -99,8 +106,13 @@ package
 					_jukebox.play(0);
 					break;
 				case 3:
-					removeChild(_mainMenu);
-					
+					setupLoginScreen();
+					break;
+				case 4:
+					_game.removeChild(_mainMenu);
+					setupInstructions();
+					break;
+				case 5:
 					setupMainScreen();
 					
 					setupVideo();
@@ -119,8 +131,10 @@ package
 					
 					addEventListener(Event.ENTER_FRAME, loop);
 					
+					_jukebox.play(6);
+					
 					break;
-				case 4:
+				case 6:
 					setupGameOver();
 					break;
 				default: break;
@@ -130,7 +144,7 @@ package
 		private function setupLogoScreen() : void
 		{
 			_logoScreen = new LogoScreen();
-			addChild(_logoScreen);
+			_game.addChild(_logoScreen);
 			_logoScreen.callback = logoScreenCallback;
 		}
 		
@@ -141,16 +155,30 @@ package
 		
 		private function setupMainMenu() : void
 		{
-			_mainMenu = new MainMenu();
+			_mainMenu = new MainMenu(_jukebox);
 			/*_mainMenu._playButton.addEventListener(MouseEvent.MOUSE_DOWN, 
 			                                                            function(e:MouseEvent):void
 			                                                            {
-			                                                            	removeChild(_mainMenu);
+			                                                            	_game.removeChild(_mainMenu);
 			                                                            	setupSequence(3);
 			                                                            }
 			                                     );*/
 			_mainMenu.playCallback = function(e:MouseEvent):void { setupSequence(3); };
-			addChild(_mainMenu);
+			_game.addChild(_mainMenu);
+		}
+		
+		private function setupLoginScreen() : void
+		{
+			_login = new LoginScreen();
+			_login.callback = loginScreenCallback;
+			_game.addChild(_login);
+		}
+		
+		private function setupInstructions():void
+		{
+			_instructions = new InstructionScreen();
+			_instructions.callback = instructionScreenCallback;
+			_game.addChild(_instructions);
 		}
 		
 		private function setupVideo():void
@@ -177,14 +205,14 @@ package
 			_source = new Bitmap(_bitmap);
 			_source.x = 164;
 			_source.y = 90; //64;
-			addChild(_source);
+			_game.addChild(_source);
 			
 			// DEBUG
 			var debugVid : Bitmap = new Bitmap(_motionTracker.trackingImage);
 			//debugVid.x = _source.x + 10 + _vidWidth;
 			//debugVid.y = _source.y;
 			debugVid.scaleX = debugVid.scaleY = .25;
-//			addChild(debugVid);
+//			_game.addChild(debugVid);
 			// DEBUG
 			
 		}
@@ -195,6 +223,7 @@ package
 			_arScreen = new ARScreen();
 			_arScreen.x = _source.x;
 			_arScreen.y = _source.y;
+			_arScreen.callback = stateCallback;
 			
 			// Setup AR Engine
 			_arDetector = new ARDetector();
@@ -206,20 +235,21 @@ package
 			_warmup.x = _source.x;
 			_warmup.y = _source.y;
 			_warmup.hitCallback = stateCallback;
-			addChild(_warmup);
+			_game.addChild(_warmup);
 		}
 		
 		private function setupPause() : void
 		{
-			_pause = new Pause();
+			_pause = new Pause(_jukebox);
 			//_pause.x = _source.x;
 			//_pause.y = _source.y;
-			_pause.x = 60;
-			_pause.y = 420;
+			//_pause.x = 60;
+			//_pause.y = 420;
 			
 			_pause.pauseCallback = pauseCallback;
+			_pause.resetCallback = function():void { removeChild(_game); _game = new MovieClip(); addChild(_game); setupSequence(1); /*stage.removeChildAt(0); stage.addChild(new MyPlatePicks()); /*_reset = true; stateCallback();*/ };
 			
-			//addChild(_pause);
+			//_game.addChild(_pause);
 		}
 		
 		private function setupScoreboard() : void
@@ -227,21 +257,21 @@ package
 			_scoreboard = new Scoreboard();
 			_scoreboard.x = 305;
 			_scoreboard.y = 420; //15;
-			addChild(_scoreboard);
+			_game.addChild(_scoreboard);
 		}
 		
 		private function setupMainScreen() : void
 		{
 			_mainScreen = new Main();
-			addChild(_mainScreen);
+			_game.addChild(_mainScreen);
 		}
 		
 		private function setupLevel() : void
 		{
 			_level = new Level();
-			_level.x = 67.5;
+			_level.x = 71;//67.5;
 			_level.y = 25;
-			addChild(_level);
+			_game.addChild(_level);
 			
 			_scoreboard.questionsPerLevel = _level.numKnowledgeCategories * QUESTIONS_PER_LEVEL;
 			_scoreboard.resetLevel();
@@ -252,7 +282,7 @@ package
 			_questions = new Questions();
 			_questions.scoreCallback = stateCallback;
 			_questions.detectorCallback = _motionTracker.detectMotion;
-			addChild(_questions);
+			_game.addChild(_questions);
 			
 			// Setup callback for timer to show correct/incorrect answers
 			//_mainScreen.setupTimerCallback(_questions.questionTimeout);
@@ -261,17 +291,18 @@ package
 		
 		private function setupQuestionValidator() : void
 		{
-			_questionValidator = new Validator( validateCallback );
+			_questionValidator = new Validator();
 			_questionValidator.x = _source.x;
 			_questionValidator.y = _source.y;
-			addChild(_questionValidator);
+			_questionValidator.callback = validateCallback;
+			_game.addChild(_questionValidator);
 		}
 		
 		private function setupInterstitial() : void
 		{
 			_interstitial = new InterstitialScreen();
 			_interstitial.callback = stateCallback;
-			//addChild(_interstitial);
+			//_game.addChild(_interstitial);
 		}
 		private function setupCongrats() : void
 		{
@@ -281,8 +312,8 @@ package
 		
 		private function setupGameOver() : void
 		{
-			_gameOver = new GameOverScreen();
-			addChild(_gameOver);
+			_gameOver = new GameOverScreen(_scoreboard.levelScore);
+			_game.addChild(_gameOver);
 		}
 		
 		}
@@ -292,16 +323,34 @@ package
 		 */
 		public function MyPlatePicks()
 		{
+			_game = new MovieClip();
+			addChild(_game);
+			
+			_mask = new OverflowScreen();
+			addChild(_mask);
+			
 			setupSequence(1);
 		}
 
 		// Callbacks
 		{
 		
+		private function loginScreenCallback() : void
+		{
+			_game.removeChild(_login);
+			setupSequence(4);
+		}
+		
 		private function logoScreenCallback() : void
 		{
-			removeChild(_logoScreen);
+			_game.removeChild(_logoScreen);
 			setupSequence(2);
+		}
+		
+		private function instructionScreenCallback() : void
+		{
+			_game.removeChild(_instructions);
+			setupSequence(5);
 		}
 			
 		private function timerCallback() : void
@@ -320,6 +369,7 @@ package
 		private function pauseCallback( paused : Boolean ) : void
 		{
 			_mainScreen.timerPaused = paused;
+			_questionValidator.paused = paused;
 		}
 		
 		// Detect Scoring
@@ -332,17 +382,17 @@ package
 					_answeredQuestions++;
 					if(_answeredQuestions >= NUM_WARMUP_QUESTIONS)
 					{
-						removeChild(_warmup);
+						/*_game.removeChild(_warmup);
 						_detecting = false;
 						_level.level++;
+						_game.addChild(_pause);*/
 						//stateSetup();
 						_questionValidator.validate();
-						addChild(_pause);
 					}
 					break;
 				case 1:
 					// Remove Interstitial
-					removeChild(_interstitial);
+					_game.removeChild(_interstitial);
 					break;
 				case 2:
 					_detecting = false;
@@ -355,11 +405,12 @@ package
 				case 3:
 					// Remove AR detector
 					_detecting = false;
-					
-					removeChild(_arScreen);
+					_mainScreen.timerStop();
+					_scoreboard.scoreEvent(hit);
+					_game.removeChild(_arScreen);
 					break;
 				case 4:
-					removeChild(_congratsScreen);
+					_game.removeChild(_congratsScreen);
 				default: break;
 			}
 			
@@ -374,6 +425,12 @@ package
 		{
 			switch(_gamestate)
 			{
+				case 0:
+					_game.removeChild(_warmup);
+					_detecting = false;
+					_level.level++;
+					_game.addChild(_pause);
+					break;
 				case 2:
 					_questions.hideQuestion();
 					break;
@@ -385,6 +442,12 @@ package
 		
 		private function stateSetup() : void
 		{
+			if(_reset)
+			{
+				_gamestate = 1;
+				_reset = false;
+			}
+			
 			switch(_gamestate)
 			{
 				case 0:
@@ -401,6 +464,7 @@ package
 				_questions.hideARTargetQuestion();
 				_gamestate = 1;
 				_level.knowledgeCategory++;
+				_mainScreen.changeBG(_level.knowledgeCategory);
 				//_level.level++;
 			}
 			
@@ -411,14 +475,14 @@ package
 			if(_level.level == 4)
 			{
 				_gamestate = -1;
-				setupSequence(4);
+				setupSequence(6);
 			}
 			
 			switch(_gamestate)
 			{
 				case 1:
 					// Interstitial 
-					addChild(_interstitial);
+					_game.addChild(_interstitial);
 					_interstitial.show(_level.level, _level.knowledgeCategory);
 					_detecting = false;
 					_questions.resetQuestionCount();
@@ -437,15 +501,15 @@ package
 				case 3:
 					// Begin AR Detection
 					_questions.showARTargetQuestion(_level.level, _level.knowledgeCategory);
-					addChild(_arScreen);
+					_game.addChild(_arScreen);
 					_arScreen.question(_level.level, _level.knowledgeCategory);
 					_mainScreen.timerStart(40);
 					_arDetector.setupMarker(_level.level, _level.knowledgeCategory);
 					_detecting = true;
 					break;
 				case 4:
-					addChild(_congratsScreen);
-					_congratsScreen.congratulate();
+					_game.addChild(_congratsScreen);
+					_congratsScreen.congratulate(_level.level - 1);
 					_detecting = false;
 					break;
 			}

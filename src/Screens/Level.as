@@ -11,9 +11,12 @@ package Screens
 		private var _numKnowledgeCategories : Number = 4;
 		
 		private var _levels : Array;
-		private var _textLevel1 : level_1;
-		private var _textLevel2 : level_2;
-		private var _textLevel3 : level_3;
+		private var _textLevel1 : MovieClip = new round_1();
+		private var _textLevel2 : MovieClip = new round_2();
+		private var _textLevel3 : MovieClip = new round_3();
+		//private var _textLevel1 : MovieClip = new round1();
+		//private var _textLevel2 : MovieClip = new round2();
+		//private var _textLevel3 : MovieClip = new round3();
 		
 		private var _level : int;
 		private var _knowledgeCategory : int = 0;
@@ -21,10 +24,6 @@ package Screens
 		
 		public function Level()
 		{
-			_textLevel1 = new level_1();
-			_textLevel2 = new level_2();
-			_textLevel3 = new level_3();
-			
 			addChild(_textLevel1);
 			addChild(_textLevel2);
 			addChild(_textLevel3);

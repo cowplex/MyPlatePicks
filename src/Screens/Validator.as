@@ -13,7 +13,9 @@ package Screens
 	{
 		
 		private var _gameCallback : Function;
-		private var _validationTimeout : Timer = new Timer(1000, 1);
+		private var _validationTimeout : Timer;
+		private var _pause : Boolean = false;
+		private var _validated : Boolean = false;
 		
 		private var _check : MovieClip = new checkmark();
 		private var _x     : MovieClip = new xmark();
@@ -21,14 +23,18 @@ package Screens
 		private var _checkAdded : Boolean = false;
 		private var _xAdded     : Boolean = false;
 		
-		public function Validator(callback : Function) 
+		public function Validator() 
 		{
-			_gameCallback = callback;
-			
 			_x.scaleX = _x.scaleY = 2;
 			_check.scaleX = _check.scaleY = 2;
 			
+			_validationTimeout = new Timer(2000, 1);
 			_validationTimeout.addEventListener(TimerEvent.TIMER_COMPLETE, timerCallback);
+		}
+		
+		public function set callback(callback : Function) : void
+		{
+			_gameCallback = callback;
 		}
 		
 		public function validate( correct : Point = null, miss : Point = null ) : void
@@ -48,13 +54,31 @@ package Screens
 				addChild(_x);
 			}
 			
+			_validated = true;
 			_validationTimeout.start();
 			//_gameCallback();
 		}
 		
-		private function timerCallback(e:TimerEvent) : void
+		private function get paused() : Boolean
 		{
+			return _pause;
+		}
+		
+		public function set paused( p : Boolean) : void
+		{
+			_pause = p;
+			
+			if(_validated)
+				timerCallback();
+		}
+		
+		private function timerCallback(e:TimerEvent = null) : void
+		{
+			if(_pause)
+				return;
+			
 			_validationTimeout.reset();
+			_validated = false;
 			
 			if(_checkAdded)
 			{

@@ -29,6 +29,7 @@ package Screens
 		private var _incorrectSound : Sound = new incorrect();
 		
 		private var _doubleStars : MovieClip = new STARS();
+		private var _doubleText : MovieClip = new daily_double();
 		
 		private var _scoreIcon : MovieClip;
 		private var _highScoreIcon : MovieClip;
@@ -48,7 +49,7 @@ package Screens
 		{
 			// Score icon
 			_scoreIcon = new score();
-			_scoreIcon.x = 110.5/2 + 75 + 30;
+			_scoreIcon.x = 110.5/2 + 75 + 30 - 240;
 			_scoreIcon.y = 38.8 /2;// + 45;
 			addChild(_scoreIcon);
 			
@@ -61,7 +62,7 @@ package Screens
 			_scoreText.embedFonts = true;
 			_scoreText.defaultTextFormat = _textFormat;
 			_scoreText.text = String(_score);
-			_scoreText.x = 220; //230;
+			_scoreText.x = 220 - 240; //230;
 			_scoreText.y = -9; //10;
 			_scoreText.width = 60;
 			_scoreText.height = 40;
@@ -73,7 +74,7 @@ package Screens
 			_highScoreText.embedFonts = true;
 			_highScoreText.defaultTextFormat = _textFormat;
 			_highScoreText.text = String(_highscore);
-			_highScoreText.x = 30; //230;
+			_highScoreText.x = 30 + 200 ; //230;
 			_highScoreText.y = -9; //10;
 			_highScoreText.width = 60;
 			_highScoreText.height = 40;
@@ -83,12 +84,16 @@ package Screens
 			
 			// Highscore icon
 			_highScoreIcon = new high_score();
-			_highScoreIcon.x = 186.9/2 - 160;
+			_highScoreIcon.x = 186.9/2 - 160 + 200;
 			_highScoreIcon.y = 38.8 /2;
 			addChild(_highScoreIcon);
 			
 			_doubleStars.x = _doubleStars.width / 2 - 60;
 			_doubleStars.y = -1 * _doubleStars.height / 2;
+			
+			_doubleText.scaleX = _doubleText.scaleY = .7;
+			_doubleText.x = 75;
+			_doubleText.y = -50;
 		}
 		
 		public function set questionsPerLevel( q : Number ) : void
@@ -116,6 +121,8 @@ package Screens
 			{
 				_doubleSound.play();
 				addChild(_doubleStars);
+				addChild(_doubleText);
+				_doubleText.gotoAndPlay(1);
 			}
 		}
 		
@@ -144,8 +151,11 @@ package Screens
 				_highscore = _score;
 			_highScoreText.text = String(_highscore);
 			
-			if(!(_doubleQuestionLocatins.indexOf(_questionsThisLevel - 1) < 0))
+			if(this.contains(_doubleStars))//if(!(_doubleQuestionLocatins.indexOf(_questionsThisLevel - 1) < 0))
+			{
 				removeChild(_doubleStars);
+				removeChild(_doubleText);
+			}
 			
 			if(_questionsThisLevel >= _levelQuestions)
 				resetLevel();

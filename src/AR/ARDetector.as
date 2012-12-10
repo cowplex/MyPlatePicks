@@ -27,28 +27,39 @@ package AR
 		[Embed(source="patterns/banana32.pat", mimeType="application/octet-stream")] private var banana32 : Class;
 		[Embed(source="patterns/water32.pat", mimeType="application/octet-stream")] private var water32 : Class;
 		[Embed(source="patterns/yoga32.pat", mimeType="application/octet-stream")] private var yoga32 : Class;
+		[Embed(source="patterns/20min32.pat", mimeType="application/octet-stream")] private var _20min32 : Class;
+		[Embed(source="patterns/6cups32.pat", mimeType="application/octet-stream")] private var _6cups32 : Class;
+		[Embed(source="patterns/candybar32.pat", mimeType="application/octet-stream")] private var candybar32 : Class;
+		[Embed(source="patterns/chicken32.pat", mimeType="application/octet-stream")] private var chicken32 : Class;
+		[Embed(source="patterns/m_fruit32.pat", mimeType="application/octet-stream")] private var m_fruit32 : Class;
+		[Embed(source="patterns/oatmeal32.pat", mimeType="application/octet-stream")] private var oatmeal32 : Class;
+		[Embed(source="patterns/rice32.pat", mimeType="application/octet-stream")] private var rice32 : Class;
+		[Embed(source="patterns/strawberries32.pat", mimeType="application/octet-stream")] private var strawberries32 : Class;
+		[Embed(source="patterns/stretch32.pat", mimeType="application/octet-stream")] private var stretch32 : Class;
+		[Embed(source="patterns/tag32.pat", mimeType="application/octet-stream")] private var tag32 : Class;
+		[Embed(source="patterns/walk32.pat", mimeType="application/octet-stream")] private var walk32 : Class;
 		}
 		
 		private var _patterns : Array = new Array(
 			new Array(
 				new banana32(),
-				new weightbearing32(),
-				new weightbearing32()
+				new water32(),
+				new strawberries32()
 			),
 			new Array(
-				new weightbearing32(),
-				new weightbearing32(),
-				new weightbearing32()
+				new chicken32(),
+				new rice32(),
+				new _20min32()
 			),
 			new Array(
 				new water32(),
-				new weightbearing32(),
-				new weightbearing32()
+				new candybar32(),
+				new _6cups32()
 			),
 			new Array(
-				new yoga32(),
+				new stretch32(),
 				new weightbearing32(),
-				new weightbearing32()
+				new walk32()
 			)
 		);
 		

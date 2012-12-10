@@ -42,7 +42,7 @@ package questions
 			}
 			// 330, 440, 455, 70
 			
-			_textFormat.size = 20;
+			_textFormat.size = 16;
 			_textFormat.font = "qFont";
 			
 			_questionDisplay = new TextField();

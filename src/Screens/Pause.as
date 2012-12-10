@@ -5,7 +5,7 @@ package Screens
 {
 	
 	import flash.events.MouseEvent;
-	import flash.display.Sprite;
+	import flash.display.MovieClip;
 	import flash.display.SimpleButton;
 	import flash.geom.Rectangle;
 	import flash.geom.Point;
@@ -14,7 +14,7 @@ package Screens
 	import flash.events.TimerEvent;
 	import com.gskinner.motion.GTween;
 	
-	public class Pause extends Sprite
+	public class Pause extends MovieClip
 	{
 		
 		private static const TARGET_SCALE : Number = 0.75;
@@ -32,14 +32,28 @@ package Screens
 		private var _slideTween : GTween;
 		private var _tracking : Boolean = true;
 		
+		private var _playButton : btn_play = new btn_play();
+		private var _pauseScreen : MovieClip;
+		
 		private var _pauseCallback : Function;
+		private var _resetCallback : Function;
 		
 		private var _paused : Boolean = false;
+		private var _lastMusicState : Boolean;
 		
-		public function Pause()
+		private var _jukebox : Jukebox;
+		private var _musicButton : BTN_MUSICNOTE;
+		private var _resetButton : btn_replay;
+		
+		public function Pause(j : Jukebox)
 		{
+			_jukebox = j;
+			_lastMusicState = _jukebox.mute;
+			
 			_pauseIcon = new btn_pause();
 			
+			_pauseIcon.x = 60;
+			_pauseIcon.y = 420;
 			//_pauseIcon.x = 17 + TARGET_RADIUS;
 			//_pauseIcon.y = TARGET_DEFAULT;
 			
@@ -53,6 +67,31 @@ package Screens
 			_pauseIconStart = new Point(_pauseIconTarget.x, _pauseIconTarget.y);
 			
 			addChild(_pauseIcon);
+			
+			_pauseScreen = new MovieClip;
+			_pauseScreen.graphics.beginFill(0xFFFFFF, 0.7);
+			//_pauseScreen.graphics.drawRoundRect(0,0,250, 480, 25);
+			_pauseScreen.graphics.drawRoundRect(0,0,160 + 25, 480, 25);
+			_pauseScreen.graphics.endFill();
+			_pauseScreen.x = -_pauseScreen.width;
+			addChild(_pauseScreen);
+			
+			_playButton.y = _pauseScreen.height / 2;
+			_playButton.x = _pauseScreen.width - _playButton.width - 15;
+			_playButton.addEventListener(MouseEvent.MOUSE_DOWN, function(e:MouseEvent):void { togglePause(); } );
+			_pauseScreen.addChild(_playButton);
+			
+			_musicButton = new BTN_MUSICNOTE();
+			_musicButton.y = _pauseScreen.height / 2 - _playButton.height - 5;
+			_musicButton.x = _pauseScreen.width - _musicButton.width - 15;
+			_musicButton.addEventListener(MouseEvent.MOUSE_DOWN,  function(e:MouseEvent):void {  if(paused) {_lastMusicState = !_lastMusicState;} else {_jukebox.mute = !_jukebox.mute;} });
+			_pauseScreen.addChild(_musicButton);
+			
+			_resetButton = new btn_replay();
+			_resetButton.y = _pauseScreen.height / 2 - _playButton.height - _musicButton.height - 5 * 2;
+			_resetButton.x = _pauseScreen.width - _musicButton.width - 15;
+			_resetButton.addEventListener(MouseEvent.MOUSE_DOWN,  function(e:MouseEvent):void { _resetCallback() });
+			_pauseScreen.addChild(_resetButton);
 			
 			_grabTimeout = new Timer(500, 1);
 			_grabTimeout.addEventListener(TimerEvent.TIMER_COMPLETE, resetButton);
@@ -68,6 +107,11 @@ package Screens
 		public function set pauseCallback( f : Function ) : void
 		{
 			_pauseCallback = f;
+		}
+		
+		public function set resetCallback( f : Function ) : void
+		{
+			_resetCallback = f;
 		}
 			
 		public function get paused() : Boolean
@@ -101,6 +145,15 @@ package Screens
 		private function togglePause() : void
 		{
 			_paused = !_paused;
+			
+			var tween_target : Number = (_paused) ? -25 : -_pauseScreen.width;
+			new GTween(_pauseScreen, 0.35, {x:tween_target});
+			
+			if(paused)
+				_jukebox.mute = true;
+			else
+				_jukebox.mute = _lastMusicState;
+			
 			_pauseCallback(_paused);
 		}
 		

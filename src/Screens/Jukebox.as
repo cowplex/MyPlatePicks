@@ -18,15 +18,19 @@ package Screens
 		[Embed(source="assets/music/urban-edge.mp3")] public var level3 :Class;
 		[Embed(source="assets/music/get-rich.mp3")] public var win :Class;
 		//[Embed(source="assets/music/hard-times.mp3")] public var lose :Class;
-		//[Embed(source="assets/music/so-fine.mp3")] public var credits :Class;
+		[Embed(source="assets/music/so-fine.mp3")] public var credits :Class;
+		[Embed(source="assets/music/bounce.mp3")] public var warmup :Class;
 		
 		private var _volTransform : SoundTransform;
+		private var _muteTransform : SoundTransform;
+		private var _mute : Boolean = false;
 		private var _playingSound : SoundChannel;
 		private var _sound : Sound;
 		
 		public function Jukebox()
 		{
 			_volTransform = new SoundTransform(.3);
+			_muteTransform = new SoundTransform(0);
 		}
 		
 		public function play( level : Number ) : void
@@ -50,6 +54,11 @@ package Screens
 					break;
 				case 4:
 					_sound = new win();
+				case 5:
+					_sound = new credits();
+					break;
+				case 6:
+					_sound = new warmup();
 					break;
 			}
 			
@@ -57,10 +66,21 @@ package Screens
 			
 		}
 		
+		public function set mute( val : Boolean ) : void
+		{
+			_mute = val;
+			_playingSound.soundTransform = (mute) ? _muteTransform : _volTransform;
+		}
+		
+		public function get mute() : Boolean
+		{
+			return _mute;
+		}
+		
 		private function startMusic(e:Event = null) : void
 		{
 			_playingSound = _sound.play();
-			_playingSound.soundTransform = _volTransform;
+			_playingSound.soundTransform = (mute) ? _muteTransform : _volTransform;
 			
 			_playingSound.addEventListener(Event.SOUND_COMPLETE, startMusic);
 		}

@@ -99,9 +99,9 @@ package Screens
 			
 			i = shuffle.length - 1;
 			place(hitTarget,   shuffle[0], i);
-			place(missTarget1, shuffle[1], i);
-			place(missTarget2, shuffle[2], i);
-			place(missTarget3, shuffle[3], i);
+			//place(missTarget1, shuffle[1], i);
+			//place(missTarget2, shuffle[2], i);
+			//place(missTarget3, shuffle[3], i);
 		}
 		private function attachTimer(e:TimerEvent) : void
 		{
@@ -122,9 +122,9 @@ package Screens
 		{
 			detecting = false;
 			removeChild(hitTarget);
-			removeChild(missTarget1);
-			removeChild(missTarget2);
-			removeChild(missTarget3);
+//			removeChild(missTarget1);
+//			removeChild(missTarget2);
+//			removeChild(missTarget3);
 			//attach();
 			t = new Timer(500, 1);
 			t.addEventListener(TimerEvent.TIMER_COMPLETE, attachTimer);

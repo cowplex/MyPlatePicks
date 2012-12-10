@@ -13,9 +13,15 @@ package Screens
 	{
 		
 		//[Embed(source="Logos/C1N_Logo_wide.png")] private var L1:Class;
-		[Embed(source="Logos/combined.png")] private var L1:Class;
+//		[Embed(source="Logos/combined.png")] private var L1:Class;
 		//[Embed(source="Logos/kc_dot_com-copy.png")] private var L2:Class;
-		[Embed(source="Logos/Online_Game_CPHP_Logo_w_snap-ed.jpg")] private var L2:Class;
+//		[Embed(source="Logos/Online_Game_CPHP_Logo_w_snap-ed.jpg")] private var L2:Class;
+
+		[Embed(source="Logos/MPP.png")] private var L0:Class;
+		[Embed(source="Logos/sponsored.png")] private var L1:Class;
+		[Embed(source="Logos/UIC.png")] private var L2:Class;
+		[Embed(source="Logos/combined.png")] private var L3:Class;
+
 		
 		//private var _logo1 : Bitmap = new L1();
 		//private var _logo2 : Bitmap = new L2();
@@ -23,7 +29,7 @@ package Screens
 		
 		private var _callback : Function;
 		
-		private var _logoOrder : Array = new Array(new L1(), new L2());//, _logo3);
+		private var _logoOrder : Array = new Array(new L0(), new L1(), new L2(), new L3());//, _logo3);
 		private var _logoNum : int = 0;
 		
 		private var _fadeTween : GTween;

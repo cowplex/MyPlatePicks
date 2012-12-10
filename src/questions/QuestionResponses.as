@@ -100,7 +100,7 @@ package questions
 		public var _broccoli:Response = new Response( "Broccoli", new broccoli() );
 		public var _brusselssprouts:Response = new Response( "Brussels Sprouts", new brusselssprouts() );
 		public var _cabbage:Response = new Response( "Cabbage", new cabbage() );
-		public var _candybar:Response = new Response( "Candybar", new candybar() );
+		public var _candybar:Response = new Response( "Candy Bar", new candybar() );
 		public var _caramel_apple:Response = new Response( "Caramel Apple", new caramel_apple() );
 		public var _carrot:Response = new Response( "Carrot", new carrot() );
 		public var _cauliflower:Response = new Response( "Cauliflower", new cauliflower() );
@@ -129,7 +129,7 @@ package questions
 		public var _juice:Response = new Response( "Juice", new juice() );
 		public var _jump:Response = new Response( "Jump", new jump() );
 		public var _jumping_jacks:Response = new Response( "Jumping Jacks", new jumping_jacks() );
-		public var _jumprope:Response = new Response( "Jumprope", new jumprope() );
+		public var _jumprope:Response = new Response( "Jump Rope", new jumprope() );
 		public var _lemonade:Response = new Response( "Lemonade", new lemonade() );
 		public var _meat:Response = new Response( "Meat", new meat() );
 		public var _milk:Response = new Response( "Milk", new milk() );
@@ -139,6 +139,7 @@ package questions
 		public var _playing_video_games:Response = new Response( "Playing Video Games", new playing_video_games() );
 		public var _plum:Response = new Response( "Plum", new plum() ); //JPG????
 		public var _pop:Response = new Response( "Pop", new pop() );
+	public var _soda:Response = new Response( "Soda", new pop() );
 		public var _potato_chips:Response = new Response( "Potato Chips", new potato_chips() );
 		public var _pushups:Response = new Response( "Pushups", new pushups() );
 		public var _raisins:Response = new Response( "Raisins", new raisins() );
@@ -175,11 +176,12 @@ package questions
 		{
 		public var _Two_handfuls:Response = 	new Response( "Two handfuls" );
 		public var _One_fist:Response = 	new Response( "One fist" );
+		public var _Golf_Ball:Response = 	new Response( "Golf Ball" );
 		public var _As_much_as_you_can_eat:Response = 	new Response( "As much as you can eat" );
 		public var _Size_of_your_foot:Response = 	new Response( "Size of your foot" );
-		public var _A_way_to_measure_food:Response = 	new Response( "A way to measure food" );
-		public var _Found_on_all_food_labels:Response = 	new Response( "Found on all food labels" );
-		public var _Important_to_know_for_choosing_healthier_portions:Response = 	new Response( "Important to know for choosing healthier portions" );
+		public var _A_way_to_measure_food:Response = 	new Response( "A Way To Measure Food" );
+		public var _Found_on_all_food_labels:Response = 	new Response( "Found On All Food Labels" );
+		public var _Important_to_know_for_choosing_healthier_portions:Response = 	new Response( "Helpful For Choosing Healthier Sized Portions" );
 		public var _All_of_these_choices:Response = 	new Response( "All of these choices!" );
 		public var _Vitamins:Response = 	new Response( "Vitamins" );
 		public var _Antioxidants:Response = 	new Response( "Antioxidants" );
@@ -189,16 +191,16 @@ package questions
 		public var _Extra_Sugar:Response = 	new Response( "Extra Sugar" );
 		public var _Sugar:Response = 	new Response( "Sugar" );
 		public var _Fat:Response = 	new Response( "Fat" );
-		public var _Our_heart_rate_increases:Response = 	new Response( "Our heart rate increases" );
-		public var _We_are_breathing_heavier:Response = 	new Response( "We are breathing heavier" );
-		public var _We_feel_warmer:Response = 	new Response( "We feel warmer" );
+		public var _Our_heart_rate_increases:Response = 	new Response( "Heart rate increases" );
+		public var _We_are_breathing_heavier:Response = 	new Response( "Breathing heavier" );
+		public var _We_feel_warmer:Response = 	new Response( "Feel warmer" );
 		public var _Air:Response = 	new Response( "Air" );
 		public var _Iron:Response = 	new Response( "Iron" );
 		public var _Oxygen:Response = 	new Response( "Oxygen" );
-		public var _Eat_More:Response = 	new Response( "Eat More" );
-		public var _Eat_Less:Response = 	new Response( "Eat Less" );
-		public var _Eat_None:Response = 	new Response( "Eat None" );
-		public var _Be_strong_and_healthy:Response = 	new Response( "Be strong and healthy" );
+		public var _Eat_More:Response = 	new Response( "Eat More Of" );
+		public var _Eat_Less:Response = 	new Response( "Eat Less Of" );
+		public var _Eat_None:Response = 	new Response( "Eat None Of" );
+		public var _Be_strong_and_healthy:Response = 	new Response( "Be healthy" );
 		public var _Wake_up:Response = 	new Response( "Wake up" );
 		public var _Fly:Response = 	new Response( "Fly" );
 		public var _Read:Response = 	new Response( "Read" );
@@ -206,10 +208,10 @@ package questions
 		public var _Protein:Response = 	new Response( "Protein" );
 		public var _Vegetables:Response = 	new Response( "Vegetables" );
 		public var _Dairy:Response = 	new Response( "Dairy" );
-		public var _2_two:Response = 	new Response( "2" );
-		public var _3_three:Response = 	new Response( "3" );
-		public var _4_four:Response = 	new Response( "4" );
-		public var _5_five:Response = 	new Response( "5" );
+		public var _2_two:Response = 	new Response( "2 Servings" );
+		public var _3_three:Response = 	new Response( "3 Servings" );
+		public var _4_four:Response = 	new Response( "4 Servings" );
+		public var _5_five:Response = 	new Response( "5 Servings" );
 		public var _4_ounces:Response = 	new Response( "4 ounces" );
 		public var _8_ounces:Response = 	new Response( "8 ounces" );
 		public var _12_ounces:Response = 	new Response( "12 ounces" );
@@ -224,7 +226,7 @@ package questions
 		public var _At_least_2_hours:Response = 	new Response( "At least 2 hours" );
 		public var _Feel_great:Response = 	new Response( "Feel great" );
 		public var _Burn_extra_energy:Response = 	new Response( "Burn extra energy" );
-		public var _Fall_asleep_faster:Response = 	new Response( "Fall asleep faster" );
+		public var _Fall_asleep_faster:Response = 	new Response( "Sleep Better" /*"Fall asleep faster"*/ );
 		public var _Half:Response = 	new Response( "Half" );
 		public var _All:Response = 	new Response( "All" );
 		public var _None:Response = 	new Response( "None" );
@@ -255,10 +257,10 @@ package questions
 		public var _1_2_c_of_rice:Response = 	new Response( "½ c. of rice" );
 		public var _A_medium_size_fruit:Response = 	new Response( "A medium size fruit" );
 		public var _Continue_sitting:Response = 	new Response( "Continue sitting" );
-		public var _Walk_to_get_a_snack_and_sit_back_down:Response = 	new Response( "Walk to get a snack and sit back down" );
+		public var _Walk_to_get_a_snack_and_sit_back_down:Response = 	new Response( "Eat A Snack" );
 		public var _Jumping_Jacks:Response = 	new Response( "Jumping Jacks" );
-		public var _Get_a_drink_of_water:Response = 	new Response( "Get a drink of water" );
-		public var _3_oz_grilled_chicken_breast_no_skin_:Response = 	new Response( "3 oz. grilled chicken breast (no skin)" );
+		public var _Get_a_drink_of_water:Response = 	new Response( "Drink Water" );
+		public var _3_oz_grilled_chicken_breast_no_skin_:Response = 	new Response( "3 oz. Grilled Chicken Breast" );
 		public var _3_slices_of_bacon:Response = 	new Response( "3 slices of bacon" );
 		public var _1_hot_dog:Response = 	new Response( "1 hot dog" );
 		public var _Sour_Driblets:Response = 	new Response( "Sour Driblets" );
@@ -282,7 +284,30 @@ package questions
 		public var _in_grocery_stores:Response = new Response(  "in grocery stores" );
 		public var _in_the_ground:Response = new Response(  "in the ground" );
 		public var _on_trees:Response = new Response(  "on trees" );
-		public var _and_come_down_from_the_sky:Response = new Response(  "and come down from the sky" );
+		public var _and_come_down_from_the_sky:Response = new Response(  "In the sky" );
+		
+		public var _reading_a_book:Response = new Response( "Reading a Book" );
+		public var _playing_a_video_game:Response = new Response( "Playing a Video Game" );
+		public var _playing_tag:Response = new Response( "Playing Tag" );
+		public var _Coloring:Response = new Response( "Coloring" );
+		
+		public var _Read2:Response = new Response( "Read" );
+		public var _Color:Response = new Response( "Color" );
+		public var _Stretch:Response = new Response( "Stretch" );
+		public var _Watch_TV:Response = new Response( "Watch TV" );
+		public var _Eat:Response = new Response( "Eat" );
+		
+		public var _A_Small_Amount:Response = new Response( "A Small Amount" );
+		public var _1_Large_Bowl_of_Popcorn:Response = new Response( "1 Large Bowl of Popcorn" );
+		public var _2_Donuts:Response = new Response( "2 Donuts" );
+		public var _7_days:Response = new Response( "7 days" );
+		public var _6_days:Response = new Response( "6 days" );
+		public var _5_days:Response = new Response( "5 days" );
+		public var _4_days:Response = new Response( "4 days" );
+		public var _3_Cups:Response = new Response( "3 Cups" );
+		public var _4_Cups:Response = new Response( "4 Cups" );
+		public var _5_Cups:Response = new Response( "5 Cups" );
+		public var _6_Cups:Response = new Response( "6 Cups" );
 		
 		}
 		

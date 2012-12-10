@@ -23,18 +23,29 @@ package Screens
 	import org.papervision3d.render.BasicRenderEngine;
 	import org.papervision3d.scenes.Scene3D;
 	import org.papervision3d.view.Viewport3D;
+	import org.papervision3d.objects.primitives.Plane;
+	import org.papervision3d.materials.MovieMaterial;
 	
 	public class ARScreen extends MovieClip
 	{
 		[Embed(systemFont="Baskerville", fontName="arFont", fontWeight="normal", mimeType = "application/x-font")] private var font:Class;
 		
+		private static const _vidWidth : int = 420;
+		
 		private var _detectorTarget : MovieClip;
 		private var _arFound : Boolean = false;
 		
 		private var _questions : Array;
+		private var _artworks : Array;
 		
 		private var _questionDisplay : TextField;
 		private var _textFormat : TextFormat = new TextFormat();
+		
+		private var _lastDisplayed : Plane = null;
+		
+		private var _hitTarget   : MovieClip = new warmup_marker();
+		
+		private var _callback : Function;
 		
 		// Papervsion stuff
 		private var scene:Scene3D;
@@ -70,8 +81,28 @@ package Screens
 				)
 			);
 			
+			_artworks = new Array(
+				new Array(
+					new MovieMaterial(new AR_BANANA_ANIMATED(), true, false, true),
+					new MovieMaterial(new AR_CHICKEN(), true, false, true),
+					new MovieMaterial(new AR_WATER_ANIMATED(), true, false, true),
+					new MovieMaterial(new AR_YOGA_ANIMATED(), true, false, true) // new
+				),
+				new Array(
+					new MovieMaterial(new AR_WATER(), true, false, true),
+					new MovieMaterial(new AR_RICE(), true, false, true),
+					new MovieMaterial(new AR_CANDYBAR(), true, false, true),
+					new MovieMaterial(new AR_WEIGHT(), true, false, true)
+				),
+				new Array(
+					new MovieMaterial(new AR_STRAWBERRY(), true, false, true),
+					new MovieMaterial(new AR_20MIN(), true, false, true),
+					new MovieMaterial(new AR_BANANA_ANIMATED(), true, false, true), //new
+					new MovieMaterial(new AR_WALKING(), true, false, true)
+				)
+			);
 			
-			_textFormat.size = 20;
+			_textFormat.size = 15;
 			_textFormat.font = "arFont";
 			
 			_questionDisplay = new TextField();
@@ -82,7 +113,7 @@ package Screens
 			_questionDisplay.width = 260;
 			_questionDisplay.height = 70;
 			_questionDisplay.wordWrap = true;
-			_questionDisplay.text = "Find the corresponding AR marker in the pile:";
+			_questionDisplay.text = "Find the corresponding AR marker in the Pickup Pile:";
 			addChild(_questionDisplay);
 			
 			_detectorTarget = new AR_detection();
@@ -90,7 +121,14 @@ package Screens
 			_detectorTarget.y = 160;
 			addChild(_detectorTarget);
 			
+			_hitTarget.scaleX = _hitTarget.scaleY = .5;
+			
 			setup3D();
+		}
+		
+		public function set callback(f:Function) : void
+		{
+			_callback = f;
 		}
 		
 		private function setup3D() : void
@@ -110,7 +148,7 @@ package Screens
 			pl.z = -1000;
 			
 			var ml:MaterialsList = new MaterialsList({all: new FlatShadeMaterial(pl)});
-			
+			/*
 			var cube1:Cube = new Cube(ml,30,30,30);
 			var cube2:Cube = new Cube(ml,30,30,30);
 			cube2.z = 50;
@@ -120,6 +158,29 @@ package Screens
 			container.addChild(cube1);
 			container.addChild(cube2);
 			container.addChild(cube3);
+			*/
+			/*var movie : MovieClip = new AR_WEIGHT();
+			
+			var material :MovieMaterial;
+			var object   :Plane;
+			
+			material             = new MovieMaterial(movie, true, false, true);
+			//material.doubleSided = true;
+			//material.interactive = true;
+			
+			object = new Plane(material);
+			container.addChild(object);*/
+			
+			var i : int;
+			var j : int;
+			for(i=0; i < _artworks.length; i++)
+			{
+				for(j=0; j < _artworks[i].length; j++)
+				{
+					_artworks[i][j].doubleSided = true;
+					_artworks[i][j] = new Plane(_artworks[i][j]);
+				}
+			}
 			
 			bre = new BasicRenderEngine();
 			//trans = new FLARTransMatResult();
@@ -136,6 +197,14 @@ package Screens
 				removeChild(_detectorTarget);
 				
 				this.addChild(vp);
+				
+				var position : int = int(Math.random() * 4);
+				_hitTarget.x = 15 + (((_vidWidth - 15*2) / 3) * position);
+				_hitTarget.y = (position == 0 || position == 3) ? /*90*/ 130 : 25 /*45*/;
+				_hitTarget.rotation = (position == 0) ? 90 : ((position == 3) ? -90 : 180 );
+				addChild(_hitTarget);
+				
+				//_callback();
 				//vp.x = 210;
 				//vp.y = 160;
 			}
@@ -145,12 +214,24 @@ package Screens
 			else
 				vp.visible = false;
 			
+			var x : int = (_lastDisplayed.x - _hitTarget.x) < 0 ? -(_lastDisplayed.x - _hitTarget.x) : (_lastDisplayed.x - _hitTarget.x);
+			var y : int = (_lastDisplayed.y - _hitTarget.y) < 0 ? -(_lastDisplayed.y - _hitTarget.y) : (_lastDisplayed.y - _hitTarget.y);
+			
+			if(found && x < 200 && y < 200)
+			{
+				removeChild(_hitTarget);
+				_callback();
+			}
+			
 			return vp.visible;
 		}
 		
 		public function renderMarker( trans : FLARTransMatResult ) : void
 		{
 			container.setTransformMatrix(trans);
+			container.x += 120;
+			container.scaleX = container.scaleY = .5;
+			//container.rotation += 90;
 			bre.renderScene(scene, camera, vp);
 		}
 		
@@ -158,6 +239,19 @@ package Screens
 		{
 			level--;
 			//_questionDisplay.text = _questions[level][KC];
+
+			if(_lastDisplayed != null)
+				container.removeChild(_lastDisplayed);
+			
+			if(_arFound)
+			{
+				_arFound = false;
+				addChild(_detectorTarget);
+				removeChild(vp);
+			}
+			
+			container.addChild(_artworks[level][KC]);
+			_lastDisplayed = _artworks[level][KC];
 		}
 	}
 
