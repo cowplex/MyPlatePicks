@@ -8,10 +8,18 @@ package Screens
 	import flash.display.Graphics;
 	import flash.geom.Rectangle;
 	import flash.utils.Timer;
+	import flash.text.TextField;
+	import flash.text.TextFormat;
+	import flash.text.TextFormatAlign;
 	import flash.events.TimerEvent;
 	
 	public class Warmup extends MovieClip //Sprite
 	{
+		[Embed(systemFont="Baskerville", fontName="qFont", fontWeight="normal", mimeType = "application/x-font")] 
+		private var font:Class;
+		
+		private var _textFormat : TextFormat = new TextFormat();
+		private var _questionDisplay : TextField;
 		
 		private static const _vidWidth : int = 420;
 		
@@ -32,6 +40,19 @@ package Screens
 			createTarget(missTarget1, false);
 			createTarget(missTarget2, false);
 			createTarget(missTarget3, false);*/
+			
+			_textFormat.size = 16;
+			_textFormat.font = "qFont";
+			
+			_questionDisplay = new TextField();
+			_questionDisplay.defaultTextFormat = _textFormat;
+			_questionDisplay.text = "Touch the green triangle!";
+			_questionDisplay.x = 120;//150;//330;
+			_questionDisplay.y = -50;//21;//410;
+			_questionDisplay.width = 375;//455;
+			_questionDisplay.height = 70;
+			_questionDisplay.wordWrap = true;
+			addChild(_questionDisplay);
 			
 			missTarget1.gotoAndStop(1);
 			missTarget2.gotoAndStop(1);

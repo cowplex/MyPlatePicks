@@ -59,7 +59,7 @@ package Screens
 			//_gameCallback();
 		}
 		
-		private function get paused() : Boolean
+		public function get paused() : Boolean
 		{
 			return _pause;
 		}

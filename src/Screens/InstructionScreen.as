@@ -7,9 +7,16 @@ package Screens
 	import flash.display.MovieClip;
 	import flash.utils.Timer;
 	import flash.events.TimerEvent;
+	import flash.media.Sound;
+    import flash.media.SoundChannel;
+    import flash.events.Event;
 	
 	public class InstructionScreen extends MovieClip
 	{
+		[Embed(source="assets/extra_narrations/Warmups_Final.mp3")] public var warmupinstructions:Class;
+		
+		private var _soundFile : Sound;
+		private var _playingSound : SoundChannel;
 		
 		private var _background : BG_instructions;
 		private var _timeout : Timer;
@@ -20,9 +27,13 @@ package Screens
 			_background = new BG_instructions();
 			addChild(_background);
 			
-			_timeout = new Timer(7000, 1);
+			_soundFile = new warmupinstructions();
+			_playingSound = _soundFile.play();
+			_playingSound.addEventListener(Event.SOUND_COMPLETE, narrationCallback);
+			
+			/*_timeout = new Timer(7000, 1);
 			_timeout.addEventListener(TimerEvent.TIMER_COMPLETE, timerCallback);
-			_timeout.start();
+			_timeout.start();*/
 		}
 		
 		public function set callback(callback : Function) : void
@@ -31,6 +42,11 @@ package Screens
 		}
 		
 		private function timerCallback(e:TimerEvent) : void
+		{
+			_callback();
+		}
+		
+		private function narrationCallback(e:Event) : void
 		{
 			_callback();
 		}

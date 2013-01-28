@@ -139,11 +139,11 @@ package Screens
 			_background.graphics.lineStyle(1,0x000000);
 			
 			if(level == 1)
-				_background.graphics.beginFill(0xFF0000);
-			else if(level == 1)
-				_background.graphics.beginFill(0x00FF00);
-			else if(level == 1)
-				_background.graphics.beginFill(0x0000FF);
+				_background.graphics.beginFill(0xFFF558);
+			else if(level == 2)
+				_background.graphics.beginFill(0x23AEB3);
+			else if(level == 3)
+				_background.graphics.beginFill(0xB2D232);
 			else
 				_background.graphics.beginFill(0xFFFFFF);
 			

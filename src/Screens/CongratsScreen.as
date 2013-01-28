@@ -31,6 +31,11 @@ package Screens
 			_callback = f;
 		}
 		
+		public function correct(s : String) : void
+		{
+			_background.correct.text = s;
+		}
+		
 		public function congratulate(level : Number) : void
 		{
 			if(level < _levelText.length)

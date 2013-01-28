@@ -38,6 +38,7 @@ package Screens
 		private var _highScoreText : TextField;
 		
 		private var _score : Number = 0;
+		private var _correctQuestions : Number = 0;
 		private var _highscore : Number = 0;
 		private var _levelQuestions : Number;
 		
@@ -49,7 +50,7 @@ package Screens
 		{
 			// Score icon
 			_scoreIcon = new score();
-			_scoreIcon.x = 110.5/2 + 75 + 30 - 240;
+			_scoreIcon.x = 110.5/2 + 75 + 30 - 240 - 20;
 			_scoreIcon.y = 38.8 /2;// + 45;
 			addChild(_scoreIcon);
 			
@@ -62,7 +63,7 @@ package Screens
 			_scoreText.embedFonts = true;
 			_scoreText.defaultTextFormat = _textFormat;
 			_scoreText.text = String(_score);
-			_scoreText.x = 220 - 240; //230;
+			_scoreText.x = 220 - 240 - 20; //230;
 			_scoreText.y = -9; //10;
 			_scoreText.width = 60;
 			_scoreText.height = 40;
@@ -74,7 +75,7 @@ package Screens
 			_highScoreText.embedFonts = true;
 			_highScoreText.defaultTextFormat = _textFormat;
 			_highScoreText.text = String(_highscore);
-			_highScoreText.x = 30 + 200 ; //230;
+			_highScoreText.x = 30 + 200 + 20; //230;
 			_highScoreText.y = -9; //10;
 			_highScoreText.width = 60;
 			_highScoreText.height = 40;
@@ -84,7 +85,7 @@ package Screens
 			
 			// Highscore icon
 			_highScoreIcon = new high_score();
-			_highScoreIcon.x = 186.9/2 - 160 + 200;
+			_highScoreIcon.x = 186.9/2 - 160 + 200 + 20;
 			_highScoreIcon.y = 38.8 /2;
 			addChild(_highScoreIcon);
 			
@@ -101,8 +102,20 @@ package Screens
 			_levelQuestions = q;
 		}
 		
+		public function get qTotal() : Number
+		{
+			return _levelQuestions;
+		}
+		
+		public function get qCorrect() : Number
+		{
+			return _correctQuestions;
+		}
+		
 		public function resetLevel() : void
 		{
+			_correctQuestions = 0;
+			
 			_questionsThisLevel = 0;
 			
 			_doubleQuestionLocatins[0] = int(Math.random() * _levelQuestions);
@@ -114,7 +127,7 @@ package Screens
 			}
 		}
 		
-		public function showQuestion() : void
+		public function showQuestion() : Boolean
 		{
 			_questionsThisLevel++;
 			if(!(_doubleQuestionLocatins.indexOf(_questionsThisLevel - 1) < 0))
@@ -123,7 +136,9 @@ package Screens
 				addChild(_doubleStars);
 				addChild(_doubleText);
 				_doubleText.gotoAndPlay(1);
+				return true;
 			}
+			return false;
 		}
 		
 		public function get levelScore() : Number
@@ -144,7 +159,10 @@ package Screens
 				return;
 			
 			if(correct)
+			{
 				_score += (_doubleQuestionLocatins.indexOf(_questionsThisLevel - 1) < 0) ? 25 : 50;
+				_correctQuestions++;
+			}
 			_scoreText.text = String(_score);
 			
 			if(_score > _highscore)

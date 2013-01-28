@@ -20,7 +20,7 @@ package Screens
 			_background.x = 320;
 			_background.y = 240;
 			
-			_background.score.text = ""+s;
+			_background.score.text = s.toString();
 			
 			addChild(_background);
 		}

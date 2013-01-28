@@ -82,15 +82,16 @@ package Screens
 			
 			_socialMedia = new MovieClip();//new btn_socialmedia_up();
 			_socialMedia.addChild(_socialMediaStates[0]);
-			_socialMediaButtons = new Array(new BTN_TWITTER(), new BTN_social(), new btn_facebook(), new btn_youtube());
+			_socialMediaButtons = new Array(new BTN_myplate(), new BTN_social(), new btn_youtube(), new btn_facebook(), new BTN_TWITTER());
 			_socialMedia.x = 580;
 			_socialMedia.y = ANIMATION_START;
 			_socialMedia.addEventListener(MouseEvent.MOUSE_DOWN,  function(e:MouseEvent):void { animate(_socialMediaButtons, 1); });
 			
-			_socialMediaButtons[0].addEventListener(MouseEvent.MOUSE_DOWN, function(e:MouseEvent):void {navigateToURL(new URLRequest("https://twitter.com/IdeaSeekers/"));} );
+			_socialMediaButtons[0].addEventListener(MouseEvent.MOUSE_DOWN, function(e:MouseEvent):void {navigateToURL(new URLRequest("http://www.choosemyplate.gov/"));});
 			_socialMediaButtons[1].addEventListener(MouseEvent.MOUSE_DOWN, function(e:MouseEvent):void {navigateToURL(new URLRequest("http://kidscom.com/"));});
-			_socialMediaButtons[2].addEventListener(MouseEvent.MOUSE_DOWN, function(e:MouseEvent):void {navigateToURL(new URLRequest("https://www.facebook.com/KidsCom?ref=ts"));});
-			_socialMediaButtons[3].addEventListener(MouseEvent.MOUSE_DOWN, function(e:MouseEvent):void {navigateToURL(new URLRequest("http://www.youtube.com/user/OfficialKidsCom?feature=watch"));});
+			_socialMediaButtons[2].addEventListener(MouseEvent.MOUSE_DOWN, function(e:MouseEvent):void {navigateToURL(new URLRequest("http://www.youtube.com/user/OfficialKidsCom?feature=watch"));});
+			_socialMediaButtons[3].addEventListener(MouseEvent.MOUSE_DOWN, function(e:MouseEvent):void {navigateToURL(new URLRequest("https://www.facebook.com/KidsCom?ref=ts"));});
+			_socialMediaButtons[4].addEventListener(MouseEvent.MOUSE_DOWN, function(e:MouseEvent):void {navigateToURL(new URLRequest("https://twitter.com/IdeaSeekers/"));} );
 			for(i = _socialMediaButtons.length - 1; i >= 0; i--)
 			{
 				_socialMediaButtons[i].x = 580;
@@ -125,7 +126,8 @@ package Screens
 			var tween_target : Number;
 			
 			
-			for(i = 0; i < target.length; i++)
+			//for(i = 0; i < target.length; i++)
+			for(i = target.length - 1; i >= 0; i--)
 			{
 				cumulative += 65;
 				tween_target = (animate_to_start) ? ANIMATION_START : ANIMATION_START - cumulative;

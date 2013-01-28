@@ -12,6 +12,7 @@ package Screens
 	import flash.display.Graphics;
 	import flash.utils.Timer;
 	import flash.events.TimerEvent;
+	import flash.filters.ColorMatrixFilter;
 	import com.gskinner.motion.GTween;
 	
 	public class Pause extends MovieClip
@@ -23,6 +24,16 @@ package Screens
 		private static const SLIDER_TRACK_LENGTH : int   = 100;
 		
 		private static const TARGET_DEFAULT : Number = 265 + TARGET_RADIUS;
+		
+		private static var r:Number=0.212671;
+		private static var g:Number=0.715160;
+		private static var b:Number=0.072169;
+		private var matrix:Array = [r, g, b, 0, 0,
+		                            r, g, b, 0, 0,
+		                            r, g, b, 0, 0,
+		                            0, 0, 0, 1, 0];
+		private var _filter : ColorMatrixFilter = new ColorMatrixFilter(matrix);
+		private var _colorFilter : ColorMatrixFilter = new ColorMatrixFilter([1,0,0,0,0, 0,1,0,0,0, 0,0,1,0,0, 0,0,0,1,0]);
 		
 		private var _pauseIcon : SimpleButton;//Sprite;
 		private var _pauseIconTarget : Rectangle;
@@ -37,6 +48,7 @@ package Screens
 		
 		private var _pauseCallback : Function;
 		private var _resetCallback : Function;
+		private var _quitCallback : Function;
 		
 		private var _paused : Boolean = false;
 		private var _lastMusicState : Boolean;
@@ -44,6 +56,7 @@ package Screens
 		private var _jukebox : Jukebox;
 		private var _musicButton : BTN_MUSICNOTE;
 		private var _resetButton : btn_replay;
+		private var _quitButton : btn_quit;
 		
 		public function Pause(j : Jukebox)
 		{
@@ -84,14 +97,21 @@ package Screens
 			_musicButton = new BTN_MUSICNOTE();
 			_musicButton.y = _pauseScreen.height / 2 - _playButton.height - 5;
 			_musicButton.x = _pauseScreen.width - _musicButton.width - 15;
-			_musicButton.addEventListener(MouseEvent.MOUSE_DOWN,  function(e:MouseEvent):void {  if(paused) {_lastMusicState = !_lastMusicState;} else {_jukebox.mute = !_jukebox.mute;} });
+			_musicButton.filters = (_jukebox.mute ? [_filter] : null);
+			_musicButton.addEventListener(MouseEvent.MOUSE_DOWN,  function(e:MouseEvent):void {  if(paused) {_lastMusicState = !_lastMusicState;} else {_jukebox.mute = !_jukebox.mute;}; _musicButton.filters = (_jukebox.mute ? new Array(_filter) : new Array()); });
 			_pauseScreen.addChild(_musicButton);
 			
 			_resetButton = new btn_replay();
-			_resetButton.y = _pauseScreen.height / 2 - _playButton.height - _musicButton.height - 5 * 2;
+			_resetButton.y = _pauseScreen.height / 2 + _playButton.height + 5;
 			_resetButton.x = _pauseScreen.width - _musicButton.width - 15;
 			_resetButton.addEventListener(MouseEvent.MOUSE_DOWN,  function(e:MouseEvent):void { _resetCallback() });
 			_pauseScreen.addChild(_resetButton);
+			
+			_quitButton = new btn_quit();
+			_quitButton.y = _pauseScreen.height / 2 + _playButton.height + _resetButton.height + 5 * 2;
+			_quitButton.x = _pauseScreen.width - _resetButton.width - 15;
+			_quitButton.addEventListener(MouseEvent.MOUSE_DOWN,  function(e:MouseEvent):void { _quitCallback() });
+			_pauseScreen.addChild(_quitButton);
 			
 			_grabTimeout = new Timer(500, 1);
 			_grabTimeout.addEventListener(TimerEvent.TIMER_COMPLETE, resetButton);
@@ -112,6 +132,11 @@ package Screens
 		public function set resetCallback( f : Function ) : void
 		{
 			_resetCallback = f;
+		}
+		
+		public function set quitCallback( f : Function ) : void
+		{
+			_quitCallback = f;
 		}
 			
 		public function get paused() : Boolean

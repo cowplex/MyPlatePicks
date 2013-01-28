@@ -13,6 +13,7 @@ package questions
 	import flash.text.TextFormatAlign;
 	import flash.media.Sound;
     import flash.media.SoundChannel;
+    import flash.events.Event;
 	
 	public class Question extends Sprite
 	{
@@ -31,6 +32,8 @@ package questions
 		private var _questionDisplay : TextField;
 		private var _textFormat : TextFormat = new TextFormat();
 		
+		private var _readCallback : Function;
+		
 		public function Question(question : String, category : Number, correct : Response/*Bitmap*/, choices : Array, audio : Sound = null)
 		{
 			_sound = audio;
@@ -42,7 +45,7 @@ package questions
 			}
 			// 330, 440, 455, 70
 			
-			_textFormat.size = 16;
+			_textFormat.size = 19;//16;
 			_textFormat.font = "qFont";
 			
 			_questionDisplay = new TextField();
@@ -95,10 +98,23 @@ package questions
 			return _response;
 		}
 		
+		public function set callback(f:Function):void
+		{
+			_readCallback = f;
+		}
+		
 		public function readQuestion() : void
 		{
 			if(_sound != null)
+			{
 				_soundChannel = _sound.play();
+				_soundChannel.addEventListener(Event.SOUND_COMPLETE, function (e:Event = null) : void { _readCallback(); });
+			}
+			else
+			{
+				_readCallback();
+			}
+				
 		}
 		public function stopQuestion() : void
 		{

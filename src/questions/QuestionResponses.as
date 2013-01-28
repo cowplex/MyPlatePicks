@@ -54,7 +54,7 @@ package questions
 		[Embed(source="question_responses/orange.png")] public var orange:Class;
 		[Embed(source="question_responses/pear.png")] public var pear:Class;
 		[Embed(source="question_responses/playing_video_games.png")] public var playing_video_games:Class;
-		[Embed(source="question_responses/plum.jpg")] public var plum:Class;
+		[Embed(source="question_responses/plum.png")] public var plum:Class; //jpg
 		[Embed(source="question_responses/pop.png")] public var pop:Class;
 		[Embed(source="question_responses/potato_chips.png")] public var potato_chips:Class;
 		[Embed(source="question_responses/pushups.png")] public var pushups:Class;
@@ -86,6 +86,14 @@ package questions
 		[Embed(source="question_responses/weightbearing.png")] public var weightbearing:Class;
 		[Embed(source="question_responses/wheat_toast.png")] public var wheat_toast:Class;
 		[Embed(source="question_responses/yoga.png")] public var yoga:Class;
+		
+		//[Embed(source="question_responses/coloring.png")] public var coloring:Class;
+		[Embed(source="question_responses/eating.png")] public var eating:Class;
+		//[Embed(source="question_responses/playing_video_games.png")] public var playing_video_games:Class;
+		//[Embed(source="question_responses/reading.png")] public var reading:Class;
+		[Embed(source="question_responses/sugar.png")] public var sugar:Class;
+		//[Embed(source="question_responses/tag.png")] public var tag:Class;
+		//[Embed(source="question_responses/watching_tv.png")] public var watching_tv:Class;
 		}
 		
 		// Setup Image Responses
@@ -107,7 +115,7 @@ package questions
 		public var _cheese:Response = new Response( "Cheese", new cheese() );
 		public var _chocolateshake:Response = new Response( "Chocolate Shake", new chocolateshake() );
 		public var _cinnamon_raisin_bread:Response = new Response( "Cinnamon Raisin Bread", new cinnamon_raisin_bread() );
-		public var _coloring:Response = new Response( "Coloring", new coloring() );
+		public var _coloring:Response = new Response( "Color", new coloring() );
 		public var _crackers:Response = new Response( "Crackers", new crackers() );
 		public var _cucumber:Response = new Response( "Cucumber", new cucumber() );
 		public var _dairy:Response = new Response( "Dairy", new dairy() );
@@ -144,7 +152,7 @@ package questions
 		public var _pushups:Response = new Response( "Pushups", new pushups() );
 		public var _raisins:Response = new Response( "Raisins", new raisins() );
 		public var _raspberries:Response = new Response( "Raspberries", new raspberries() );
-		public var _reading:Response = new Response( "Reading", new reading() );
+		public var _reading:Response = new Response( "Read", new reading() );
 		public var _rice:Response = new Response( "Rice", new rice() );
 		public var _running:Response = new Response( "Running", new running() );
 		public var _sit:Response = new Response( "Sit", new sit() );
@@ -157,7 +165,7 @@ package questions
 		public var _sportsdrink:Response = new Response( "Sports Drink", new sports_drink() );
 		public var _squash:Response = new Response( "Squash", new squash() );
 		public var _strawberries:Response = new Response( "Strawberries", new strawberries() );
-		public var _stretching:Response = new Response( "Stretching", new stretching() );
+		public var _stretching:Response = new Response( "Stretch", new stretching() );
 		public var _sweet_rolls:Response = new Response( "Sweet Rolls", new sweet_rolls() );
 		public var _sweet_tea:Response = new Response( "Sweet Tea", new sweet_tea() );
 		public var _swimming:Response = new Response( "Swimming", new swimming() );
@@ -165,11 +173,19 @@ package questions
 		public var _tomato:Response = new Response( "Tomato", new tomato() );
 		public var _veggiejuice:Response = new Response( "Veggie Juice", new veggiejuice() );
 		public var _walk:Response = new Response( "Walk", new walk() );
-		public var _watching_tv:Response = new Response( "Watching TV", new watching_tv() );
+		public var _watching_tv:Response = new Response( "Watch TV", new watching_tv() );
 		public var _water:Response = new Response( "Water", new water() );
 		public var _weightbearing:Response = new Response( "Weight Bearing", new weightbearing() );
 		public var _wheat_toast:Response = new Response( "Wheat Toast", new wheat_toast() );
 		public var _yoga:Response = new Response( "Yoga", new yoga() );
+		
+		//public var _coloring:Response = new Response( "Coloring", new coloring() );
+		public var _eating:Response = new Response( "Eat", new eating() );
+		//public var _playing_video_games:Response = new Response( "Playing Video Games", new playing_video_games() );
+		//public var _reading:Response = new Response( "Reading", new reading() );
+		public var _sugar:Response = new Response( "Sugar", new sugar() );
+		//public var _tag:Response = new Response( "Tag", new tag() );
+		//public var _watching_tv:Response = new Response( "Watching TV", new watching_tv() );
 		}
 		
 		// Text Responses
@@ -280,6 +296,7 @@ package questions
 		public var _Stretching:Response = new Response( "Stretching" );
 		public var _muscles:Response = new Response( "Muscles" );
 		public var _bones:Response = new Response( "Bones" );
+		public var _heart:Response = new Response( "Heart" );
 		public var _grains_copy:Response = new Response( "Grains" );
 		public var _in_grocery_stores:Response = new Response(  "in grocery stores" );
 		public var _in_the_ground:Response = new Response(  "in the ground" );

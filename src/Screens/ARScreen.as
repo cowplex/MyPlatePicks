@@ -9,6 +9,7 @@ package Screens
 	import flash.text.TextField;
 	import flash.text.TextFormat;
 	import flash.text.TextFormatAlign;
+	import flash.geom.Rectangle;
 	
 	// Papervsion stuff
 	import flash.utils.ByteArray;
@@ -31,6 +32,8 @@ package Screens
 		[Embed(systemFont="Baskerville", fontName="arFont", fontWeight="normal", mimeType = "application/x-font")] private var font:Class;
 		
 		private static const _vidWidth : int = 420;
+		
+		public var hitTarget   : MovieClip = new warmup_marker();
 		
 		private var _detectorTarget : MovieClip;
 		private var _arFound : Boolean = false;
@@ -119,7 +122,7 @@ package Screens
 			_detectorTarget = new AR_detection();
 			_detectorTarget.x = 210;
 			_detectorTarget.y = 160;
-			addChild(_detectorTarget);
+			//addChild(_detectorTarget);
 			
 			_hitTarget.scaleX = _hitTarget.scaleY = .5;
 			
@@ -252,6 +255,57 @@ package Screens
 			
 			container.addChild(_artworks[level][KC]);
 			_lastDisplayed = _artworks[level][KC];
+		}
+		
+		
+		public function randomize() : void
+		{
+			var position : Number = int(Math.random() * 4);
+			//target.x = 45 + (((_vidWidth - 45*2) / 3) * position);
+			hitTarget.x = 15 + (((_vidWidth - 15*2) / 3) * position);
+			hitTarget.y = (position == 0 || position == 3) ? /*90*/ 130 : 25 /*45*/;
+			hitTarget.rotation = (position == 0) ? 90 : ((position == 3) ? -90 : 180 );
+			addChild(hitTarget);
+			
+			_questionDisplay.text = "";
+			switch(position)
+			{
+				case 0:
+					_questionDisplay.appendText("Lunge left ");
+					break;
+				case 1:
+					_questionDisplay.appendText("Jump left ");
+					break;
+				case 2:
+					_questionDisplay.appendText("Jump right ");
+					break;
+				case 3:
+					_questionDisplay.appendText("Lunge right ");
+					break;
+			}
+			_questionDisplay.appendText("to touch the glowing marker!");
+		}
+		
+		public function get detectionArea() : Rectangle
+		{
+			return(new Rectangle(hitTarget.x - hitTarget.width/2, hitTarget.y - hitTarget.height/2, hitTarget.width, hitTarget.height));
+		}
+		
+		public function detectHit( motion : Rectangle ) : Boolean
+		{
+			/*if(detecting && motion.width * motion.height > 50
+			                                     && motion.x >= (hitTarget.x - hitTarget.width/2) && motion.x <= (hitTarget.x + hitTarget.width/2)
+			                                     && motion.y >= (hitTarget.y - hitTarget.height/2) && motion.y <= (hitTarget.y + hitTarget.height/2)
+			  )*/
+			if(motion.width * motion.height > 50 && detectionArea.intersects(motion))
+			{
+				//reset();
+				//_callback(true);
+				removeChild(hitTarget);
+				randomize();
+				return true;
+			}
+			return false;
 		}
 	}
 

@@ -288,7 +288,6 @@ package Screens
 		public function show( level : Number, KC : Number ) : void
 		{
 			level--;
-			
 			/*_activeBG = KC;
 			_background.addChild(_backgroundList[_activeBG]);
 			

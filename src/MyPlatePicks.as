@@ -35,6 +35,7 @@ package
 	import flash.geom.Point;
 	import flash.utils.Timer;
 	import flash.events.TimerEvent;
+	import flash.utils.*;
 	
 	[SWF(width="640", height="480", frameRate="30", backgroundColor="#333333")]
 	public class MyPlatePicks extends Sprite
@@ -72,6 +73,7 @@ package
 		private var _mainMenu : MainMenu;
 		private var _login : LoginScreen;
 		private var _instructions : InstructionScreen;
+		private var _extraInstructions : Extra_instructions_holder;
 		private var _warmup   : Warmup;
 		private var _pause    : Pause;
 		private var _scoreboard    : Scoreboard;
@@ -111,6 +113,7 @@ package
 				case 4:
 					_game.removeChild(_mainMenu);
 					setupInstructions();
+					setupExtraInstructions();
 					break;
 				case 5:
 					setupMainScreen();
@@ -181,6 +184,11 @@ package
 			_game.addChild(_instructions);
 		}
 		
+		private function setupExtraInstructions():void
+		{
+			_extraInstructions = new Extra_instructions_holder();
+			_extraInstructions.callback = extraInstructionsCallback;
+		}
 		private function setupVideo():void
 		{
 			
@@ -247,8 +255,9 @@ package
 			//_pause.y = 420;
 			
 			_pause.pauseCallback = pauseCallback;
-			_pause.resetCallback = function():void { removeChild(_game); _game = new MovieClip(); addChild(_game); setupSequence(1); /*stage.removeChildAt(0); stage.addChild(new MyPlatePicks()); /*_reset = true; stateCallback();*/ };
-			
+			_pause.resetCallback = function():void { /*removeChild(_game); _game = new MovieClip(); addChild(_game);*/ _mainScreen.setupTimerCallback(null); _reset = true; _answeredQuestions = 0; setupSequence(5); _gamestate = 0; validateCallback();/*stateSetup(); /*stage.removeChildAt(0); stage.addChild(new MyPlatePicks()); /*_reset = true; stateCallback();*/ };
+			_pause.quitCallback = function():void { /*addChild(new MyPlatePicks);*/ removeChild(this); /*stage.removeChildAt(0); stage.addChild(new MyPlatePicks()); /*_reset = true; stateCallback();*/ };
+		
 			//_game.addChild(_pause);
 		}
 		
@@ -282,6 +291,7 @@ package
 			_questions = new Questions();
 			_questions.scoreCallback = stateCallback;
 			_questions.detectorCallback = _motionTracker.detectMotion;
+			_questions.timerStartCallback = timerStartCallback;
 			_game.addChild(_questions);
 			
 			// Setup callback for timer to show correct/incorrect answers
@@ -366,6 +376,12 @@ package
 			}
 		}
 		
+		private function timerStartCallback() : void
+		{
+			 _mainScreen.timerStart(15);
+			 _mainScreen.timerPaused = _questionValidator.paused;
+		}
+		
 		private function pauseCallback( paused : Boolean ) : void
 		{
 			_mainScreen.timerPaused = paused;
@@ -406,7 +422,7 @@ package
 					// Remove AR detector
 					_detecting = false;
 					_mainScreen.timerStop();
-					_scoreboard.scoreEvent(hit);
+					//_scoreboard.scoreEvent(hit);
 					_game.removeChild(_arScreen);
 					break;
 				case 4:
@@ -426,7 +442,13 @@ package
 			switch(_gamestate)
 			{
 				case 0:
+					_detecting = false;
+					if(!_game.contains(_warmup))
+						return;
 					_game.removeChild(_warmup);
+					_game.addChild(_extraInstructions);
+					_extraInstructions.playAudio();
+					return;
 					_detecting = false;
 					_level.level++;
 					_game.addChild(_pause);
@@ -437,6 +459,15 @@ package
 				case 3:
 					break;
 			}
+			stateSetup();
+		}
+		
+		private function extraInstructionsCallback() : void
+		{
+			_game.removeChild(_extraInstructions);
+			_detecting = false;
+			_level.level++;
+			_game.addChild(_pause);
 			stateSetup();
 		}
 		
@@ -464,7 +495,7 @@ package
 				_questions.hideARTargetQuestion();
 				_gamestate = 1;
 				_level.knowledgeCategory++;
-				_mainScreen.changeBG(_level.knowledgeCategory);
+				_mainScreen.changeBG(_level.level);
 				//_level.level++;
 			}
 			
@@ -493,24 +524,28 @@ package
 					break;
 				case 2:
 					// Add Question
-					_questions.drawQuestion(_level.level, _level.knowledgeCategory);
-					_scoreboard.showQuestion();
-					_mainScreen.timerStart(15);
+					var interval : Boolean = _scoreboard.showQuestion();
+					setTimeout(_questions.drawQuestion, (interval ? 2500 : 0), _level.level, _level.knowledgeCategory);
+					//_questions.drawQuestion(_level.level, _level.knowledgeCategory);
+					//_mainScreen.timerStart(15);
 					_detecting = true;
 					break;
 				case 3:
 					// Begin AR Detection
-					_questions.showARTargetQuestion(_level.level, _level.knowledgeCategory);
+					//_questions.showARTargetQuestion(_level.level, _level.knowledgeCategory);
+					_arScreen.randomize();
 					_game.addChild(_arScreen);
-					_arScreen.question(_level.level, _level.knowledgeCategory);
+					//_arScreen.question(_level.level, _level.knowledgeCategory);
 					_mainScreen.timerStart(40);
-					_arDetector.setupMarker(_level.level, _level.knowledgeCategory);
+					//_arDetector.setupMarker(_level.level, _level.knowledgeCategory);
 					_detecting = true;
 					break;
 				case 4:
 					_game.addChild(_congratsScreen);
+					_congratsScreen.correct("Correct: " + _scoreboard.qCorrect + "/" + _scoreboard.qTotal);
 					_congratsScreen.congratulate(_level.level - 1);
 					_detecting = false;
+					_level.knowledgeCategory = -1;
 					break;
 			}
 		}
@@ -542,11 +577,12 @@ package
 					break;
 				case 3:
 					// Detecting AR Marker
-					if(_arScreen.detectAR(_arDetector.track(_bitmap)))
+					/*if(_arScreen.detectAR(_arDetector.track(_bitmap)))
 					{
 						//_mainScreen.timerStop();
 						_arScreen.renderMarker(_arDetector.getTransformMatrix());
-					}
+					}*/
+					_arScreen.detectHit(_motionTracker.detectMotion(_arScreen.detectionArea));
 					return;
 			}
 		}
