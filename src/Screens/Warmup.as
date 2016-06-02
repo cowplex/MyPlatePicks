@@ -12,6 +12,7 @@ package Screens
 	import flash.text.TextFormat;
 	import flash.text.TextFormatAlign;
 	import flash.events.TimerEvent;
+	import com.gskinner.motion.GTween;
 	
 	public class Warmup extends MovieClip //Sprite
 	{
@@ -28,6 +29,9 @@ package Screens
 		public var missTarget2 : MovieClip = new warmup_marker();
 		public var missTarget3 : MovieClip = new warmup_marker();
 		
+		private var _silhouette : MovieClip;
+		private var _fadeTween : GTween;
+		
 		private var detecting : Boolean = true;
 		
 		private var _hitCallback : Function;
@@ -41,7 +45,11 @@ package Screens
 			createTarget(missTarget2, false);
 			createTarget(missTarget3, false);*/
 			
-			_textFormat.size = 16;
+			_silhouette = new Silhouette_notext();
+			_silhouette.alpha = 0;
+			addChild(_silhouette);
+			
+			_textFormat.size = 20;//16;
 			_textFormat.font = "qFont";
 			
 			_questionDisplay = new TextField();
@@ -126,6 +134,7 @@ package Screens
 		}
 		private function attachTimer(e:TimerEvent) : void
 		{
+			_fadeTween = new GTween(_silhouette, 1.0, {alpha:0});
 			detecting = true;
 			attach();
 		}
@@ -150,6 +159,8 @@ package Screens
 			t = new Timer(500, 1);
 			t.addEventListener(TimerEvent.TIMER_COMPLETE, attachTimer);
 			t.start();
+			
+			_fadeTween = new GTween(_silhouette, 0.1, {alpha:1});
 		}
 	}
 }

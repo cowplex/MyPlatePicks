@@ -298,9 +298,9 @@ package questions
 		public var _bones:Response = new Response( "Bones" );
 		public var _heart:Response = new Response( "Heart" );
 		public var _grains_copy:Response = new Response( "Grains" );
-		public var _in_grocery_stores:Response = new Response(  "in grocery stores" );
-		public var _in_the_ground:Response = new Response(  "in the ground" );
-		public var _on_trees:Response = new Response(  "on trees" );
+		public var _in_grocery_stores:Response = new Response(  "In grocery stores" );
+		public var _in_the_ground:Response = new Response(  "In the ground" );
+		public var _on_trees:Response = new Response(  "On trees" );
 		public var _and_come_down_from_the_sky:Response = new Response(  "In the sky" );
 		
 		public var _reading_a_book:Response = new Response( "Reading a Book" );

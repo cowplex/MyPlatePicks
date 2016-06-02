@@ -52,6 +52,7 @@ package Screens
 				_logoOrder[i].x = 320 - _logoOrder[i].width / 2;
 				// Fade logos out, so they can be faded in
 				_logoOrder[i].alpha = 0;
+				_logoOrder[i].smoothing = true;
 				addChild(_logoOrder[i]);
 			}
 		}

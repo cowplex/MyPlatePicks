@@ -39,7 +39,7 @@ package questions
 			}
 			
 			_format = new TextFormat();
-			_format.size = 15;
+			_format.size = 13;//15;
 			_format.align = TextFormatAlign.CENTER;
 			
 			_textField = new TextField();
@@ -67,6 +67,11 @@ package questions
 			_targetArea.y = this.y + (this.height - _targetArea.height) / 2;
 			
 			return _targetArea;
+		}
+		
+		public function get text() : String
+		{
+			return _text;
 		}
 	}
 

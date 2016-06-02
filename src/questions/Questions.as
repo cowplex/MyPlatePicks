@@ -15,7 +15,8 @@ package questions
     	
 	public class Questions extends Sprite
 	{
-		private static var NUM_RANDOM_QUESTIONS : Number = 2;
+		private var _numRandomQuestions : Number = 2;
+		private var _randomness : Boolean;
 		private var _questionsAsked : Number = 0;
 		private var _randomQuestions : Array = new Array();
 		
@@ -215,7 +216,16 @@ package questions
 			_randomQuestions[3].push( new Question("Which type of exercise will build strong muscles?", 0, _QR._All_of_these_choices, [_QR._pushups, _QR._jumping_jacks, _QR._situps], new R3Q14()) );
 			_categories[3][2].push( new Question("When you are watching TV, what can you do to be physically active during commercial breaks?", 0, _QR._Jumping_Jacks, [_QR._Continue_sitting, _QR._Walk_to_get_a_snack_and_sit_back_down, _QR._Get_a_drink_of_water], new R3Q15()) );
 			_categories[3][2].push( new Question("What kind of physical activity do you do every day?", 0, _QR._walk, [_QR._sit, _QR._watching_tv, _QR._eating], new R3Q16()) );
-			
+		}
+		
+		public function set numRandomQuestions(n : int) : void
+		{
+			_numRandomQuestions = n;
+		}
+		
+		public function set randomness( r : Boolean) : void
+		{
+			_randomness = r;
 		}
 		
 		public function drawQuestion( level : int, category : int ) : void
@@ -236,10 +246,15 @@ package questions
 			//if(_categories[category][level].length > 0)
 			{
 				// Choose a few random questions, then a preset order
-				if(_questionsAsked <= NUM_RANDOM_QUESTIONS)
-					_currentQuestion = _randomQuestions[category].splice(int(Math.random() * _randomQuestions[category].length), 1)[0];
+				if(_questionsAsked <= _numRandomQuestions)
+				{
+					if(_randomness)
+						_currentQuestion = _randomQuestions[category].splice(int(Math.random() * _randomQuestions[category].length), 1)[0];
+					else
+						_currentQuestion = _randomQuestions[category].splice(0, 1)[0];
+				}
 				else
-					_currentQuestion = _categories[category][level][_questionsAsked - NUM_RANDOM_QUESTIONS - 1];
+					_currentQuestion = _categories[category][level][_questionsAsked - _numRandomQuestions - 1];
 				
 				_currentQuestion.randomizeResponses();
 				_currentQuestion.callback = drawResponses;
@@ -257,11 +272,16 @@ package questions
 			}
 		}
 		
+		public function get questionText() : String
+		{
+			return _currentQuestion.questionText;
+		}
+		
 		public function hideQuestion() : void
 		{
 			if(_currentQuestion != null)
 			{
-				if(_questionsAsked <= NUM_RANDOM_QUESTIONS)
+				if(_questionsAsked <= _numRandomQuestions)
 					_usedQuestions[_currentQuestion.category].push(_currentQuestion);
 				removeResponses(_currentQuestion);
 				removeChild(_currentQuestion);
@@ -273,7 +293,7 @@ package questions
 		public function showARTargetQuestion( level : int, category : int ) : void
 		{
 			level--;
-			var targetQuestion : Number = _questionsAsked - NUM_RANDOM_QUESTIONS - 1;
+			var targetQuestion : Number = _questionsAsked - _numRandomQuestions - 1;
 			
 			// Make sure there's only one AR target
 			hideARTargetQuestion();
@@ -328,7 +348,8 @@ package questions
 					               new Point(_currentQuestion.correctResponse.detectionArea.x + _currentQuestion.correctResponse.detectionArea.width/2, 
 					                         _currentQuestion.correctResponse.detectionArea.y + _currentQuestion.correctResponse.detectionArea.height/2),
 					               new Point(_currentQuestion.incorrectResponses[i].detectionArea.x + _currentQuestion.incorrectResponses[i].detectionArea.width/2,
-					                         _currentQuestion.incorrectResponses[i].detectionArea.y + _currentQuestion.incorrectResponses[i].detectionArea.height/2)
+					                         _currentQuestion.incorrectResponses[i].detectionArea.y + _currentQuestion.incorrectResponses[i].detectionArea.height/2),
+					               _currentQuestion.incorrectResponses[i].text
 					              );
 					return;
 				}

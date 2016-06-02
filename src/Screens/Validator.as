@@ -64,7 +64,7 @@ package Screens
 			return _pause;
 		}
 		
-		public function set paused( p : Boolean) : void
+		public function set paused( p : Boolean ) : void
 		{
 			_pause = p;
 			

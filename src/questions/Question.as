@@ -45,8 +45,10 @@ package questions
 			}
 			// 330, 440, 455, 70
 			
-			_textFormat.size = 19;//16;
+			_textFormat.size = 18;//17;//19;//16;
 			_textFormat.font = "qFont";
+			
+			_question = question;
 			
 			_questionDisplay = new TextField();
 			_questionDisplay.defaultTextFormat = _textFormat;
@@ -57,6 +59,7 @@ package questions
 			_questionDisplay.height = 70;
 			_questionDisplay.wordWrap = true;
 			addChild(_questionDisplay);
+			
 		}
 		
 		public function get category() : Number
@@ -66,6 +69,11 @@ package questions
 		public function get response() : Response
 		{
 			return _response;
+		}
+		
+		public function get questionText() : String
+		{
+			return _question;
 		}
 		
 		public function randomizeResponses() : void

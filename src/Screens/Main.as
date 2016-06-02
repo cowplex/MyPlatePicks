@@ -117,11 +117,17 @@ package Screens
 			_timing = true;
 		}
 		
+		public function get timerPosition() : Number
+		{
+			return _questionTimer.position;
+		}
+		
 		public function timerStop() : void
 		{
 			//_questionTimer.stop();
 			_channel.stop();
 			_questionTimer.paused = true;
+			_timing = false;
 			_timerApple.y = -195.95;
 		}
 		
@@ -131,6 +137,8 @@ package Screens
 				return;
 			
 			_questionTimer.paused = pause;
+			if(_channel != null)
+				_channel.stop();
 			pause ? _channel.stop() : _channel = _countdownSound.play();
 		}
 		

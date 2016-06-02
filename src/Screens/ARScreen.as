@@ -10,6 +10,7 @@ package Screens
 	import flash.text.TextFormat;
 	import flash.text.TextFormatAlign;
 	import flash.geom.Rectangle;
+	import flash.utils.*;
 	
 	// Papervsion stuff
 	import flash.utils.ByteArray;
@@ -37,6 +38,8 @@ package Screens
 		
 		private var _detectorTarget : MovieClip;
 		private var _arFound : Boolean = false;
+		
+		private var _detecting : Boolean;
 		
 		private var _questions : Array;
 		private var _artworks : Array;
@@ -105,15 +108,15 @@ package Screens
 				)
 			);
 			
-			_textFormat.size = 15;
+			_textFormat.size = 20;//15;
 			_textFormat.font = "arFont";
 			
 			_questionDisplay = new TextField();
 			_questionDisplay.defaultTextFormat = _textFormat;
 			//_questionDisplay.text = question;
 			_questionDisplay.x = 265 - 164 - 59;
-			_questionDisplay.y = 25 - 90;
-			_questionDisplay.width = 260;
+			_questionDisplay.y = 25 - 90 - 10;
+			_questionDisplay.width = 320;//260;
 			_questionDisplay.height = 70;
 			_questionDisplay.wordWrap = true;
 			_questionDisplay.text = "Find the corresponding AR marker in the Pickup Pile:";
@@ -260,30 +263,88 @@ package Screens
 		
 		public function randomize() : void
 		{
-			var position : Number = int(Math.random() * 4);
-			//target.x = 45 + (((_vidWidth - 45*2) / 3) * position);
-			hitTarget.x = 15 + (((_vidWidth - 15*2) / 3) * position);
-			hitTarget.y = (position == 0 || position == 3) ? /*90*/ 130 : 25 /*45*/;
-			hitTarget.rotation = (position == 0) ? 90 : ((position == 3) ? -90 : 180 );
+			var position : Number = int(Math.random() * 6);
+			var xpos : Number = position > 3 ? (position - 4) * 3 : position;
+			hitTarget.x = 15 + (((_vidWidth - 15*2) / 3) * xpos);
+			hitTarget.y = (position == 0 || position == 3) ? 130 : (xpos == 0 || xpos == 3) ? 260 : 25;
+			hitTarget.rotation = (position == 0) ? 90 : ((position == 3) ? -90 : (position > 3) ? 0 : 180 );
 			addChild(hitTarget);
 			
+			_detecting = true;
+			
+			/*var branch : Number = int(Math.random() * 2);
+			_questionDisplay.text = "Stand with your feet together and touch the glowing marker. Perform the action and then return to your original position: ";
+			switch(branch)
+			{
+				case 0:
+					switch(position)
+					{
+						case 0:
+							_questionDisplay.appendText("Left lunge to pick the apples.");
+							break;
+						case 1:
+							_questionDisplay.appendText("Pencil jump left to knock the apple down.");
+							break;
+						case 2:
+							_questionDisplay.appendText("Pencil jump right to knock the apple down.");
+							break;
+						case 3:
+							_questionDisplay.appendText("Right lunge to pick the apples.");
+							break;
+						case 4:
+							_questionDisplay.appendText("Left knee bend down to pick carrots.");
+							break;
+						case 5:
+							_questionDisplay.appendText("Right knee bend down to pick carrots.");
+							break;
+					}
+					break;
+				case 1:
+					switch(position)
+					{
+						case 0:
+							_questionDisplay.appendText("Right arm cross over to catch the apple.");
+							break;
+						case 1:
+							_questionDisplay.appendText("Left upper stretch to climb the apple tree.");
+							break;
+						case 2:
+							_questionDisplay.appendText("Right upper stretch to climb the apple tree");
+							break;
+						case 3:
+							_questionDisplay.appendText("Left arm cross over to catch the apple.");
+							break;
+						case 4:
+							_questionDisplay.appendText("Left knee bend down to pick carrots.");
+							break;
+						case 5:
+							_questionDisplay.appendText("Right knee bend down to pick carrots.");
+							break;
+					}
+					break;
+			}*/
 			_questionDisplay.text = "";
 			switch(position)
 			{
 				case 0:
-					_questionDisplay.appendText("Lunge left ");
+					_questionDisplay.appendText("Lunge Left");
 					break;
 				case 1:
-					_questionDisplay.appendText("Jump left ");
+					_questionDisplay.appendText("Jump Left");
 					break;
 				case 2:
-					_questionDisplay.appendText("Jump right ");
+					_questionDisplay.appendText("Jump Right");
 					break;
 				case 3:
-					_questionDisplay.appendText("Lunge right ");
+					_questionDisplay.appendText("Lunge Right");
+					break;
+				case 4:
+					_questionDisplay.appendText("Left Knee Bend Down");
+					break;
+				case 5:
+					_questionDisplay.appendText("Right Knee Bend Down");
 					break;
 			}
-			_questionDisplay.appendText("to touch the glowing marker!");
 		}
 		
 		public function get detectionArea() : Rectangle
@@ -297,12 +358,14 @@ package Screens
 			                                     && motion.x >= (hitTarget.x - hitTarget.width/2) && motion.x <= (hitTarget.x + hitTarget.width/2)
 			                                     && motion.y >= (hitTarget.y - hitTarget.height/2) && motion.y <= (hitTarget.y + hitTarget.height/2)
 			  )*/
-			if(motion.width * motion.height > 50 && detectionArea.intersects(motion))
+			if(_detecting && (motion.width * motion.height > 50 && detectionArea.intersects(motion)))
 			{
 				//reset();
 				//_callback(true);
 				removeChild(hitTarget);
-				randomize();
+				_detecting = false;
+				setTimeout(randomize, 1500);
+				//randomize();
 				return true;
 			}
 			return false;

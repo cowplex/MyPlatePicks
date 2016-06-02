@@ -20,13 +20,14 @@ package Screens
 		//[Embed(source="assets/music/hard-times.mp3")] public var lose :Class;
 		[Embed(source="assets/music/so-fine.mp3")] public var credits :Class;
 		[Embed(source="assets/music/bounce.mp3")] public var warmup :Class;
+		[Embed(source="assets/music/ice.mp3")] public var end :Class;
 		
 		private var _volTransform : SoundTransform;
 		private var _muteTransform : SoundTransform;
 		private var _mute : Boolean = false;
 		private var _playingSound : SoundChannel;
 		private var _sound : Sound;
-		
+				
 		public function Jukebox()
 		{
 			_volTransform = new SoundTransform(.3);
@@ -54,11 +55,15 @@ package Screens
 					break;
 				case 4:
 					_sound = new win();
+					break;
 				case 5:
 					_sound = new credits();
 					break;
 				case 6:
 					_sound = new warmup();
+					break;
+				case 7:
+					_sound = new end();
 					break;
 			}
 			
@@ -75,6 +80,12 @@ package Screens
 		public function get mute() : Boolean
 		{
 			return _mute;
+		}
+		
+		public function stop() : void
+		{
+			if(_playingSound != null)
+				_playingSound.stop();
 		}
 		
 		private function startMusic(e:Event = null) : void

@@ -54,9 +54,11 @@ package Screens
 		private var _lastMusicState : Boolean;
 		
 		private var _jukebox : Jukebox;
-		private var _musicButton : BTN_MUSICNOTE;
+		private var _musicButton : MovieClip;//BTN_MUSICNOTE;
 		private var _resetButton : btn_replay;
-		private var _quitButton : btn_quit;
+		private var _quitButton : btn_home;//btn_quit;
+		
+		private var _quitComfirm : quit_confirm;
 		
 		public function Pause(j : Jukebox)
 		{
@@ -94,24 +96,30 @@ package Screens
 			_playButton.addEventListener(MouseEvent.MOUSE_DOWN, function(e:MouseEvent):void { togglePause(); } );
 			_pauseScreen.addChild(_playButton);
 			
-			_musicButton = new BTN_MUSICNOTE();
+			_musicButton = new PlayPause(_jukebox.mute);//new BTN_MUSICNOTE();//new MovieClip();
+			//_musicButton.addChild(_jukebox.button);
 			_musicButton.y = _pauseScreen.height / 2 - _playButton.height - 5;
 			_musicButton.x = _pauseScreen.width - _musicButton.width - 15;
-			_musicButton.filters = (_jukebox.mute ? [_filter] : null);
-			_musicButton.addEventListener(MouseEvent.MOUSE_DOWN,  function(e:MouseEvent):void {  if(paused) {_lastMusicState = !_lastMusicState;} else {_jukebox.mute = !_jukebox.mute;}; _musicButton.filters = (_jukebox.mute ? new Array(_filter) : new Array()); });
+			//_musicButton.filters = (_jukebox.mute ? [_filter] : null);
+			_musicButton.addEventListener(MouseEvent.MOUSE_DOWN,  function(e:MouseEvent):void {  if(paused) {_lastMusicState = !_lastMusicState;} else {_jukebox.mute = !_jukebox.mute;}; _musicButton.mute = paused ? _lastMusicState : _jukebox.mute;/*_musicButton.filters = (_jukebox.mute ? new Array(_filter) : new Array());*/ });
 			_pauseScreen.addChild(_musicButton);
 			
 			_resetButton = new btn_replay();
 			_resetButton.y = _pauseScreen.height / 2 + _playButton.height + 5;
 			_resetButton.x = _pauseScreen.width - _musicButton.width - 15;
-			_resetButton.addEventListener(MouseEvent.MOUSE_DOWN,  function(e:MouseEvent):void { _resetCallback() });
+			_resetButton.addEventListener(MouseEvent.MOUSE_DOWN,  function(e:MouseEvent):void { _jukebox.mute = _lastMusicState; _resetCallback() });
 			_pauseScreen.addChild(_resetButton);
 			
-			_quitButton = new btn_quit();
+			_quitButton = new btn_home();//new btn_quit();
 			_quitButton.y = _pauseScreen.height / 2 + _playButton.height + _resetButton.height + 5 * 2;
 			_quitButton.x = _pauseScreen.width - _resetButton.width - 15;
-			_quitButton.addEventListener(MouseEvent.MOUSE_DOWN,  function(e:MouseEvent):void { _quitCallback() });
+			_quitButton.addEventListener(MouseEvent.MOUSE_DOWN,  quit);//function(e:MouseEvent):void { _quitCallback() });
 			_pauseScreen.addChild(_quitButton);
+			
+			_quitComfirm = new quit_confirm();
+			_quitComfirm.y = _pauseScreen.height / 2;
+			_quitComfirm.x = -30 - (_quitComfirm.width / 2);
+			_pauseScreen.addChild(_quitComfirm);
 			
 			_grabTimeout = new Timer(500, 1);
 			_grabTimeout.addEventListener(TimerEvent.TIMER_COMPLETE, resetButton);
@@ -178,13 +186,25 @@ package Screens
 				_jukebox.mute = true;
 			else
 				_jukebox.mute = _lastMusicState;
-			
+				
+			if(paused)
+				_quitComfirm.x = -30 - (_quitComfirm.width / 2);
+				
 			_pauseCallback(_paused);
 		}
 		
 		private function tweenCallback(tween:GTween) : void
 		{
 			_tracking = true;
+		}
+		
+		private function quit(e:MouseEvent = null) : void
+		{
+			var tween_target : Number = _quitComfirm.x > 0 ? (-30 - (_quitComfirm.width / 2)) : (stage.stageWidth / 2 + 15);
+			new GTween(_quitComfirm, 0.35, {x:tween_target});
+			
+			_quitComfirm.yes.addEventListener(MouseEvent.MOUSE_DOWN,  function(e:MouseEvent):void { _quitCallback() });
+			_quitComfirm.no.addEventListener(MouseEvent.MOUSE_DOWN,  quit);
 		}
 	}
 

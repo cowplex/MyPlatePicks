@@ -29,6 +29,8 @@ package Screens
 		private var _socialMediaStates : Array = new Array(new btn_socialmedia_up(), new btn_socialmedia_down());
 		private var _socialMediaButtons : Array;
 		
+		private var _creditTween : GTween; 
+		
 		public function MainMenu(j : Jukebox)
 		{
 			_jukebox = j;
@@ -59,18 +61,18 @@ package Screens
 			_credits = new BG_credits();
 			_credits.x = 320;
 			_credits.y = 240;
-			_credits.back.addEventListener(MouseEvent.MOUSE_DOWN,  function(e:MouseEvent):void { add_remove(_credits, 0); _jukebox.play(0); });
+			_credits.back.addEventListener(MouseEvent.MOUSE_DOWN,  function(e:MouseEvent):void {_creditTween.beginning(); add_remove(_credits, 0); _jukebox.play(0); });
 			
 		var i:int;
 						
 			_settings = new btn_options();
-			_settingsButtons = new Array(new btn_info(), new BTN_MUSICNOTE());
+			_settingsButtons = new Array(new btn_info(), new PlayPause()/*new BTN_MUSICNOTE()*/);
 			_settings.x = 60;
 			_settings.y = ANIMATION_START;
 			_settings.addEventListener(MouseEvent.MOUSE_DOWN,  function(e:MouseEvent):void { animate(_settingsButtons); });
 			
-			_settingsButtons[0].addEventListener(MouseEvent.MOUSE_DOWN,  function(e:MouseEvent):void { add_remove(_credits, 1); _credits.credits.y = 500; new GTween(_credits.credits, 40, {y:(-_credits.credits.height)}); _jukebox.play(5); });
-			_settingsButtons[1].addEventListener(MouseEvent.MOUSE_DOWN,  function(e:MouseEvent):void {  _jukebox.mute = !_jukebox.mute; });
+			_settingsButtons[0].addEventListener(MouseEvent.MOUSE_DOWN,  function(e:MouseEvent):void { add_remove(_credits, 1); _credits.credits.y = 3590; _creditTween = new GTween(_credits.credits, 80, {y:(-_credits.credits.height)}); _jukebox.play(5); });
+			_settingsButtons[1].addEventListener(MouseEvent.MOUSE_DOWN,  function(e:MouseEvent):void {  _jukebox.mute = !_jukebox.mute; _settingsButtons[1].mute = _jukebox.mute; });
 			for(i = _settingsButtons.length - 1; i >= 0; i--)
 			{
 				_settingsButtons[i].x = 60;
@@ -82,7 +84,7 @@ package Screens
 			
 			_socialMedia = new MovieClip();//new btn_socialmedia_up();
 			_socialMedia.addChild(_socialMediaStates[0]);
-			_socialMediaButtons = new Array(new BTN_myplate(), new BTN_social(), new btn_youtube(), new btn_facebook(), new BTN_TWITTER());
+			_socialMediaButtons = new Array(new BTN_myplate(), new BTN_KidsCom(), new btn_youtube(), new btn_facebook(), new BTN_TWITTER());
 			_socialMedia.x = 580;
 			_socialMedia.y = ANIMATION_START;
 			_socialMedia.addEventListener(MouseEvent.MOUSE_DOWN,  function(e:MouseEvent):void { animate(_socialMediaButtons, 1); });

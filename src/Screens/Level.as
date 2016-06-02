@@ -28,6 +28,8 @@ package Screens
 			addChild(_textLevel2);
 			addChild(_textLevel3);
 			
+			//_textLevel3.gotoAndStop(3); //HACK, FIXME
+			
 			_levels = new Array(_textLevel1, _textLevel2, _textLevel3);
 			
 			level = 0;
